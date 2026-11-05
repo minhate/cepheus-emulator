@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "name": "positive",
+  "argv": [
+    "python3",
+    "scripts/extract-boot.py"
+  ],
+  "started_utc": "2026-11-05T22:46:11.127814+00:00",
+  "duration_s": 0.632,
+  "exit_code": 0,
+  "stopped_by": "exit",
+  "bytes": 229,
+  "truncated": false,
+  "log_sha256": "31fb1b18fbee771912793aa7a8814cf4ce72a5995f9b1ad2d2014031de9418f5",
+  "binary_sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+}
