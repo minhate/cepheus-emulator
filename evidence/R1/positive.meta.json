@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "name": "positive",
+  "argv": [
+    "python3",
+    "scripts/import-firmware.py"
+  ],
+  "started_utc": "2026-11-05T22:25:28.575115+00:00",
+  "duration_s": 61.704,
+  "exit_code": 0,
+  "stopped_by": "exit",
+  "bytes": 1413,
+  "truncated": false,
+  "log_sha256": "e719e500e6447207517b33aaccea64311bd2b447177659df5040455ca7a6d04e",
+  "binary_sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+}

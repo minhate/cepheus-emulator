@@ -27,11 +27,11 @@
       "depends": [
         "R0"
       ],
-      "acceptance": "Importer copies the user's stock archive contents into firmware/extracted using real tools, prints real sha256 of archive and key images (boot, super, vbmeta, dtbo) and compares them to config/firmware.lock.json. Negative: tampered copy compares unequal.",
+      "acceptance": "Importer copies the user's stock archive contents into firmware/extracted using real tools, prints real sha256 of archive and key images (boot, system, vendor, vbmeta, dtbo) and compares them to config/firmware.lock.json. Negative: tampered copy compares unequal.",
       "patterns": [
         "^archive sha256 [0-9a-f]{64} ",
         "^boot\\.img sha256 [0-9a-f]{64} ",
-        "^super\\.img sha256 [0-9a-f]{64} ",
+        "^system\\.img sha256 [0-9a-f]{64} ",
         "^lock-compare boot\\.img equal$"
       ],
       "negative_absent": [

@@ -5,5 +5,12 @@
   "build_id": "V12.5.6.0.RFACNXM",
   "android_version": "11",
   "archive_sha256": null,
-  "images": {}
+  "images": {
+    "boot.img": "848d93b2e9adb4067ab783542823742e0bb6add47e3fbe29e231cbe27ae890d8",
+    "dtbo.img": "5e777bb47934d4782fdaa74cb58264c7397e63feea8890015c5040b5557c46c5",
+    "vbmeta.img": "deee89dcb6445e58351ec61ca53e6b3106c5a59a7b7efdc4ebae8fd307ec37cc",
+    "system.img": "942b9622ee4c92b4b4c34e28812ba500f2435c3660be8a9e2ebf1201f71c049e",
+    "vendor.img": "d13441204bddca385758048097a13250a19f2e7b4884c16d30be50bcbc31f61e",
+    "cust.img": "37d93d867e1cbcf68f856f8a4726ea5bba53a41865482f8a0daae6063237bc4a"
+  }
 }

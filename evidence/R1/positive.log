@@ -1,0 +1,12 @@
+archive sha256 0000000000000000000000000000000000000000000000000000000000000000 none
+boot.img sha256 848d93b2e9adb4067ab783542823742e0bb6add47e3fbe29e231cbe27ae890d8 /media/husen/HDD/Backup Data DLL/mi9-kgsl-root-research/mi9-emulator/cepheus-emulator/firmware/extracted/boot.img
+dtbo.img sha256 5e777bb47934d4782fdaa74cb58264c7397e63feea8890015c5040b5557c46c5 /media/husen/HDD/Backup Data DLL/mi9-kgsl-root-research/mi9-emulator/cepheus-emulator/firmware/extracted/dtbo.img
+vbmeta.img sha256 deee89dcb6445e58351ec61ca53e6b3106c5a59a7b7efdc4ebae8fd307ec37cc /media/husen/HDD/Backup Data DLL/mi9-kgsl-root-research/mi9-emulator/cepheus-emulator/firmware/extracted/vbmeta.img
+system.img sha256 942b9622ee4c92b4b4c34e28812ba500f2435c3660be8a9e2ebf1201f71c049e /media/husen/HDD/Backup Data DLL/mi9-kgsl-root-research/mi9-emulator/cepheus-emulator/firmware/extracted/system.img
+vendor.img sha256 d13441204bddca385758048097a13250a19f2e7b4884c16d30be50bcbc31f61e /media/husen/HDD/Backup Data DLL/mi9-kgsl-root-research/mi9-emulator/cepheus-emulator/firmware/extracted/vendor.img
+cust.img sha256 37d93d867e1cbcf68f856f8a4726ea5bba53a41865482f8a0daae6063237bc4a /media/husen/HDD/Backup Data DLL/mi9-kgsl-root-research/mi9-emulator/cepheus-emulator/firmware/extracted/cust.img
+lock-compare boot.img equal
+lock-compare vbmeta.img equal
+lock-compare dtbo.img equal
+lock-compare system.img equal
+lock-compare vendor.img equal
