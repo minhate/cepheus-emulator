@@ -1,0 +1,24 @@
+diff --git a/hw/arm/Kconfig b/hw/arm/Kconfig
+index 1b25e73..d38c3bf 100644
+--- a/hw/arm/Kconfig
++++ b/hw/arm/Kconfig
+@@ -641,3 +641,10 @@ config ARMSSE
+     select UNIMP
+     select SSE_COUNTER
+     select SSE_TIMER
++
++config CEPHEUS
++    bool
++    default y
++    depends on ARM
++    select ARM_GIC
++    select UNIMP
+diff --git a/hw/arm/meson.build b/hw/arm/meson.build
+index 490234b..f95bf4a 100644
+--- a/hw/arm/meson.build
++++ b/hw/arm/meson.build
+@@ -73,3 +73,4 @@ system_ss.add(when: 'CONFIG_VERSATILE', if_true: files('versatilepb.c'))
+ system_ss.add(when: 'CONFIG_VEXPRESS', if_true: files('vexpress.c'))
+ 
+ hw_arch += {'arm': arm_ss}
++arm_ss.add(when: 'CONFIG_CEPHEUS', if_true: files('cepheus.c'))

@@ -2,6 +2,7 @@
 .env.*
 !.env.example
 build/
+build
 out/
 lab/
 firmware/input/*

@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "name": "negative",
+  "argv": [
+    "./build/qemu-build/qemu-system-aarch64",
+    "-machine",
+    "virt",
+    "-smp",
+    "1",
+    "-S",
+    "-display",
+    "none",
+    "-monitor",
+    "stdio"
+  ],
+  "started_utc": "2026-11-05T23:06:27.011759+00:00",
+  "duration_s": 0.063,
+  "exit_code": 0,
+  "stopped_by": "exit",
+  "bytes": 8635,
+  "truncated": false,
+  "log_sha256": "039c47abf13ecf14e261366324b17dbfcdd9987b8f6dc72d5266d8305faf0792",
+  "binary_sha256": "124012d41c36e23bde2f03bbdc8cb11c9b1e085962d76eaac42f9d7b95682ba6"
+}

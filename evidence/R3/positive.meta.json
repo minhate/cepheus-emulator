@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "name": "positive",
+  "argv": [
+    "./build/qemu-build/qemu-system-aarch64",
+    "-machine",
+    "cepheus",
+    "-S",
+    "-display",
+    "none",
+    "-monitor",
+    "stdio"
+  ],
+  "started_utc": "2026-11-05T23:06:11.278889+00:00",
+  "duration_s": 0.049,
+  "exit_code": 0,
+  "stopped_by": "exit",
+  "bytes": 1708,
+  "truncated": false,
+  "log_sha256": "bf96e57697519a5055baa781673863ca0041914220daa5424613b40fc06fc734",
+  "binary_sha256": "124012d41c36e23bde2f03bbdc8cb11c9b1e085962d76eaac42f9d7b95682ba6"
+}
