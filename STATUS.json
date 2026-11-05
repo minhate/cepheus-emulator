@@ -15,9 +15,9 @@
     "evidence_sha256": "038a5e89bbb2ad40c8a762f9f5cd47dc70930a57df23a6fc4a82b369c0d765f4"
   },
   "R3": {
-    "status": "NOT-STARTED",
+    "status": "VERIFIED",
     "note": "",
-    "evidence_sha256": null
+    "evidence_sha256": "73a6c43693664705d0281c1f3f22a64b2a876e79f2178e808451c00ba760ee87"
   },
   "R4": {
     "status": "NOT-STARTED",
@@ -85,6 +85,46 @@
     "evidence_sha256": null
   },
   "R17": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "G1": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "D1": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "D2": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "D3": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "F1": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "M1": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "N1": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
+  },
+  "A1": {
     "status": "NOT-STARTED",
     "note": "",
     "evidence_sha256": null

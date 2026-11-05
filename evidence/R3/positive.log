@@ -1,0 +1,38 @@
+QEMU 9.2.0 monitor - type 'help' for more information
+(qemu) i[K[Din[K[D[Dinf[K[D[D[Dinfo[K[D[D[D[Dinfo [K[D[D[D[D[Dinfo c[K[D[D[D[D[D[Dinfo cp[K[D[D[D[D[D[D[Dinfo cpu[K[D[D[D[D[D[D[D[Dinfo cpus[K
+* CPU #0: thread_id=209835
+  CPU #1: thread_id=209836
+  CPU #2: thread_id=209837
+  CPU #3: thread_id=209838
+  CPU #4: thread_id=209839
+  CPU #5: thread_id=209840
+  CPU #6: thread_id=209841
+  CPU #7: thread_id=209842
+(qemu) i[K[Din[K[D[Dinf[K[D[D[Dinfo[K[D[D[D[Dinfo [K[D[D[D[D[Dinfo m[K[D[D[D[D[D[Dinfo mt[K[D[D[D[D[D[D[Dinfo mtr[K[D[D[D[D[D[D[D[Dinfo mtre[K[D[D[D[D[D[D[D[D[Dinfo mtree[K
+address-space: cpu-memory-0
+address-space: cpu-memory-1
+address-space: cpu-memory-2
+address-space: cpu-memory-3
+address-space: cpu-memory-4
+address-space: cpu-memory-5
+address-space: cpu-memory-6
+address-space: cpu-memory-7
+address-space: cpu-secure-memory-0
+address-space: cpu-secure-memory-1
+address-space: cpu-secure-memory-2
+address-space: cpu-secure-memory-3
+address-space: cpu-secure-memory-4
+address-space: cpu-secure-memory-5
+address-space: cpu-secure-memory-6
+address-space: cpu-secure-memory-7
+address-space: memory
+  0000000000000000-ffffffffffffffff (prio 0, i/o): system
+    0000000000a90000-0000000000a93fff (prio -1000, i/o): qcom.geni-uart
+    0000000017a00000-0000000017a0ffff (prio 0, i/o): gicv3_dist
+    0000000017a60000-0000000017b5ffff (prio 0, i/o): gicv3_redist_region[0]
+    0000000080000000-000000017fffffff (prio 0, ram): cepheus.ram
+
+address-space: I/O
+  0000000000000000-000000000000ffff (prio 0, i/o): io
+
+(qemu) q[K[Dqu[K[D[Dqui[K[D[D[Dquit[K
