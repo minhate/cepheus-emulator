@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "name": "positive",
+  "argv": [
+    "./scripts/doctor.sh"
+  ],
+  "started_utc": "2026-11-05T22:09:47.095540+00:00",
+  "duration_s": 0.392,
+  "exit_code": 0,
+  "stopped_by": "exit",
+  "bytes": 1075,
+  "truncated": false,
+  "log_sha256": "65525948fb644795f12eb0676163c9e748a0a64158aadbd1b9cd523239a33ba1",
+  "binary_sha256": "b1db683f31c93498450f2a8cd37ecad42ad3ad23a8fe5b19b1df65ec9592d776"
+}

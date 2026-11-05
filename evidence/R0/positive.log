@@ -1,0 +1,22 @@
+tool git /usr/bin/git git version 2.43.0
+tool make /usr/bin/make GNU Make 4.3
+tool gcc /usr/bin/gcc gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+tool python3 /usr/bin/python3 Python 3.12.3
+tool ninja /usr/bin/ninja 1.11.1
+tool meson /usr/bin/meson 1.3.2
+tool pkg-config /usr/bin/pkg-config 1.8.1
+tool dtc /home/husen/.local/bin/dtc Version: DTC 1.7.0
+tool file /usr/bin/file file-5.45
+tool cpio /usr/bin/cpio cpio (GNU cpio) 2.15
+tool gzip /usr/bin/gzip gzip 1.12
+tool xz /usr/bin/xz xz (XZ Utils) 5.4.5
+tool aarch64-linux-gnu-gcc /home/husen/.local/bin/aarch64-linux-gnu-gcc aarch64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+tool qemu-img /home/husen/.local/bin/qemu-img qemu-img version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
+pkg glib-2.0 2.80.0
+pkg pixman-1 0.42.2
+tool simg2img /home/husen/.local/bin/simg2img Usage: simg2img <sparse_image_files> <raw_image_file>
+optional-missing lpunpack
+optional-missing unpack_bootimg
+optional-missing avbtool
+tool busybox /usr/bin/busybox BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+DOCTOR missing=0

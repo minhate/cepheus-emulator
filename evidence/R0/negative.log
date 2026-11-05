@@ -1,0 +1,23 @@
+./scripts/doctor.sh: line 4: dirname: No such file or directory
+required-missing git
+required-missing make
+required-missing gcc
+required-missing python3
+required-missing ninja
+required-missing meson
+required-missing pkg-config
+required-missing dtc
+required-missing file
+required-missing cpio
+required-missing gzip
+required-missing xz
+required-missing aarch64-linux-gnu-gcc
+required-missing qemu-img
+required-missing pkg:glib-2.0
+required-missing pkg:pixman-1
+optional-missing simg2img
+optional-missing lpunpack
+optional-missing unpack_bootimg
+optional-missing avbtool
+optional-missing busybox
+DOCTOR missing=16
