@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+build/
+out/
+lab/
+firmware/input/*
+firmware/extracted/*
+!firmware/input/.keep
+!firmware/extracted/.keep
+*.qcow2
+__pycache__/
+*.pyc
+.venv/
