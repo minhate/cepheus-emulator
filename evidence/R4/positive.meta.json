@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "name": "positive",
+  "argv": [
+    "./build/qemu-build/qemu-system-aarch64",
+    "-machine",
+    "cepheus",
+    "-m",
+    "1G",
+    "-kernel",
+    "build/stock/Image",
+    "-dtb",
+    "build/stock/dtb.bin",
+    "-append",
+    "earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8",
+    "-display",
+    "none",
+    "-serial",
+    "stdio"
+  ],
+  "started_utc": "2026-11-05T23:52:59.092811+00:00",
+  "duration_s": 1.156,
+  "exit_code": 0,
+  "stopped_by": "until",
+  "bytes": 419,
+  "truncated": false,
+  "log_sha256": "2ec69ce5318dd816f993825d4cbfac49fa69935f4fc1518dc07b50293622a194",
+  "binary_sha256": "83c7850f44ab19f9e8c658a5ce3344b0a55dac0e67268711dc7e331b2677f391"
+}
