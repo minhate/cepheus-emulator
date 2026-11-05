@@ -1,12 +1,11 @@
-# Kickoff prompt (paste this to the agent on a fresh start)
+<!-- ADDON-KICKOFF -->
+# Resume prompt (paste to the agent at the start of EVERY session)
 
-You are starting the project from zero. The previous attempt was a failed mock-based scaffold; nothing from it is reusable except lessons.
+1. Read `AGENTS.md` fully (including section 13), then run `python3 tools/milestone.py list` and read `STATUS.json`. Read nothing else yet.
+2. Restate the mission in 3 lines: native custom QEMU machine `cepheus`; stock kernel + stock DTB + stock userspace from the real images; stubs only from the allowlist.
+3. Name the current milestone: the first in list order with all `depends` VERIFIED and status not VERIFIED. If it is IN-PROGRESS or BLOCKED, quote the note in `STATUS.json` and continue from it.
+4. If its patterns are DRAFT: write proposed patterns from real observed output in `docs/PROPOSALS.md` and STOP.
+5. Otherwise: plan in <= 5 lines, `set <ID> IN-PROGRESS`, branch `m/<ID>-<slug>`, make the smallest real change, capture positive and negative evidence with `tools/capture.py`, run `tools/milestone.py verify <ID>`, run `make ci`.
+6. Report with the template in AGENTS.md (section 12) and STOP. Do not start the next milestone until the owner says so.
 
-1. Read `AGENTS.md` fully, then `milestones.json` and `STATUS.json`. Do not read anything else yet.
-2. Restate the mission in 3 lines (it must say: native custom QEMU machine `cepheus`, stock kernel + stock DTB + stock userspace, stubs only from the allowlist).
-3. Start milestone **R0** only. Plan in <= 5 lines, then do it.
-   - R0: run `scripts/doctor.sh`. If tools are missing, list the exact install command and ask me before installing anything.
-4. Follow the milestone protocol: `set R0 IN-PROGRESS`, produce positive + negative evidence with `tools/capture.py`, run `tools/milestone.py verify R0`, run `make ci`.
-5. Report using the template in AGENTS.md and STOP. Do not begin R1 until I say so.
-
-If anything in `milestones.json` looks wrong, write it in `docs/PROPOSALS.md` and stop. Never edit the spec. Never create success markers. If blocked, say BLOCKED with the concrete reason.
+Hard reminders: never edit the spec or locked tools; never print success markers; never hardcode guest output; if unsure, run it; if you cannot run it, say NOT RUN; if stuck after 2 serious attempts, BLOCKED with the concrete reason. Usage limit is tight: read only what the step needs, batch tool calls, report in <= 40 lines.

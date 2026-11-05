@@ -12,3 +12,4 @@ firmware/extracted/*
 __pycache__/
 *.pyc
 .venv/
+*.pre-addon.bak

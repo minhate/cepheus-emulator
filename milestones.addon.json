@@ -1,0 +1,112 @@
+{
+  "milestones": [
+    {
+      "id": "G1",
+      "title": "GDB attach to machine cepheus (early bring-up aid)",
+      "kind": "guest",
+      "depends": [
+        "R3"
+      ],
+      "acceptance": "QEMU started with -s -S on `cepheus`; scripts/gdb-attach.sh in batch mode prints the real vCPU register state. Negative: QEMU started without -s -> gdb cannot connect.",
+      "patterns_status": "DRAFT",
+      "patterns": [],
+      "argv_must_contain": [
+        "gdb-attach.sh"
+      ]
+    },
+    {
+      "id": "D1",
+      "title": "Native display controller probes on the stock kernel",
+      "kind": "guest",
+      "depends": [
+        "R7"
+      ],
+      "acceptance": "The display driver selected by the stock DTB probes against a NATIVE display-controller model and the guest exposes a real DRM/fb device (kernel log + /sys/class). Negative: model disabled -> probe failure in kernel log. NOTE: display is not on the stub allowlist (docs/ADDON.md, decision 1); may end BLOCKED, truthfully.",
+      "patterns_status": "DRAFT",
+      "patterns": []
+    },
+    {
+      "id": "D2",
+      "title": "First real frame on the host display",
+      "kind": "guest",
+      "depends": [
+        "R14",
+        "D1"
+      ],
+      "acceptance": "tools/qemu_screens.py takes two real screendumps of the live guest; screencheck prints pixel-derived nonblank ratio and frame-diff. Negative: display model disabled -> blank frames.",
+      "patterns_status": "DRAFT",
+      "patterns": [],
+      "argv_must_contain": [
+        "qemu_screens.py",
+        "cepheus"
+      ]
+    },
+    {
+      "id": "D3",
+      "title": "Native touch input",
+      "kind": "guest",
+      "depends": [
+        "D2",
+        "R15"
+      ],
+      "acceptance": "The touch controller named in the stock DTB is a NATIVE model fed by QEMU input events; real guest `getevent -lp` lists it and an injected host pointer event yields real ABS_MT lines. Negative: no injection -> no event lines.",
+      "patterns_status": "DRAFT",
+      "patterns": [],
+      "argv_must_contain": [
+        "qemu-system-aarch64",
+        "cepheus"
+      ]
+    },
+    {
+      "id": "F1",
+      "title": "Boot from a flashed boot partition",
+      "kind": "guest",
+      "depends": [
+        "R8"
+      ],
+      "acceptance": "Host flash tool writes a boot image into boot_a of the real GPT/LUN image; the launcher extracts kernel/ramdisk back out of that partition with real tools and boots it; the guest kernel banner comes from it. Negative: flash a corrupted boot image -> no kernel banner.",
+      "patterns_status": "DRAFT",
+      "patterns": [],
+      "argv_must_contain": [
+        "qemu-system-aarch64",
+        "cepheus"
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "Root via Magisk-patched boot image",
+      "kind": "guest",
+      "depends": [
+        "F1",
+        "R15"
+      ],
+      "acceptance": "User-supplied Magisk (firmware/input, no downloads) patches boot.img; real `adb shell su -c id` prints uid=0 and real getprop reports the boot-chain state truthfully (not green/locked). Negative: stock boot image -> su not found.",
+      "patterns_status": "DRAFT",
+      "patterns": []
+    },
+    {
+      "id": "N1",
+      "title": "Guest network connectivity (decision required)",
+      "kind": "guest",
+      "depends": [
+        "R15"
+      ],
+      "acceptance": "Real guest network stack reaches a host-side listener over the path chosen in docs/PROPOSALS.md (stock DTB has no virtio-net; Wi-Fi hardware is not on the allowlist, docs/ADDON.md decision 3). Negative: link down -> connection fails.",
+      "patterns_status": "DRAFT",
+      "patterns": []
+    },
+    {
+      "id": "A1",
+      "title": "User apps and games run",
+      "kind": "guest",
+      "depends": [
+        "R16",
+        "N1",
+        "D3"
+      ],
+      "acceptance": "User-supplied APKs installed with real `adb install`; real `pm path` and `am start`; real dumpsys shows the resumed activity; screencheck frame-diff shows the app drawing. Negative: `pm uninstall` -> `pm path` empty.",
+      "patterns_status": "DRAFT",
+      "patterns": []
+    }
+  ]
+}
