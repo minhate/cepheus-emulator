@@ -1,0 +1,2 @@
+Linux version 4.14.180-perf-gb24d113 (builder@c5-miui-ota-bd153.bj) (clang version 10.0.6 for Android NDK, GNU ld (binutils-2.27-bd24d23f) 2.27.0.20170315) #2 SMP PREEMPT Thu Nov 25 13:06:04 CST 2021
+compatible = "qcom,sm8150p";
