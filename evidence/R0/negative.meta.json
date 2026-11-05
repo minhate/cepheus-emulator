@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "name": "negative",
+  "argv": [
+    "/bin/bash",
+    "-c",
+    "PATH=\"\" /bin/bash ./scripts/doctor.sh"
+  ],
+  "started_utc": "2026-11-05T22:09:50.705496+00:00",
+  "duration_s": 0.035,
+  "exit_code": 1,
+  "stopped_by": "exit",
+  "bytes": 611,
+  "truncated": false,
+  "log_sha256": "650fb3ffb22918f091743b42d4f0695c3c804de4e9ae1fec2a12b1580ac1c130",
+  "binary_sha256": "bc5945feb8bd26203ebfafea5ce1878bb2e32cb8fb50ab7ae395cfb1e1aaaef1"
+}
