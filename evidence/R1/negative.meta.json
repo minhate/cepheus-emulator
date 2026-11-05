@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "name": "negative",
+  "argv": [
+    "python3",
+    "scripts/import-firmware.py",
+    "--lock",
+    "tests/fixtures/tampered.lock.json"
+  ],
+  "started_utc": "2026-11-05T22:26:37.518608+00:00",
+  "duration_s": 69.941,
+  "exit_code": 1,
+  "stopped_by": "exit",
+  "bytes": 1423,
+  "truncated": false,
+  "log_sha256": "52fafa2ac7479c42f0b156bf1e61b12184a6debf5f269e46baef081991688065",
+  "binary_sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+}
