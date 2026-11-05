@@ -1,8 +1,8 @@
 diff --git a/hw/arm/Kconfig b/hw/arm/Kconfig
-index 1b25e73..d38c3bf 100644
+index 1b25e73..1dad904 100644
 --- a/hw/arm/Kconfig
 +++ b/hw/arm/Kconfig
-@@ -641,3 +641,10 @@ config ARMSSE
+@@ -641,3 +641,11 @@ config ARMSSE
      select UNIMP
      select SSE_COUNTER
      select SSE_TIMER
@@ -12,6 +12,7 @@ index 1b25e73..d38c3bf 100644
 +    default y
 +    depends on ARM
 +    select ARM_GIC
++    select QCOM_GENI_UART
 +    select UNIMP
 diff --git a/hw/arm/meson.build b/hw/arm/meson.build
 index 490234b..f95bf4a 100644
@@ -22,3 +23,23 @@ index 490234b..f95bf4a 100644
  
  hw_arch += {'arm': arm_ss}
 +arm_ss.add(when: 'CONFIG_CEPHEUS', if_true: files('cepheus.c'))
+diff --git a/hw/char/Kconfig b/hw/char/Kconfig
+index 4b73a80..c2f5fb9 100644
+--- a/hw/char/Kconfig
++++ b/hw/char/Kconfig
+@@ -78,3 +78,6 @@ config GOLDFISH_TTY
+ 
+ config SHAKTI_UART
+     bool
++
++config QCOM_GENI_UART
++    bool
+diff --git a/hw/char/meson.build b/hw/char/meson.build
+index 1750834..2a81a58 100644
+--- a/hw/char/meson.build
++++ b/hw/char/meson.build
+@@ -39,3 +39,4 @@ system_ss.add(when: 'CONFIG_GOLDFISH_TTY', if_true: files('goldfish_tty.c'))
+ specific_ss.add(when: 'CONFIG_TERMINAL3270', if_true: files('terminal3270.c'))
+ specific_ss.add(when: 'CONFIG_VIRTIO', if_true: files('virtio-serial-bus.c'))
+ specific_ss.add(when: 'CONFIG_PSERIES', if_true: files('spapr_vty.c'))
++system_ss.add(when: 'CONFIG_QCOM_GENI_UART', if_true: files('qcom_geni_uart.c'))

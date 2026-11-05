@@ -21,6 +21,7 @@
 #include "hw/arm/bsa.h"
 #include "hw/intc/arm_gicv3_common.h"
 #include "hw/misc/unimp.h"
+#include "hw/char/qcom_geni_uart.h"
 #include "target/arm/cpu.h"
 #include "target/arm/cpu-qom.h"
 #include "target/arm/gtimer.h"
@@ -46,6 +47,7 @@ struct CepheusMachineState {
     MachineState parent;
     struct arm_boot_info bootinfo;
     DeviceState *gic;
+    bool enable_geni_uart;
 };
 
 static uint64_t cepheus_cpu_mp_affinity(int idx)
@@ -166,7 +168,11 @@ static void cepheus_init(MachineState *machine)
     }
 
     /* 4. Map SM8150 Qualcomm GENI UART region at 0x00a90000 */
-    create_unimplemented_device("qcom.geni-uart", CEPHEUS_GENI_UART_BASE, CEPHEUS_GENI_UART_SIZE);
+    if (cms->enable_geni_uart) {
+        qcom_geni_uart_create(CEPHEUS_GENI_UART_BASE, qdev_get_gpio_in(cms->gic, 357), serial_hd(0));
+    } else {
+        create_unimplemented_device("qcom.geni-uart", CEPHEUS_GENI_UART_BASE, CEPHEUS_GENI_UART_SIZE);
+    }
 
     /* 5. Kernel bootloader setup */
     cms->bootinfo.ram_size = machine->ram_size;
@@ -175,6 +181,24 @@ static void cepheus_init(MachineState *machine)
     cms->bootinfo.psci_conduit = QEMU_PSCI_CONDUIT_SMC;
 
     arm_load_kernel(ARM_CPU(first_cpu), machine, &cms->bootinfo);
+}
+
+static bool cepheus_get_geni_uart(Object *obj, Error **errp)
+{
+    CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
+    return cms->enable_geni_uart;
+}
+
+static void cepheus_set_geni_uart(Object *obj, bool value, Error **errp)
+{
+    CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
+    cms->enable_geni_uart = value;
+}
+
+static void cepheus_instance_init(Object *obj)
+{
+    CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
+    cms->enable_geni_uart = true;
 }
 
 static void cepheus_class_init(ObjectClass *oc, void *data)
@@ -189,7 +213,7 @@ static void cepheus_class_init(ObjectClass *oc, void *data)
 
     mc->desc = "Xiaomi Mi 9 (Snapdragon 855 / SM8150)";
     mc->init = cepheus_init;
-    mc->default_cpu_type = ARM_CPU_TYPE_NAME("max");
+    mc->default_cpu_type = ARM_CPU_TYPE_NAME("cortex-a57");
     mc->valid_cpu_types = valid_cpu_types;
     mc->max_cpus = SM8150_MAX_CPUS;
     mc->default_cpus = SM8150_MAX_CPUS;
@@ -197,12 +221,19 @@ static void cepheus_class_init(ObjectClass *oc, void *data)
     mc->default_ram_id = "cepheus.ram";
     mc->possible_cpu_arch_ids = cepheus_possible_cpu_arch_ids;
     mc->cpu_index_to_instance_props = cepheus_cpu_index_to_props;
+
+    object_class_property_add_bool(oc, "geni-uart",
+                                   cepheus_get_geni_uart,
+                                   cepheus_set_geni_uart);
+    object_class_property_set_description(oc, "geni-uart",
+                                          "Enable or disable native Qualcomm GENI UART");
 }
 
 static const TypeInfo cepheus_machine_info = {
     .name          = TYPE_CEPHEUS_MACHINE,
     .parent        = TYPE_MACHINE,
     .instance_size = sizeof(CepheusMachineState),
+    .instance_init = cepheus_instance_init,
     .class_init    = cepheus_class_init,
 };
 
