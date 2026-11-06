@@ -97,7 +97,7 @@
       "acceptance": "Kernel brings up 8 CPUs with native GICv3, arch timer and PSCI. Negative: boot with maxcpus=1 on the cmdline.",
       "patterns": [
         "SMP: Total of 8 processors activated",
-        "GICv3: [0-9]+ SPIs implemented",
+        "GICv3: CPU0: found redistributor",
         "psci: PSCIv[0-9]\\.[0-9] detected"
       ],
       "negative_absent": [

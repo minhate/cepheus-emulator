@@ -52,7 +52,11 @@ struct CepheusMachineState {
 
 static uint64_t cepheus_cpu_mp_affinity(int idx)
 {
-    return arm_build_mp_affinity(idx, ARM_DEFAULT_CPUS_PER_CLUSTER);
+    /*
+     * Snapdragon 855 / SM8150 assigns MPIDR Aff1 = core index (0..7),
+     * matching the stock DTB: reg = <0x00 0x00>, <0x00 0x100>, ..., <0x00 0x700>.
+     */
+    return (uint64_t)idx << 8;
 }
 
 static const CPUArchIdList *cepheus_possible_cpu_arch_ids(MachineState *ms)
@@ -140,15 +144,15 @@ static void cepheus_init(MachineState *machine)
     sysbus_mmio_map(gicbusdev, 0, CEPHEUS_GIC_DIST_BASE);
     sysbus_mmio_map(gicbusdev, 1, CEPHEUS_GIC_REDIST_BASE);
 
-    /* Connect timer PPIs and CPU interrupt lines */
+    /* Connect timer PPIs and CPU interrupt lines according to Qualcomm SM8150 DTB */
     for (n = 0; n < smp_cpus; n++) {
         DeviceState *cpudev = DEVICE(qemu_get_cpu(n));
         int intidbase = NUM_IRQS + n * GIC_INTERNAL;
         const int timer_irq[] = {
-            [GTIMER_PHYS] = ARCH_TIMER_NS_EL1_IRQ,
-            [GTIMER_VIRT] = ARCH_TIMER_VIRT_IRQ,
-            [GTIMER_HYP]  = ARCH_TIMER_NS_EL2_IRQ,
-            [GTIMER_SEC]  = ARCH_TIMER_S_EL1_IRQ,
+            [GTIMER_PHYS] = 18, /* Qualcomm SM8150 DTB PPI 2 (INTID 18) */
+            [GTIMER_VIRT] = 19, /* Qualcomm SM8150 DTB PPI 3 (INTID 19) */
+            [GTIMER_HYP]  = 16, /* Qualcomm SM8150 DTB PPI 0 (INTID 16) */
+            [GTIMER_SEC]  = 17, /* Qualcomm SM8150 DTB PPI 1 (INTID 17) */
             [GTIMER_HYPVIRT] = ARCH_TIMER_NS_EL2_VIRT_IRQ,
         };
         for (int irq = 0; irq < ARRAY_SIZE(timer_irq); irq++) {
@@ -159,7 +163,7 @@ static void cepheus_init(MachineState *machine)
         qdev_connect_gpio_out_named(cpudev, "gicv3-maintenance-interrupt", 0,
                                     qdev_get_gpio_in(cms->gic, intidbase + ARCH_GIC_MAINT_IRQ));
         qdev_connect_gpio_out_named(cpudev, "pmu-interrupt", 0,
-                                    qdev_get_gpio_in(cms->gic, intidbase + VIRTUAL_PMU_IRQ));
+                                    qdev_get_gpio_in(cms->gic, intidbase + 21)); /* PPI 5 (INTID 21) */
 
         sysbus_connect_irq(gicbusdev, n, qdev_get_gpio_in(cpudev, ARM_CPU_IRQ));
         sysbus_connect_irq(gicbusdev, n + smp_cpus, qdev_get_gpio_in(cpudev, ARM_CPU_FIQ));
@@ -173,6 +177,12 @@ static void cepheus_init(MachineState *machine)
     } else {
         create_unimplemented_device("qcom.geni-uart", CEPHEUS_GENI_UART_BASE, CEPHEUS_GENI_UART_SIZE);
     }
+
+    /* 4.1 Map SM8150 APCS subsystem (timer-mem, watchdog, syscon) at 0x17c00000 */
+    create_unimplemented_device("qcom.apcs", 0x17c00000, 0x30000);
+
+    /* 4.2 Map SM8150 internal SRAM (IMEM) at 0x14680000 */
+    create_unimplemented_device("qcom.imem", 0x14680000, 0x80000);
 
     /* 5. Kernel bootloader setup */
     cms->bootinfo.ram_size = machine->ram_size;

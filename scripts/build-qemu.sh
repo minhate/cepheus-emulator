@@ -10,6 +10,6 @@ mkdir -p "$ROOT/build/qemu-build"
 OUT="$(cd "$ROOT/build/qemu-build" && pwd -P)"
 
 cd "$OUT"
-[ -f build.ninja ] || "$SRC/configure" --target-list=aarch64-softmmu --disable-docs --enable-debug
+[ -f build.ninja ] || "$SRC/configure" --target-list=aarch64-softmmu --disable-docs --extra-cflags="-O2"
 ninja -j"${JOBS:-$(nproc)}"
 echo "built: $OUT/qemu-system-aarch64"
