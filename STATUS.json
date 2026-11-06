@@ -30,8 +30,8 @@
     "evidence_sha256": "cc60d7173db7b3ca443fb009250dfc67af005bddc461c6e83928b0b85692b991"
   },
   "R6": {
-    "status": "NOT-STARTED",
-    "note": "",
+    "status": "IN-PROGRESS",
+    "note": "Implementing native GCC clock, TLMM pinctrl, SPMI/PMIC and RPMh RSC models",
     "evidence_sha256": null
   },
   "R7": {
