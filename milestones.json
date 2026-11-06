@@ -141,13 +141,16 @@
       "acceptance": "Stock kernel ufshcd-qcom probes the native UFS HC and enumerates LUNs as SCSI disks. Negative: UFS model removed -> no SCSI disk lines.",
       "patterns": [
         "ufshcd",
-        "\\[sd[a-z]\\] [0-9]+ [0-9]+-byte logical blocks"
+        "\\[sd[a-z]\\] Attached SCSI disk"
       ],
       "argv_must_contain": [
         "qemu-system-aarch64",
         "cepheus",
         "-kernel",
         "-dtb"
+      ],
+      "negative_absent": [
+        "\\[sd[a-z]\\] Attached SCSI disk"
       ]
     },
     {

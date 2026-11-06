@@ -23,6 +23,7 @@
 #include "hw/misc/unimp.h"
 #include "hw/char/qcom_geni_uart.h"
 #include "hw/arm/qcom_sm8150_soc.h"
+#include "hw/arm/qcom_sm8150_ufs.h"
 #include "target/arm/cpu.h"
 #include "target/arm/cpu-qom.h"
 #include "target/arm/gtimer.h"
@@ -82,12 +83,92 @@ struct CepheusMachineState {
     DeviceState *gic;
     bool enable_geni_uart;
     bool enable_clk_pinctrl_pmic;
+    bool enable_ufs;
     MemoryRegion mmio_rpmh_sram;
     uint8_t *rpmh_sram;
     MemoryRegion mmio_dcc;
     MemoryRegion mmio_cpu_osm;
     uint32_t *cpu_osm_regs;
     MemoryRegion mmio_mpm;
+    MemoryRegion mmio_rng;
+    MemoryRegion mmio_apps_smmu;
+    MemoryRegion mmio_apps_smmu_tcu;
+    MemoryRegion mmio_kgsl_smmu;
+    MemoryRegion mmio_kgsl_smmu_tcu;
+    MemoryRegion mmio_mdss;
+    MemoryRegion mmio_dp_pll;
+};
+
+static uint64_t cepheus_mdss_read(void *opaque, hwaddr offset, unsigned size)
+{
+    return 1;
+}
+
+static void cepheus_mdss_write(void *opaque, hwaddr offset, uint64_t value, unsigned size)
+{
+}
+
+static const MemoryRegionOps cepheus_mdss_ops = {
+    .read = cepheus_mdss_read,
+    .write = cepheus_mdss_write,
+    .endianness = DEVICE_LITTLE_ENDIAN,
+    .valid = {
+        .min_access_size = 4,
+        .max_access_size = 4,
+    },
+};
+
+static uint64_t cepheus_smmu_read(void *opaque, hwaddr offset, unsigned size)
+{
+    switch (offset) {
+    case 0x20: /* IDR0 */
+        return (1U << 30) | (1U << 29) | (1U << 27) | 0x80;
+    case 0x24: /* IDR1 */
+        return 0x00000040;
+    case 0x28: /* IDR2 */
+        return 0x00000155;
+    default:
+        return 0;
+    }
+}
+
+static void cepheus_smmu_write(void *opaque, hwaddr offset, uint64_t value, unsigned size)
+{
+}
+
+static const MemoryRegionOps cepheus_smmu_ops = {
+    .read = cepheus_smmu_read,
+    .write = cepheus_smmu_write,
+    .endianness = DEVICE_LITTLE_ENDIAN,
+    .valid = {
+        .min_access_size = 4,
+        .max_access_size = 4,
+    },
+};
+
+static uint64_t cepheus_rng_read(void *opaque, hwaddr offset, unsigned size)
+{
+    if (offset == 0x04) {
+        return 1; /* PRNG_STATUS_DATA_AVAIL */
+    }
+    if (offset == 0x00) {
+        return 0x5a5a5a5a;
+    }
+    return 0;
+}
+
+static void cepheus_rng_write(void *opaque, hwaddr offset, uint64_t value, unsigned size)
+{
+}
+
+static const MemoryRegionOps cepheus_rng_ops = {
+    .read = cepheus_rng_read,
+    .write = cepheus_rng_write,
+    .endianness = DEVICE_LITTLE_ENDIAN,
+    .valid = {
+        .min_access_size = 4,
+        .max_access_size = 4,
+    },
 };
 
 static uint64_t cepheus_mpm_read(void *opaque, hwaddr offset, unsigned size)
@@ -198,6 +279,12 @@ static void cepheus_setup_cmd_db(uint8_t *sram)
         "cx.lvl", "mx.lvl", "mss.lvl", "ebi.lvl", "lmx.lvl", "lcx.lvl",
         "gfx.lvl", "mmcx.lvl", "xo.lvl",
     };
+    static const char * const bcm_resources[] = {
+        "ACV", "ALC", "CE0", "CN0", "CO0", "CO1", "IP0", "MC0",
+        "MM0", "MM1", "MM2", "MM3", "QUP0", "SH0", "SH2", "SH3",
+        "SH4", "SH5", "SN0", "SN1", "SN11", "SN12", "SN14", "SN15",
+        "SN2", "SN3", "SN4", "SN5", "SN8", "SN9",
+    };
     static const char * const vrm_resources[] = {
         "smpa2", "smpa5", "smpa6", "smpc1", "smpc8", "bobc1",
         "ldoa1", "ldoa2", "ldoa3", "ldoa5", "ldoa6", "ldoa7",
@@ -207,7 +294,6 @@ static void cepheus_setup_cmd_db(uint8_t *sram)
         "ldoc10", "ldoc11", "ldof2", "ldof5", "ldof6", "smpf2",
         "lnbclka2", "lnbclka3", "rfclka1", "rfclka2", "rfclka3",
         "rfclkd1", "rfclkd2", "rfclkd3", "rfclkd4", "QP0",
-        "SH0", "MC0", "IP0", "CW0", "CP0",
     };
 
     uint32_t cmddb_base = 0x0c3f1000;
@@ -225,7 +311,8 @@ static void cepheus_setup_cmd_db(uint8_t *sram)
     /* Standalone mode flag at byte 140 */
     hdr[140] = 1;
 
-    int total_entries = ARRAY_SIZE(arc_resources) + ARRAY_SIZE(vrm_resources);
+    int total_entries = ARRAY_SIZE(arc_resources) + ARRAY_SIZE(vrm_resources) +
+                        ARRAY_SIZE(bcm_resources);
 
     /* rsc_hdr[0]: VRM (slv_id = 4) */
     uint16_t vrm_cnt = ARRAY_SIZE(vrm_resources);
@@ -243,6 +330,14 @@ static void cepheus_setup_cmd_db(uint8_t *sram)
     memcpy(hdr + 0x1a, &arc_hdr_off, 2);
     memcpy(hdr + 0x1e, &arc_cnt, 2);
 
+    /* rsc_hdr[2]: BCM (slv_id = 1) */
+    uint16_t bcm_cnt = ARRAY_SIZE(bcm_resources);
+    uint16_t bcm_slv = 1;
+    uint16_t bcm_hdr_off = (vrm_cnt + arc_cnt) * 24;
+    memcpy(hdr + 0x28, &bcm_slv, 2);
+    memcpy(hdr + 0x2a, &bcm_hdr_off, 2);
+    memcpy(hdr + 0x2e, &bcm_cnt, 2);
+
     uint8_t *entries = hdr + 0x90;
     int entry_idx = 0;
 
@@ -258,8 +353,14 @@ static void cepheus_setup_cmd_db(uint8_t *sram)
 
     /* Populate ARC (Slave 3: 0x30000) */
     uint16_t aux_levels[8] = { 0x10, 0x20, 0x30, 0x40, 0x50, 0x60, 0x70, 0x80 };
+    uint8_t bcm_aux[8] = {
+        0xe8, 0x03, 0x00, 0x00, /* unit = 1000 */
+        0x08, 0x00,             /* width = 8 bytes */
+        0x00, 0x00              /* vcd, reserved */
+    };
     uint8_t *aux_data = entries + total_entries * 24;
     memcpy(aux_data, aux_levels, sizeof(aux_levels));
+    memcpy(aux_data + sizeof(aux_levels), bcm_aux, sizeof(bcm_aux));
 
     for (int i = 0; i < arc_cnt; i++, entry_idx++) {
         uint8_t *e = entries + entry_idx * 24;
@@ -269,6 +370,18 @@ static void cepheus_setup_cmd_db(uint8_t *sram)
         uint16_t len = sizeof(aux_levels);
         memcpy(e + 20, &len, 2);
         uint16_t off = 0;
+        memcpy(e + 22, &off, 2);
+    }
+
+    /* Populate BCM (Slave 1: 0x10000) */
+    for (int i = 0; i < bcm_cnt; i++, entry_idx++) {
+        uint8_t *e = entries + entry_idx * 24;
+        strncpy((char *)e, bcm_resources[i], 8);
+        uint32_t addr = 0x10000 + i * 4;
+        memcpy(e + 16, &addr, 4);
+        uint16_t len = sizeof(bcm_aux);
+        memcpy(e + 20, &len, 2);
+        uint16_t off = sizeof(aux_levels);
         memcpy(e + 22, &off, 2);
     }
 }
@@ -349,6 +462,33 @@ static void cepheus_init(MachineState *machine)
     /* 2. Map system RAM at 0x80000000 */
     memory_region_add_subregion(sysmem, CEPHEUS_RAM_BASE, machine->ram);
 
+    /* 2.1 Initialize SMEM in RAM at 0x86000000 (handoff state from ABL/SBL) */
+    if (machine->ram_size >= 0x08000000) {
+        void *ram_ptr = memory_region_get_ram_ptr(machine->ram);
+        if (ram_ptr) {
+            uint8_t *smem = (uint8_t *)ram_ptr + 0x06000000;
+            uint32_t version = 0x000b0000;
+            uint32_t initialized = 1;
+            uint32_t free_offset = 0x4000;
+            uint32_t available = 0x1fc000;
+            uint32_t reserved = 0;
+
+            memcpy(smem + 0x5c, &version, 4);
+            memcpy(smem + 0xc0, &initialized, 4);
+            memcpy(smem + 0xc4, &free_offset, 4);
+            memcpy(smem + 0xc8, &available, 4);
+            memcpy(smem + 0xcc, &reserved, 4);
+
+            /* SMEM partition table ($TOC) at offset 0x1ff000 (end - 0x1000) */
+            uint8_t *ptable = smem + 0x1ff000;
+            memcpy(ptable + 0x00, "$TOC", 4);
+            uint32_t pt_version = 1;
+            uint32_t pt_num_entries = 0;
+            memcpy(ptable + 0x04, &pt_version, 4);
+            memcpy(ptable + 0x08, &pt_num_entries, 4);
+        }
+    }
+
     /* 3. Initialize GICv3 (1024 IRQs to support all SM8150 SPIs) */
     gictype = gicv3_class_name();
     cms->gic = qdev_new(gictype);
@@ -415,6 +555,24 @@ static void cepheus_init(MachineState *machine)
     /* 4.2.2 Map SM8150 SP SCSR block at 0x01880000 */
     create_unimplemented_device("qcom.sp-scsr", 0x01880000, 0x10000);
 
+    /* 4.2.3 Map SM8150 NOC QoS registers for ad-hoc-bus */
+    create_unimplemented_device("qcom.noc-qos-0", 0x01400000, 0x00400000);
+    create_unimplemented_device("qcom.noc-qos-1", 0x09680000, 0x00040000);
+    create_unimplemented_device("qcom.noc-qos-2", 0x17900000, 0x00040000);
+    create_unimplemented_device("qcom.qmp-aop-msgram", 0x0c300000, 0x00010000);
+    create_unimplemented_device("qcom.sde-rsc", 0x0af20000, 0x00020000);
+    create_unimplemented_device("qcom.qfprom", 0x00780000, 0x00010000);
+    create_unimplemented_device("qcom.spmi-debug", 0x06b22000, 0x00001000);
+
+    /* 4.2.4 Map MDSS DSI PLL and DP PLL */
+    memory_region_init_io(&cms->mmio_mdss, OBJECT(cms),
+                          &cepheus_mdss_ops, cms, "qcom.mdss", 0x100000);
+    memory_region_add_subregion(sysmem, 0x0ae00000, &cms->mmio_mdss);
+
+    memory_region_init_io(&cms->mmio_dp_pll, OBJECT(cms),
+                          &cepheus_mdss_ops, cms, "qcom.dp-pll", 0x8000);
+    memory_region_add_subregion(sysmem, 0x088e8000, &cms->mmio_dp_pll);
+
     /* 4.3 Map Native Clock, Pinctrl, and SPMI/PMIC Models */
     if (cms->enable_clk_pinctrl_pmic) {
         /* Power Domain Controller (PDC) */
@@ -474,6 +632,35 @@ static void cepheus_init(MachineState *machine)
                               &cepheus_mpm_ops, cms,
                               "qcom.mpm", 0x10000);
         memory_region_add_subregion(sysmem, 0x0c220000, &cms->mmio_mpm);
+
+        /* QRNG (Qualcomm Random Number Generator) at 0x00793000 */
+        memory_region_init_io(&cms->mmio_rng, OBJECT(cms),
+                              &cepheus_rng_ops, cms,
+                              "qcom.rng", 0x1000);
+        memory_region_add_subregion(sysmem, 0x00793000, &cms->mmio_rng);
+
+        /* ARM SMMU v2 (MMU-500) models */
+        memory_region_init_io(&cms->mmio_apps_smmu, OBJECT(cms),
+                              &cepheus_smmu_ops, cms, "qcom.apps-smmu", 0x100000);
+        memory_region_add_subregion(sysmem, 0x15000000, &cms->mmio_apps_smmu);
+
+        memory_region_init_io(&cms->mmio_apps_smmu_tcu, OBJECT(cms),
+                              &cepheus_smmu_ops, cms, "qcom.apps-smmu-tcu", 0x1000);
+        memory_region_add_subregion(sysmem, 0x15182000, &cms->mmio_apps_smmu_tcu);
+
+        memory_region_init_io(&cms->mmio_kgsl_smmu, OBJECT(cms),
+                              &cepheus_smmu_ops, cms, "qcom.kgsl-smmu", 0x10000);
+        memory_region_add_subregion(sysmem, 0x02ca0000, &cms->mmio_kgsl_smmu);
+
+        memory_region_init_io(&cms->mmio_kgsl_smmu_tcu, OBJECT(cms),
+                              &cepheus_smmu_ops, cms, "qcom.kgsl-smmu-tcu", 0x1000);
+        memory_region_add_subregion(sysmem, 0x02cc2000, &cms->mmio_kgsl_smmu_tcu);
+    }
+
+    /* 4.4 Map Native UFS Host Controller (+ PHY and ICE) */
+    if (cms->enable_ufs) {
+        qcom_sm8150_ufs_create(0x01d84000, 0x01d90000, 0x01d87000,
+                               qdev_get_gpio_in(cms->gic, 265));
     }
 
     /* 5. Kernel bootloader setup */
@@ -509,11 +696,24 @@ static void cepheus_set_clk_pinctrl_pmic(Object *obj, bool value, Error **errp)
     cms->enable_clk_pinctrl_pmic = value;
 }
 
+static bool cepheus_get_ufs(Object *obj, Error **errp)
+{
+    CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
+    return cms->enable_ufs;
+}
+
+static void cepheus_set_ufs(Object *obj, bool value, Error **errp)
+{
+    CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
+    cms->enable_ufs = value;
+}
+
 static void cepheus_instance_init(Object *obj)
 {
     CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
     cms->enable_geni_uart = true;
     cms->enable_clk_pinctrl_pmic = true;
+    cms->enable_ufs = true;
 }
 
 static void cepheus_class_init(ObjectClass *oc, void *data)
@@ -548,6 +748,12 @@ static void cepheus_class_init(ObjectClass *oc, void *data)
                                    cepheus_set_clk_pinctrl_pmic);
     object_class_property_set_description(oc, "clk-pinctrl-pmic",
                                           "Enable or disable native Qualcomm Clock, Pinctrl, and SPMI/PMIC models");
+
+    object_class_property_add_bool(oc, "ufs",
+                                   cepheus_get_ufs,
+                                   cepheus_set_ufs);
+    object_class_property_set_description(oc, "ufs",
+                                          "Enable or disable native Qualcomm UFS host controller");
 }
 
 static const TypeInfo cepheus_machine_info = {

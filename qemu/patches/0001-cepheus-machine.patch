@@ -22,7 +22,7 @@ index 490234b..f95bf4a 100644
  system_ss.add(when: 'CONFIG_VEXPRESS', if_true: files('vexpress.c'))
  
  hw_arch += {'arm': arm_ss}
-+arm_ss.add(when: 'CONFIG_CEPHEUS', if_true: files('cepheus.c', 'qcom_rpmh_rsc.c', 'qcom_sm8150_gcc.c', 'qcom_sm8150_tlmm.c', 'qcom_spmi_pmic_arb.c', 'qcom_sm8150_pdc.c'))
++arm_ss.add(when: 'CONFIG_CEPHEUS', if_true: files('cepheus.c', 'qcom_rpmh_rsc.c', 'qcom_sm8150_gcc.c', 'qcom_sm8150_tlmm.c', 'qcom_spmi_pmic_arb.c', 'qcom_sm8150_pdc.c', 'qcom_sm8150_ufs.c'))
 diff --git a/hw/char/Kconfig b/hw/char/Kconfig
 index 4b73a80..c2f5fb9 100644
 --- a/hw/char/Kconfig

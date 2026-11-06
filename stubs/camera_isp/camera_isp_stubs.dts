@@ -1,0 +1,6 @@
+// STUB(camera_isp)
+/*
+ * Allowlisted stub for camera_isp category (AGENTS.md §3):
+ * Disables unmodeled Qualcomm camera ISP, CSIPHY, and ICP DTB nodes to prevent
+ * unhandled error unwinds and kernel NULL pointer dereferences in swapper/0.
+ */
