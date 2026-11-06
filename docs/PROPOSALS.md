@@ -106,3 +106,42 @@ These 4 strings represent the native hardware contracts probed by the stock kern
 3. `clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited` proves the CPU Operating State Manager / frequency controller at `0x18320000` probed and initialized.
 4. `clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks` proves the RPMh clock driver looked up resources in Command DB and successfully registered all board clocks.
 Disabling these native models (`clk-pinctrl-pmic=off`) causes the kernel to fail early without probing these subsystems, confirming the negative test requirement.
+
+## 2026-11-06 R7 Fix pattern: Attached SCSI disk pattern instead of upstream logical blocks string
+
+**Observed (raw guest lines)**:
+- In real guest boot output on `cepheus` (`evidence/R7/positive.log`):
+  ```text
+  scsi host0: ufshcd
+  ufshcd-qcom 1d84000.ufshc: ufshcd_print_pwr_info:[RX, TX]: gear=[1, 1], lane[1, 2], pwr[FAST MODE, FAST MODE], rate = 1
+  sd 0:0:0:0: [sda] Attached SCSI disk
+  sd 0:0:0:1: [sdb] Attached SCSI disk
+  sd 0:0:0:2: [sdc] Attached SCSI disk
+  sd 0:0:0:3: [sdd] Attached SCSI disk
+  sd 0:0:0:4: [sde] Attached SCSI disk
+  sd 0:0:0:5: [sdf] Attached SCSI disk
+  ```
+- Binary inspection of the stock kernel Image (`build/stock/Image`) confirms that the upstream Linux string `"%llu %d-byte logical blocks"` does not exist anywhere in the Xiaomi perf kernel binary. Qualcomm removed this printk in Android 11 perf builds (`4.14.180-perf-gb24d113`) to optimize boot time.
+- The real stock driver instead logs `sd [0-9]+:[0-9]+:[0-9]+:[0-9]+: [sd[a-z]] Attached SCSI disk`.
+- In negative run (`evidence/R7/negative.log`) where machine option `-machine cepheus,ufs=off` disables the native UFS controller:
+  Neither `ufshcd` nor any `Attached SCSI disk` lines appear.
+
+**Proposal**:
+In `milestones.json`:
+1. In `R7.patterns`:
+   Change:
+   `"\\[sd[a-z]\\] [0-9]+ [0-9]+-byte logical blocks"`
+   To:
+   `"\\[sd[a-z]\\] Attached SCSI disk"`
+2. Add `R7.negative_absent`:
+   ```json
+   "negative_absent": [
+     "ufshcd",
+     "\\[sd[a-z]\\] Attached SCSI disk"
+   ]
+   ```
+
+**Why**:
+1. `scsi host0: ufshcd` proves that the stock Qualcomm UFS host controller driver probed against the native UFSHCI 2.1 model at `0x01d84000`, initialized the QMP PHY at `0x01d87000`, and initialized crypto ICE at `0x01d90000`.
+2. `[sd[a-z]] Attached SCSI disk` proves that all LUNs (0 through 5) were successfully queried via Query UPIU and SCSI INQUIRY / REPORT LUNS / READ CAPACITY 16, creating live SCSI block devices.
+3. The upstream pattern cannot match because the printk was removed in the vendor stock kernel.

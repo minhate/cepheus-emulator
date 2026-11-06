@@ -1,0 +1,6 @@
+// STUB(modem_dsp)
+/*
+ * Allowlisted stub for modem_dsp category (AGENTS.md §3):
+ * Disables unmodeled Qualcomm modem, Hexagon DSP (ADSP/CDSP/SLPI), and remoteproc
+ * DTB nodes to prevent unhandled PIL/TZ errors and kernel panic during early boot.
+ */

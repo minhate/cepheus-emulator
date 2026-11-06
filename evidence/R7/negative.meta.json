@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "name": "negative",
+  "argv": [
+    "./build/qemu-build/qemu-system-aarch64",
+    "-machine",
+    "cepheus,ufs=off",
+    "-m",
+    "2G",
+    "-kernel",
+    "build/stock/Image",
+    "-dtb",
+    "build/dtb/cepheus.dtb",
+    "-append",
+    "earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8",
+    "-display",
+    "none",
+    "-serial",
+    "stdio",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-11-06T17:11:40.797859+00:00",
+  "duration_s": 15.144,
+  "exit_code": 0,
+  "stopped_by": "timeout",
+  "bytes": 83127,
+  "truncated": false,
+  "log_sha256": "443df7bf5b7e77401429e402697e925c9e8e073c4312c9273de269a3a01b8af9",
+  "binary_sha256": "acffb1c8eb4651441955a30f5dee49d8dd6ad0c6b3e31b93ad47cebdac2f847e"
+}

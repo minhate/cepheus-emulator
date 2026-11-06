@@ -1,1 +1,20 @@
-{ "schema": 1, "stubs": [] }
+{
+  "schema": 1,
+  "stubs": [
+    {
+      "path": "qemu/overlay/hw/arm/qcom_sm8150_ufs.c",
+      "category": "boot_rom_chain",
+      "reason": "Reproduces ABL/TrustZone handoff state on UFS ICE MMIO resource to allow kernel driver probe"
+    },
+    {
+      "path": "stubs/modem_dsp/modem_dsp_stubs.dts",
+      "category": "modem_dsp",
+      "reason": "Disables unmodeled Qualcomm modem, Hexagon DSP (ADSP/CDSP/SLPI), and remoteproc DTB nodes to prevent unhandled PIL/TZ errors"
+    },
+    {
+      "path": "stubs/camera_isp/camera_isp_stubs.dts",
+      "category": "camera_isp",
+      "reason": "Disables unmodeled Qualcomm camera ISP, CSIPHY, and ICP DTB nodes to prevent unhandled error unwinds and kernel NULL dereferences"
+    }
+  ]
+}
