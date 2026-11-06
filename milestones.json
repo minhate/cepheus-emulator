@@ -118,8 +118,18 @@
         "R5"
       ],
       "acceptance": "Native models for exactly what the stock kernel requests; each stock driver probe that previously deferred/failed now succeeds, shown by real kernel/debugfs output captured by a command-only probe. Failing probes are listed and classified (allowlisted vs missing model).",
-      "patterns_status": "DRAFT",
-      "patterns": []
+      "patterns": [
+        "spmi spmi-0: PMIC arbiter version v5 \\(0x50000000\\)",
+        "Command DB is initialized in standalone mode\\.",
+        "clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited",
+        "clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks"
+      ],
+      "negative_absent": [
+        "spmi spmi-0: PMIC arbiter version v5 \\(0x50000000\\)",
+        "Command DB is initialized in standalone mode\\.",
+        "clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited",
+        "clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks"
+      ]
     },
     {
       "id": "R7",
