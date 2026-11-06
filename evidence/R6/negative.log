@@ -1,0 +1,519 @@
+Booting Linux on physical CPU 0x0
+Linux version 4.14.180-perf-gb24d113 (builder@c5-miui-ota-bd153.bj) (clang version 10.0.6 for Android NDK, GNU ld (binutils-2.27-bd24d23f) 2.27.0.20170315) #2 SMP PREEMPT Thu Nov 25 13:06:04 CST 2021
+Boot CPU: AArch64 Processor [411fd070]
+memblock_reserve: 0xf7e49 setup_arch+0xb0/0x5ac
+Machine: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC
+ramoops: msm_reserve_ramoops_memory addr=b0000000,size=400000
+ramoops: msm_reserve_ramoops_memory record_size=0,ftrace_size=0
+Reserved memory: created CMA memory pool at 0x00000000fd400000, size 40 MiB
+OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fcc00000, size 8 MiB
+OF: reserved mem: initialized node sp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fc800000, size 4 MiB
+OF: reserved mem: initialized node cdsp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fa400000, size 36 MiB
+OF: reserved mem: initialized node mem_dump_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f9400000, size 16 MiB
+OF: reserved mem: initialized node user_contig_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f8400000, size 16 MiB
+OF: reserved mem: initialized node qseecom_ta_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f7400000, size 16 MiB
+OF: reserved mem: initialized node adsp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000ed400000, size 160 MiB
+OF: reserved mem: initialized node secure_display_region, compatible id shared-dma-pool
+Removed memory: created DMA memory pool at 0x000000008b700000, size 5 MiB
+OF: reserved mem: initialized node camera_region@8b700000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008bc00000, size 1 MiB
+OF: reserved mem: initialized node pil_wlan_fw_region@8bc00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008bd80000, size 0 MiB
+OF: reserved mem: initialized node pil_npu_region@8bd80000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008be00000, size 34 MiB
+OF: reserved mem: initialized node pil_adsp_region@8be00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008e000000, size 150 MiB
+OF: reserved mem: initialized node modem_region@8e000000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000097600000, size 5 MiB
+OF: reserved mem: initialized node pil_video_region@97600000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000097b00000, size 20 MiB
+OF: reserved mem: initialized node pil_slpi_region@97b00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f00000, size 0 MiB
+OF: reserved mem: initialized node pil_ipa_fw_region@98f00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f10000, size 0 MiB
+OF: reserved mem: initialized node pil_ipa_gsi_region@98f10000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f15000, size 0 MiB
+OF: reserved mem: initialized node pil_gpu_region@98f15000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000099000000, size 1 MiB
+OF: reserved mem: initialized node pil_spss_region@99000000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000099100000, size 20 MiB
+OF: reserved mem: initialized node cdsp_regions@99100000, compatible id removed-dma-pool
+Reserved memory: created DMA memory pool at 0x000000009e400000, size 20 MiB
+OF: reserved mem: initialized node qseecom_region@0x9e400000, compatible id shared-dma-pool
+Removed memory: created DMA memory pool at 0x00000000a4c00000, size 60 MiB
+OF: reserved mem: initialized node cdsp_sec_regions@0xa4c00000, compatible id removed-dma-pool
+On node 0 totalpages: 418729
+  DMA zone: 6543 pages used for memmap
+  DMA zone: 0 pages reserved
+  DMA zone: 418729 pages, LIFO batch:31
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: Trusted OS migration not required
+psci: SMC Calling Convention v1.0
+random: get_random_bytes called from start_kernel+0x94/0x50c with crng_init=0
+percpu: Embedded 86 pages/cpu s312216 r8192 d31848 u352256
+pcpu-alloc: s312216 r8192 d31848 u352256 alloc=86*4096
+pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+CPU features: enabling workaround for ARM erratum 832075
+ARM_SMCCC_ARCH_WORKAROUND_1 missing from firmware
+Built 1 zonelists, mobility grouping on.  Total pages: 412186
+Kernel command line: ramoops_memreserve=4M earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8
+PID hash table entries: 4096 (order: 3, 32768 bytes)
+Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes)
+Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes)
+mem auto-init: stack:off, heap alloc:off, heap free:off
+Memory: 1241504K/1674916K available (17918K kernel code, 2604K rwdata, 13796K rodata, 6144K init, 6404K bss, 130308K reserved, 303104K cma-reserved)
+SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
+**********************************************************
+**   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+**                                                      **
+** trace_printk() being used. Allocating extra memory.  **
+**                                                      **
+** This means that this is a DEBUG kernel and it is     **
+** unsafe for production use.                           **
+**                                                      **
+** If you see this message and you are not debugging    **
+** the kernel, report this immediately to your vendor!  **
+**                                                      **
+**   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+**********************************************************
+Preemptible hierarchical RCU implementation.
+	RCU dyntick-idle grace-period acceleration is enabled.
+	Tasks RCU enabled.
+NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+GICv3: GIC: Using split EOI/Deactivate mode
+GICv3: no VLPI support, no direct LPI support
+GICv3: CPU0: found redistributor 0 region 0:0x0000000017a60000
+PDC SM8150 initialized
+	Offload RCU callbacks from CPUs: .
+arch_timer: Unable to find a suitable frame in timer @ 0x0000000017c20000
+Failed to initialize '/soc/timer@0x17c20000': -22
+sched_clock: 64 bits at 100 Hz, resolution 10000000ns, wraps every 36028797015000000ns
+Calibrating delay loop (skipped), value calculated using timer frequency.. 38.40 BogoMIPS (lpj=192000)
+pid_max: default: 32768 minimum: 301
+Security Framework initialized
+SELinux:  Initializing.
+SELinux:  Starting in permissive mode
+Mount-cache hash table entries: 4096 (order: 3, 32768 bytes)
+Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes)
+ASID allocator initialised with 32768 entries
+Hierarchical SRCU implementation.
+MSM Memory Dump base table set up
+MSM Memory Dump apps data table set up
+smp: Bringing up secondary CPUs ...
+GICv3: CPU1: found redistributor 100 region 0:0x0000000017a80000
+CPU1: Booted secondary processor [411fd070]
+GICv3: CPU2: found redistributor 200 region 0:0x0000000017aa0000
+CPU2: Booted secondary processor [411fd070]
+GICv3: CPU3: found redistributor 300 region 0:0x0000000017ac0000
+CPU3: Booted secondary processor [411fd070]
+GICv3: CPU4: found redistributor 400 region 0:0x0000000017ae0000
+CPU4: Booted secondary processor [411fd070]
+GICv3: CPU5: found redistributor 500 region 0:0x0000000017b00000
+CPU5: Booted secondary processor [411fd070]
+GICv3: CPU6: found redistributor 600 region 0:0x0000000017b20000
+CPU6: Booted secondary processor [411fd070]
+GICv3: CPU7: found redistributor 700 region 0:0x0000000017b40000
+CPU7: Booted secondary processor [411fd070]
+smp: Brought up 1 node, 8 CPUs
+SMP: Total of 8 processors activated.
+CPU features: detected: GIC system register CPU interface
+CPU features: detected: 32-bit EL0 Support
+CPU: All CPU(s) started at EL2
+alternatives: patching kernel code
+scm_call failed with error code -1
+scm_enable_mem_protection: SCM call failed
+Registered cp15_barrier emulation handler
+Registered setend emulation handler
+Attribute wake_times: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 7 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 7 PID: 1 Comm: swapper/0 Not tainted 4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 0000000000000007 x22: 0000000000000000 
+x21: ffffffc0695ac400 x20: ffffff800920cb30 
+x19: ffffffc0695b3220 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000000ce4 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 950e025e9737fc00 x8 : 950e025e9737fc00 
+x7 : 65702064696c6176 x6 : ffffff800aaa048a 
+x5 : 0000000000000000 x4 : 0000000000000008 
+x3 : 0000000000003636 x2 : 0000000000000026 
+x1 : 00000000000000c0 x0 : 000000000000002e 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 9737fc00 950e025e
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 628ff150b2a31b7c ]---
+Attribute last_wake_time: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 7 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 7 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 0000000000000008 x22: 0000000000000000 
+x21: ffffffc0695ac400 x20: ffffff800920cb30 
+x19: ffffffc0695b3220 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000000d48 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 950e025e9737fc00 x8 : 950e025e9737fc00 
+x7 : 73696d7265702064 x6 : ffffff800aaa048e 
+x5 : 0000000000000000 x4 : 0000000000000000 
+x3 : 0000000000003636 x2 : 0000000000000032 
+x1 : 00000000000000c0 x0 : 0000000000000032 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 9737fc00 950e025e
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 628ff150b2a31b7d ]---
+Attribute sum_wakeup_time: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 7 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 7 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 0000000000000009 x22: 0000000000000000 
+x21: ffffffc0695ac400 x20: ffffff800920cb30 
+x19: ffffffc0695b3220 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000000d48 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 950e025e9737fc00 x8 : 950e025e9737fc00 
+x7 : 49203a656d69745f x6 : ffffff800aaa048f 
+x5 : 0000000000000000 x4 : 0000000000000004 
+x3 : 0000000000000036 x2 : 000000000000002f 
+x1 : 00000000000000c0 x0 : 0000000000000033 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 9737fc00 950e025e
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 628ff150b2a31b7e ]---
+Attribute screen_off_flag: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 7 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 7 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 000000000000000a x22: 0000000000000000 
+x21: ffffffc0695ac400 x20: ffffff800920cb30 
+x19: ffffffc0695b3220 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000000d48 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 950e025e9737fc00 x8 : 950e025e9737fc00 
+x7 : 6c61766e49203a67 x6 : ffffff800aaa048f 
+x5 : 0000000000000000 x4 : 0000000000000008 
+x3 : 0000000000000036 x2 : 000000000000002b 
+x1 : 00000000000000c0 x0 : 0000000000000033 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 9737fc00 950e025e
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 628ff150b2a31b7f ]---
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+futex hash table entries: 2048 (order: 6, 262144 bytes)
+ramoops: msm_register_ramoops_device
+pinctrl core: initialized pinctrl subsystem
+xlogchar_init
+xlogchar_init done
+NET: Registered protocol family 16
+schedtune: configured to support 6 boost groups
+console [pstore-1] enabled
+pstore: Registered ramoops as persistent store backend
+ramoops: attached 0x400000@0xb0000000, ecc: 0/0
+cpuidle: using governor menu
+cpuidle: using governor qcom
+NET: Registered protocol family 42
+vdso: 2 pages (1 code @         (ptrval), 1 data @         (ptrval))
+hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+DMA: preallocated 256 KiB pool for atomic allocations
+exit: IPA_USB init success!
+scm_call failed with error code -1
+unable to find DT imem DLOAD mode node
+unable to find DT imem EDLOAD mode node
+scm_call failed with error code -1
+scm_call failed with error code -1
+Failed to set secure DLOAD mode: -1
+Synchronous External Abort: synchronous external abort (0x96000010) at 0xffffff8008052000
+sys_sync:try sys sync in die
+sys_sync:syncing fs
+platform 4080000.qcom,mss: assigned reserved memory node modem_region@8e000000
+Internal error: : 96000010 [#1] PREEMPT SMP
+Modules linked in:
+Process kworker/u16:1 (pid: 52, stack limit = 0x        (ptrval))
+CPU: 0 PID: 52 Comm: kworker/u16:1 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+platform 17300000.qcom,lpass: assigned reserved memory node pil_adsp_region@8be00000
+Workqueue: events_unbound async_run_entry_fn
+task:         (ptrval) task.stack:         (ptrval)
+pc : spmi_pmic_arb_probe+0xb0/0x568
+lr : spmi_pmic_arb_probe+0xa4/0x568
+sp : ffffff800b58bbc0 pstate : 60400145
+x29: ffffff800b58bbd0 x28: ffffff800a606000 
+x27: 0000000000000402 x26: ffffffc01a525020 
+x25: ffffff8008052000 x24: 00000000014080c0 
+x23: ffffffc069014600 x22: ffffffc069049400 
+x21: ffffffc01a56a318 x20: ffffffc069049410 
+x19: ffffffc01a56a000 x18: 0000000000000002 
+x17: ffffffc06984b180 x16: ffffffbf01a41d20 
+x15: ffffff800a7d3750 x14: ffffff800a7d3750 
+x13: 0000000000000000 x12: dead000000000400 
+x11: 0000000000000000 x10: 0000000000000000 
+x9 : 0000000000000000 x8 : 000000002000ffff 
+x7 : 0000000000000000 x6 : 000000000000003f 
+x5 : 0000000000000040 x4 : 0000000000000000 
+x3 : 0000000000000004 x2 : ffffffc01a56a298 
+x1 : 0000000000000140 x0 : ffffffc069074080 
+
+PC: 0xffffff80088ab7c0:
+b7c0  aa0003f9 b13ffc1f 540023c2 a94022e9 52901818 aa1303e0 72a02818 52840001
+b7e0  2a1803e2 cb090108 91000508 f90016a8
+platform 5c00000.qcom,ssc: assigned reserved memory node pil_slpi_region@97b00000
+ 97fced7b f90056a0 b4002220 12bbffe8
+b800  88dfff37 6b0802ff 54000108 b0007de8 a90066b9 91044108 f90052a8 14000028
+b820  12800179 14000109 531c7ee8 7100091f f90012b9 54000088 b0007de8 91058108
+
+LR: 0xffffff80088ab7b4:
+b7b4  aa1303e0 aa1703e1 97ef77f6 aa0003f9 b13ffc1f 540023c2 a94022e9 52901818
+b7d4  aa1303e0 72a02818 52840001 2a1803e2 cb090108 91000508 f90016a8 97fced7b
+b7f4  f90056a0 b4002220 12bbffe8 88dfff37 6b0802ff 54000108 b0007de8 a90066b9
+b814  91044108 f90052a8 14000028 12800179 14000109 531c7ee8 7100091f f90012b9
+
+SP: 0xffffff800b58bb80:
+bb80  088ab800 ffffff80 60400145 00000000 0b58bbd0 ffffff80 088ab7f4 ffffff80
+bba0  ffffffff ffffffff 1a56a318 ffffffc0 0b58bbd0 ffffff80 088ab800 ffffff80
+bbc0  0b58bc20 ffffff80
+platform 188101c.qcom,spss: assigned reserved memory node pil_spss_region@99000000
+ 9737fc00 950e025e 0b58bc20 ffffff80 087e4e64 ffffff80
+bbe0  18f1eb05 00000000 18f1eb05 00000000 00000002 00000000 00000001 00000000
+Call trace:
+ spmi_pmic_arb_probe+0xb0/0x568
+ platform_drv_probe+0x5c/0xb0
+ driver_probe_device+0x300/0x42c
+ __device_attach_driver+0xac/0x124
+ bus_for_each_drv+0x7c/0xc4
+ __device_attach_async_helper+0x64/0xe4
+ async_run_entry_fn+0x60/0x184
+ process_one_work+0x1c0/0x3cc
+ worker_thread+0x21c/0x37c
+ kthread+0x118/0x128
+ ret_from_fork+0x10/0x18
+Code: 97fced7b f90056a0 b4002220 12bbffe8 (88dfff37) 
+---[ end trace 628ff150b2a31b80 ]---
+msm_watchdog 17c10000.qcom,wdt: wdog absent resource not present
+msm_watchdog 17c10000.qcom,wdt: MSM Watchdog Initialized
+platform 9800000.qcom,npu: assigned reserved memory node pil_npu_region@8bd80000
+platform 8300000.qcom,turing: assigned reserved memory node cdsp_regions@99100000
+platform aae0000.qcom,venus: assigned reserved memory node pil_video_region@97600000
+sps:sps is ready.
+qcom-smem soc:qcom,smem@8600000: SMEM is not initialized by SBL
+qcom-smem: probe of soc:qcom,smem@8600000 failed with error -22
+platform soc:qcom,msm-adsprpc-mem: assigned reserved memory node adsp_region
+Synchronous External Abort: synchronous external abort (0x96000010) at 0xffffff800805d00c
+sys_sync:try sys sync in die
+sys_sync:syncing fs
+Internal error: : 96000010 [#2] PREEMPT SMP
+Modules linked in:
+Process swapper/0 (pid: 1, stack limit = 0x        (ptrval))
+CPU: 7 PID: 1 Comm: swapper/0 Tainted: G      D W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : rsc_drv_probe+0x100/0x610
+lr : rsc_drv_probe+0xd4/0x610
+sp : ffffff800805b7f0 pstate : 80400045
+x29: ffffff800805b8b0 x28: ffffff800a0ca6a8 
+x27: ffffff8009e5b52e x26: 0000000000000000 
+x25: 0000000000000000 x24: 00000000014080c0 
+x23: ffffffc069086c10 x22: ffffffc06908492c 
+x21: ffffffc069084880 x20: ffffffc07fd37e18 
+x19: ffffffc069086c00 x18: 000000000000013a 
+x17: 0000000000000029 x16: ffffff8009185648 
+x15: 00000000fffffff5 x14: 1fffffffffffffff 
+x13: 0000000000000000 x12: ffffff800b69d000 
+x11: 0000000000000000 x10: 0000000000000000 
+x9 : 0000000000000000 x8 : ffffff800805d00c 
+x7 : 0000000000000000 x6 : 000000000000003f 
+x5 : 0000000000000040 x4 : 00000000014000c0 
+x3 : 0068000000000707 x2 : 0000000000000004 
+x1 : ffffff8009eb1def x0 : ffffffc07fd37e18 
+
+PC: 0xffffff8008e445a8:
+45a8  97e67fdb b4001000 aa0003e1 aa1703e0 97d91477 b13ffc1f f90052a0 54000063
+45c8  aa0003f9 14000123 f9404ea8 b0008361 9137bc21 aa1403e0 52800082 91003108
+45e8  88dffd1c b940aebb 97f8e39f 34000dc0 2a0003fa 128002b9 7100201f 540022ac
+4608  3700229a b0008361 910103e2 9137bc21 aa1403e0 aa1f03e4 93407f43 97f8e449
+
+LR: 0xffffff8008e4457c:
+457c  97e67fe6 b4001160 aa0003e1 aa1703e0 97d91482 b13ffc1f f9004ea0 54000182
+459c  aa1303e0 52804001 52800022 97e67fdb b4001000 aa0003e1 aa1703e0 97d91477
+45bc  b13ffc1f f90052a0 54000063 aa0003f9 14000123 f9404ea8 b0008361 9137bc21
+45dc  aa1403e0 52800082 91003108 88dffd1c b940aebb 97f8e39f 34000dc0 2a0003fa
+
+SP: 0xffffff800805b7b0:
+b7b0  08e445e8 ffffff80 80400045 00000000 0805b8b0 ffffff80 08e445bc ffffff80
+b7d0  ffffffff ffffffff 00000000 00000000 0805b8b0 ffffff80 08e445e8 ffffff80
+b7f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+b810  00000000 00000000 9737fc00 950e025e 00000000 00000000 00000000 00000000
+Call trace:
+ rsc_drv_probe+0x100/0x610
+ platform_drv_probe+0x5c/0xb0
+ driver_probe_device+0x300/0x42c
+ __device_attach_driver+0xac/0x124
+ bus_for_each_drv+0x7c/0xc4
+ __device_attach+0xa8/0x158
+ device_initial_probe+0x10/0x18
+ bus_probe_device+0x30/0x8c
+ device_add+0x514/0x5a4
+ of_device_add+0x34/0x44
+ of_platform_device_create_pdata+0x90/0xc4
+ of_platform_bus_create+0x1f8/0x410
+ of_platform_bus_create+0x25c/0x410
+ of_platform_populate+0x8c/0x108
+ of_platform_default_populate_init+0x64/0x78
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+Code: 9137bc21 aa1403e0 52800082 91003108 (88dffd1c) 
+---[ end trace 628ff150b2a31b81 ]---
+sys_sync:try sys_sync in panic
+sys_sync:syncing fs
+Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+
+SMP: stopping secondary CPUs
+D Status stack trace dump:
+  task                        PC stack   pid father
+SMP: stopping secondary CPUs
+Going down for restart now
+Failed to set secure DLOAD mode: -1

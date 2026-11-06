@@ -66,3 +66,43 @@ To:
 
 **Why**:
 The stock kernel Image 4.14 uses ARM GICv3 where distributor and per-CPU redistributor discovery is logged via `GICv3: CPU%d: found redistributor...`. The pattern `"GICv3: [0-9]+ SPIs implemented"` cannot match real stock kernel output because that string is absent from the stock Linux 4.14 GICv3 driver.
+
+## 2026-11-06 R6 Proposed patterns for native clock, reset, TLMM, and SPMI/PMIC models
+
+**Observed (raw guest lines)**:
+- In real guest boot output with machine `cepheus` (`evidence/R6/positive.log`):
+  ```text
+  spmi spmi-0: PMIC arbiter version v5 (0x50000000)
+  Command DB is initialized in standalone mode.
+  clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited
+  clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks
+  ```
+- In negative run (`evidence/R6/negative.log`) where machine option `clk-pinctrl-pmic=off` disables native clock, TLMM, and SPMI/PMIC device models:
+  All four strings are completely absent.
+
+**Proposal**:
+In `milestones.json`:
+1. Remove `"patterns_status": "DRAFT"` from `R6`.
+2. Set `patterns` in `R6` to:
+   ```json
+   "patterns": [
+     "spmi spmi-0: PMIC arbiter version v5 \\(0x50000000\\)",
+     "Command DB is initialized in standalone mode\\.",
+     "clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited",
+     "clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks"
+   ],
+   "negative_absent": [
+     "spmi spmi-0: PMIC arbiter version v5 \\(0x50000000\\)",
+     "Command DB is initialized in standalone mode\\.",
+     "clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited",
+     "clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks"
+   ]
+   ```
+
+**Why**:
+These 4 strings represent the native hardware contracts probed by the stock kernel drivers:
+1. `spmi spmi-0: PMIC arbiter version v5 (0x50000000)` proves the native SPMI PMIC arbiter v5 model at `0x0c440000` is functioning and responded to HW version identification.
+2. `Command DB is initialized in standalone mode.` proves Qualcomm Command DB SRAM at `0x0c3f0000` is mapped and validly parsed by `cmd-db.c`.
+3. `clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited` proves the CPU Operating State Manager / frequency controller at `0x18320000` probed and initialized.
+4. `clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks` proves the RPMh clock driver looked up resources in Command DB and successfully registered all board clocks.
+Disabling these native models (`clk-pinctrl-pmic=off`) causes the kernel to fail early without probing these subsystems, confirming the negative test requirement.
