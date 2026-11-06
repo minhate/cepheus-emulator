@@ -13,6 +13,7 @@
 #include "hw/qdev-properties-system.h"
 #include "qapi/error.h"
 #include "qemu/timer.h"
+#include "sysemu/reset.h"
 #include "exec/cpu-common.h"
 #include "hw/char/qcom_geni_uart.h"
 
@@ -29,9 +30,8 @@
  * - u8 flags;         (15)
  * Followed by text_len bytes of message text at offset 16.
  */
-static void qcom_geni_uart_poll_log(void *opaque)
+static void qcom_geni_uart_flush_records(QcomGeniUartState *s)
 {
-    QcomGeniUartState *s = opaque;
     uint8_t hdr[16];
 
     while (1) {
@@ -39,7 +39,16 @@ static void qcom_geni_uart_poll_log(void *opaque)
         uint16_t len = hdr[8] | (hdr[9] << 8);
         uint16_t text_len = hdr[10] | (hdr[11] << 8);
 
-        if (len == 0 || text_len == 0 || text_len > 2048 || len < 16 + text_len) {
+        if (len == 0 || len < 16 || len > 2048) {
+            break;
+        }
+
+        if (text_len == 0) {
+            s->log_buf_offset += len;
+            continue;
+        }
+
+        if (len < 16 + text_len) {
             break;
         }
 
@@ -53,8 +62,19 @@ static void qcom_geni_uart_poll_log(void *opaque)
         }
         s->log_buf_offset += len;
     }
+}
 
-    timer_mod(s->poll_timer, qemu_clock_get_ms(QEMU_CLOCK_REALTIME) + 20);
+static void qcom_geni_uart_poll_log(void *opaque)
+{
+    QcomGeniUartState *s = opaque;
+    qcom_geni_uart_flush_records(s);
+    timer_mod(s->poll_timer, qemu_clock_get_ms(QEMU_CLOCK_REALTIME) + 5);
+}
+
+static void qcom_geni_uart_reset_cb(void *opaque)
+{
+    QcomGeniUartState *s = opaque;
+    qcom_geni_uart_flush_records(s);
 }
 
 static uint64_t qcom_geni_uart_read(void *opaque, hwaddr addr, unsigned size)
@@ -129,7 +149,8 @@ static void qcom_geni_uart_realize(DeviceState *dev, Error **errp)
 {
     QcomGeniUartState *s = QCOM_GENI_UART(dev);
     s->poll_timer = timer_new_ms(QEMU_CLOCK_REALTIME, qcom_geni_uart_poll_log, s);
-    timer_mod(s->poll_timer, qemu_clock_get_ms(QEMU_CLOCK_REALTIME) + 20);
+    timer_mod(s->poll_timer, qemu_clock_get_ms(QEMU_CLOCK_REALTIME) + 5);
+    qemu_register_reset(qcom_geni_uart_reset_cb, s);
 }
 
 static void qcom_geni_uart_init(Object *obj)

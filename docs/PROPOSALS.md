@@ -39,3 +39,30 @@ In `milestones.json`:
 
 **Why**:
 Xiaomi Mi 9 (`cepheus`, Snapdragon 855) launched natively with Android 9 (non-dynamic partitions). In MIUI updates up to Android 11 (`V12.5.6.0.RFACNXM`), it retained discrete GPT partitions (`system.img`, `vendor.img`, `cust.img`) on UFS LUN 4 instead of retrofitted dynamic partitions (`super.img`). Faking a `super.img` would violate AGENTS.md §2 and §5 ("no mocks", "hardware is modeled natively").
+
+
+## 2026-11-06 R5 Fix pattern: GICv3 redistributor pattern instead of legacy GICv2 SPIs implemented
+
+**Observed (raw guest lines)**:
+- In real guest boot output on `cepheus`:
+  ```text
+  GICv3: GIC: Using split EOI/Deactivate mode
+  GICv3: no VLPI support, no direct LPI support
+  GICv3: CPU0: found redistributor 0 region 0:0x0000000017a60000
+  GICv3: CPU1: found redistributor 100 region 0:0x0000000017a80000
+  ...
+  GICv3: CPU7: found redistributor 700 region 0:0x0000000017b40000
+  SMP: Total of 8 processors activated.
+  ```
+- Grep across the entire stock kernel Image (`build/stock/Image`) confirms the string `SPIs implemented` does not exist anywhere in the binary. That string belonged to legacy GICv2 (`drivers/irqchip/irq-gic.c`), whereas GICv3 in Linux kernel (`drivers/irqchip/irq-gic-v3.c`) prints `GICv3: CPU%d: found redistributor %lx region %d:%pa`.
+
+**Proposal**:
+In `milestones.json`:
+In `R5.patterns`:
+Change:
+`"GICv3: [0-9]+ SPIs implemented"`
+To:
+`"GICv3: CPU0: found redistributor"`
+
+**Why**:
+The stock kernel Image 4.14 uses ARM GICv3 where distributor and per-CPU redistributor discovery is logged via `GICv3: CPU%d: found redistributor...`. The pattern `"GICv3: [0-9]+ SPIs implemented"` cannot match real stock kernel output because that string is absent from the stock Linux 4.14 GICv3 driver.

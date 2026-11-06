@@ -1,0 +1,115 @@
+Booting Linux on physical CPU 0x0
+Linux version 4.14.180-perf-gb24d113 (builder@c5-miui-ota-bd153.bj) (clang version 10.0.6 for Android NDK, GNU ld (binutils-2.27-bd24d23f) 2.27.0.20170315) #2 SMP PREEMPT Thu Nov 25 13:06:04 CST 2021
+Boot CPU: AArch64 Processor [411fd070]
+memblock_reserve: 0xf7e49 setup_arch+0xb0/0x5ac
+Machine: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC
+ramoops: msm_reserve_ramoops_memory addr=b0000000,size=400000
+ramoops: msm_reserve_ramoops_memory record_size=0,ftrace_size=0
+Reserved memory: created CMA memory pool at 0x00000000fd400000, size 40 MiB
+OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fcc00000, size 8 MiB
+OF: reserved mem: initialized node sp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fc800000, size 4 MiB
+OF: reserved mem: initialized node cdsp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fa400000, size 36 MiB
+OF: reserved mem: initialized node mem_dump_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f9400000, size 16 MiB
+OF: reserved mem: initialized node user_contig_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f8400000, size 16 MiB
+OF: reserved mem: initialized node qseecom_ta_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f7400000, size 16 MiB
+OF: reserved mem: initialized node adsp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000ed400000, size 160 MiB
+OF: reserved mem: initialized node secure_display_region, compatible id shared-dma-pool
+Removed memory: created DMA memory pool at 0x000000008b700000, size 5 MiB
+OF: reserved mem: initialized node camera_region@8b700000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008bc00000, size 1 MiB
+OF: reserved mem: initialized node pil_wlan_fw_region@8bc00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008bd80000, size 0 MiB
+OF: reserved mem: initialized node pil_npu_region@8bd80000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008be00000, size 34 MiB
+OF: reserved mem: initialized node pil_adsp_region@8be00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008e000000, size 150 MiB
+OF: reserved mem: initialized node modem_region@8e000000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000097600000, size 5 MiB
+OF: reserved mem: initialized node pil_video_region@97600000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000097b00000, size 20 MiB
+OF: reserved mem: initialized node pil_slpi_region@97b00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f00000, size 0 MiB
+OF: reserved mem: initialized node pil_ipa_fw_region@98f00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f10000, size 0 MiB
+OF: reserved mem: initialized node pil_ipa_gsi_region@98f10000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f15000, size 0 MiB
+OF: reserved mem: initialized node pil_gpu_region@98f15000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000099000000, size 1 MiB
+OF: reserved mem: initialized node pil_spss_region@99000000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000099100000, size 20 MiB
+OF: reserved mem: initialized node cdsp_regions@99100000, compatible id removed-dma-pool
+Reserved memory: created DMA memory pool at 0x000000009e400000, size 20 MiB
+OF: reserved mem: initialized node qseecom_region@0x9e400000, compatible id shared-dma-pool
+Removed memory: created DMA memory pool at 0x00000000a4c00000, size 60 MiB
+OF: reserved mem: initialized node cdsp_sec_regions@0xa4c00000, compatible id removed-dma-pool
+On node 0 totalpages: 418729
+  DMA zone: 6543 pages used for memmap
+  DMA zone: 0 pages reserved
+  DMA zone: 418729 pages, LIFO batch:31
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: Trusted OS migration not required
+psci: SMC Calling Convention v1.0
+random: get_random_bytes called from start_kernel+0x94/0x50c with crng_init=0
+percpu: Embedded 86 pages/cpu s312216 r8192 d31848 u352256
+pcpu-alloc: s312216 r8192 d31848 u352256 alloc=86*4096
+pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+CPU features: enabling workaround for ARM erratum 832075
+ARM_SMCCC_ARCH_WORKAROUND_1 missing from firmware
+Built 1 zonelists, mobility grouping on.  Total pages: 412186
+Kernel command line: ramoops_memreserve=4M earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8 maxcpus=1
+PID hash table entries: 4096 (order: 3, 32768 bytes)
+Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes)
+Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes)
+mem auto-init: stack:off, heap alloc:off, heap free:off
+Memory: 1241504K/1674916K available (17918K kernel code, 2604K rwdata, 13796K rodata, 6144K init, 6404K bss, 130308K reserved, 303104K cma-reserved)
+SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
+**********************************************************
+**   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+**                                                      **
+** trace_printk() being used. Allocating extra memory.  **
+**                                                      **
+** This means that this is a DEBUG kernel and it is     **
+** unsafe for production use.                           **
+**                                                      **
+** If you see this message and you are not debugging    **
+** the kernel, report this immediately to your vendor!  **
+**                                                      **
+**   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+**********************************************************
+Preemptible hierarchical RCU implementation.
+	RCU dyntick-idle grace-period acceleration is enabled.
+	Tasks RCU enabled.
+NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+GICv3: GIC: Using split EOI/Deactivate mode
+GICv3: no VLPI support, no direct LPI support
+GICv3: CPU0: found redistributor 0 region 0:0x0000000017a60000
+PDC SM8150 initialized
+	Offload RCU callbacks from CPUs: .
+arch_timer: Unable to find a suitable frame in timer @ 0x0000000017c20000
+Failed to initialize '/soc/timer@0x17c20000': -22
+sched_clock: 64 bits at 100 Hz, resolution 10000000ns, wraps every 36028797015000000ns
+Calibrating delay loop (skipped), value calculated using timer frequency.. 38.40 BogoMIPS (lpj=192000)
+pid_max: default: 32768 minimum: 301
+Security Framework initialized
+SELinux:  Initializing.
+SELinux:  Starting in permissive mode
+Mount-cache hash table entries: 4096 (order: 3, 32768 bytes)
+Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes)
+ASID allocator initialised with 32768 entries
+Hierarchical SRCU implementation.
+MSM Memory Dump base table set up
+MSM Memory Dump apps data table set up
+smp: Bringing up secondary CPUs ...
+smp: Brought up 1 node, 1 CPU
+SMP: Total of 1 processors activated.
+CPU features: detected: GIC system register CPU interface
+CPU features: detected: 32-bit EL0 Support
