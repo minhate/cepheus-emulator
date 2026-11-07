@@ -18,6 +18,8 @@
 #include "hw/boards.h"
 #include "hw/sysbus.h"
 #include "hw/arm/boot.h"
+#include "hw/loader.h"
+#include "sysemu/device_tree.h"
 #include "hw/arm/bsa.h"
 #include "hw/intc/arm_gicv3_common.h"
 #include "hw/misc/unimp.h"
@@ -26,6 +28,7 @@
 #include "hw/arm/qcom_sm8150_ufs.h"
 #include "target/arm/cpu.h"
 #include "target/arm/cpu-qom.h"
+#include "target/arm/cpregs.h"
 #include "target/arm/gtimer.h"
 #include "qom/object.h"
 #include "qapi/qmp/qlist.h"
@@ -84,6 +87,7 @@ struct CepheusMachineState {
     bool enable_geni_uart;
     bool enable_clk_pinctrl_pmic;
     bool enable_ufs;
+    char *lun_dir;
     MemoryRegion mmio_rpmh_sram;
     uint8_t *rpmh_sram;
     MemoryRegion mmio_dcc;
@@ -141,8 +145,8 @@ static const MemoryRegionOps cepheus_smmu_ops = {
     .write = cepheus_smmu_write,
     .endianness = DEVICE_LITTLE_ENDIAN,
     .valid = {
-        .min_access_size = 4,
-        .max_access_size = 4,
+        .min_access_size = 1,
+        .max_access_size = 8,
     },
 };
 
@@ -427,6 +431,39 @@ cepheus_cpu_index_to_props(MachineState *ms, unsigned cpu_index)
     return possible_cpus->cpus[cpu_index].props;
 }
 
+static const ARMCPRegInfo cepheus_kryo485_ras_reginfo[] = {
+    { .name = "KRYO485_RAS_C5_C3", .state = ARM_CP_STATE_AA64,
+      .opc0 = 3, .opc1 = 0, .crn = 5, .crm = 3, .opc2 = CP_ANY,
+      .access = PL1_RW, .type = ARM_CP_CONST, .resetvalue = 0 },
+    { .name = "KRYO485_RAS_C5_C4", .state = ARM_CP_STATE_AA64,
+      .opc0 = 3, .opc1 = 0, .crn = 5, .crm = 4, .opc2 = CP_ANY,
+      .access = PL1_RW, .type = ARM_CP_CONST, .resetvalue = 0 },
+    { .name = "KRYO485_RAS_C5_C5", .state = ARM_CP_STATE_AA64,
+      .opc0 = 3, .opc1 = 0, .crn = 5, .crm = 5, .opc2 = CP_ANY,
+      .access = PL1_RW, .type = ARM_CP_CONST, .resetvalue = 0 },
+};
+
+static void cepheus_modify_dtb(const struct arm_boot_info *binfo, void *fdt)
+{
+    if (binfo->initrd_size > 0 && binfo->initrd_filename) {
+        /*
+         * In the stock SM8150 DTB, 0x85700000..0x9f800000 contains reserved-memory
+         * regions marked 'no-map' (including 0x88000000 where generic ARM boot places
+         * initrd). Place initrd at 0xa0000000 (mapped normal RAM) as ABL does.
+         */
+        hwaddr safe_initrd_base = 0xa0000000ULL;
+        AddressSpace *as = &address_space_memory;
+        load_image_targphys_as(binfo->initrd_filename, safe_initrd_base,
+                               binfo->initrd_size, as);
+        int acells = qemu_fdt_getprop_cell(fdt, "/", "#address-cells",
+                                           NULL, &error_fatal);
+        qemu_fdt_setprop_sized_cells(fdt, "/chosen", "linux,initrd-start",
+                                     acells, safe_initrd_base);
+        qemu_fdt_setprop_sized_cells(fdt, "/chosen", "linux,initrd-end",
+                                     acells, safe_initrd_base + binfo->initrd_size);
+    }
+}
+
 static void cepheus_init(MachineState *machine)
 {
     CepheusMachineState *cms = CEPHEUS_MACHINE(machine);
@@ -456,6 +493,7 @@ static void cepheus_init(MachineState *machine)
         object_property_set_int(cpuobj, "cntfrq", 19200000, &error_abort);
         object_property_set_link(cpuobj, "memory", OBJECT(sysmem), &error_abort);
         qdev_realize(DEVICE(cpuobj), NULL, &error_fatal);
+        define_arm_cp_regs(ARM_CPU(cpuobj), cepheus_kryo485_ras_reginfo);
         object_unref(cpuobj);
     }
 
@@ -549,8 +587,9 @@ static void cepheus_init(MachineState *machine)
     /* 4.2 Map SM8150 internal SRAM (IMEM) at 0x14680000 */
     create_unimplemented_device("qcom.imem", 0x14680000, 0x80000);
 
-    /* 4.2.1 Map SM8150 TCSR mutex block at 0x01f40000 */
+    /* 4.2.1 Map SM8150 TCSR mutex block at 0x01f40000 and TCSR regs at 0x01fc0000 */
     create_unimplemented_device("qcom.tcsr-mutex", 0x01f40000, 0x40000);
+    create_unimplemented_device("qcom.tcsr-regs", 0x01fc0000, 0x30000);
 
     /* 4.2.2 Map SM8150 SP SCSR block at 0x01880000 */
     create_unimplemented_device("qcom.sp-scsr", 0x01880000, 0x10000);
@@ -570,8 +609,8 @@ static void cepheus_init(MachineState *machine)
     memory_region_add_subregion(sysmem, 0x0ae00000, &cms->mmio_mdss);
 
     memory_region_init_io(&cms->mmio_dp_pll, OBJECT(cms),
-                          &cepheus_mdss_ops, cms, "qcom.dp-pll", 0x8000);
-    memory_region_add_subregion(sysmem, 0x088e8000, &cms->mmio_dp_pll);
+                          &cepheus_mdss_ops, cms, "qcom.dp-pll", 0x10000);
+    memory_region_add_subregion(sysmem, 0x088e0000, &cms->mmio_dp_pll);
 
     /* 4.3 Map Native Clock, Pinctrl, and SPMI/PMIC Models */
     if (cms->enable_clk_pinctrl_pmic) {
@@ -592,6 +631,8 @@ static void cepheus_init(MachineState *machine)
         qcom_sm8150_gcc_create(0x09900000, 0x020000); /* NPUCC */
         qcom_sm8150_gcc_create(0x02c90000, 0x010000); /* GPUCC */
         qcom_sm8150_gcc_create(0x09200000, 0x450000); /* LLCC */
+        qcom_sm8150_gcc_create(0x182a0000, 0x010000); /* CPUCC debug */
+        qcom_sm8150_gcc_create(0x090b0000, 0x010000); /* MCCC debug */
 
         /* TLMM Pinctrl & GPIO */
         qcom_sm8150_tlmm_create(SM8150_TLMM_BASE, SM8150_TLMM_SIZE,
@@ -660,7 +701,7 @@ static void cepheus_init(MachineState *machine)
     /* 4.4 Map Native UFS Host Controller (+ PHY and ICE) */
     if (cms->enable_ufs) {
         qcom_sm8150_ufs_create(0x01d84000, 0x01d90000, 0x01d87000,
-                               qdev_get_gpio_in(cms->gic, 265));
+                               qdev_get_gpio_in(cms->gic, 265), cms->lun_dir);
     }
 
     /* 5. Kernel bootloader setup */
@@ -668,6 +709,7 @@ static void cepheus_init(MachineState *machine)
     cms->bootinfo.loader_start = CEPHEUS_RAM_BASE;
     cms->bootinfo.board_id = -1;
     cms->bootinfo.psci_conduit = QEMU_PSCI_CONDUIT_SMC;
+    cms->bootinfo.modify_dtb = cepheus_modify_dtb;
 
     arm_load_kernel(ARM_CPU(first_cpu), machine, &cms->bootinfo);
 }
@@ -708,12 +750,26 @@ static void cepheus_set_ufs(Object *obj, bool value, Error **errp)
     cms->enable_ufs = value;
 }
 
+static char *cepheus_get_lun_dir(Object *obj, Error **errp)
+{
+    CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
+    return g_strdup(cms->lun_dir);
+}
+
+static void cepheus_set_lun_dir(Object *obj, const char *value, Error **errp)
+{
+    CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
+    g_free(cms->lun_dir);
+    cms->lun_dir = g_strdup(value);
+}
+
 static void cepheus_instance_init(Object *obj)
 {
     CepheusMachineState *cms = CEPHEUS_MACHINE(obj);
     cms->enable_geni_uart = true;
     cms->enable_clk_pinctrl_pmic = true;
     cms->enable_ufs = true;
+    cms->lun_dir = g_strdup("build/luns");
 }
 
 static void cepheus_class_init(ObjectClass *oc, void *data)
@@ -754,6 +810,12 @@ static void cepheus_class_init(ObjectClass *oc, void *data)
                                    cepheus_set_ufs);
     object_class_property_set_description(oc, "ufs",
                                           "Enable or disable native Qualcomm UFS host controller");
+
+    object_class_property_add_str(oc, "lun-dir",
+                                  cepheus_get_lun_dir,
+                                  cepheus_set_lun_dir);
+    object_class_property_set_description(oc, "lun-dir",
+                                          "Directory containing UFS LUN raw backing images (lun0.raw..lun5.raw)");
 }
 
 static const TypeInfo cepheus_machine_info = {

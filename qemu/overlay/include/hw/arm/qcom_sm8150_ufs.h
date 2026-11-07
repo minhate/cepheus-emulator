@@ -65,8 +65,14 @@ struct QComSm8150UfsState {
     uint32_t qcom_hw_ver;
     uint32_t qcom_unipro_cfg;
     uint32_t qcom_unipro_status;
+
+    /* Backing storage per UFS LUN (0..5) */
+    char *lun_dir;
+    int lun_fd[6];
+    uint64_t lun_blocks[6];
 };
 
-DeviceState *qcom_sm8150_ufs_create(hwaddr base, hwaddr ice_base, hwaddr phy_base, qemu_irq irq);
+DeviceState *qcom_sm8150_ufs_create(hwaddr base, hwaddr ice_base, hwaddr phy_base,
+                                    qemu_irq irq, const char *lun_dir);
 
 #endif /* HW_ARM_QCOM_SM8150_UFS_H */
