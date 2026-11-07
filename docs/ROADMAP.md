@@ -11,7 +11,7 @@
 | R6 | VERIFIED | Native clock/reset, TLMM pinctrl, SPMI/PMIC models | R5 | Native models for exactly what the stock kernel requests; each stock driver probe that previously deferred/failed now succeeds, shown by real kernel/debugfs output captured by a command-only probe. Failing probes are listed and classified (allowlisted vs missing model). |
 | R7 | VERIFIED | Native UFS host controller (+SMMU as needed) | R6 | Stock kernel ufshcd-qcom probes the native UFS HC and enumerates LUNs as SCSI disks. Negative: UFS model removed -> no SCSI disk lines. |
 | R8 | VERIFIED | Real GPT/LUNs from real images | R7 | LUN images built from the real stock images; the stock kernel parses the real GPT and exposes real partitions (/proc/partitions printed raw by a command-only probe). Negative: corrupted GPT -> no partitions. |
-| R9 | NOT-STARTED | Real Android init (first and second stage) | R8 | Stock ramdisk -> real Android init prints its own first/second stage logs on the kernel log. Negative: ramdisk removed. |
+| R9 | VERIFIED | Real Android init (first and second stage) | R8 | Stock ramdisk -> real Android init prints its own first/second stage logs on the kernel log. Negative: ramdisk removed. |
 | R10 | NOT-STARTED | Dynamic partitions mounted by real init (DRAFT) | R9 | Real init mounts system/vendor/product from the real super (dm-linear) with the ROM's fstab. |
 | R11 | NOT-STARTED | SELinux enforcing with the ROM policy (DRAFT) | R10 | ROM policy loaded by real init, enforcing, no global permissive, denials visible. |
 | R12 | NOT-STARTED | Real property service, binder and service managers (DRAFT) | R11 | Real servicemanager/hwservicemanager/vndservicemanager running over real binder; service list printed raw by the real tool. |

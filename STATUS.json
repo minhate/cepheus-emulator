@@ -45,9 +45,9 @@
     "evidence_sha256": "a2287f27cfd4272c90931c2b20546cea1de72554910f6d46356f967e9ebd2ba0"
   },
   "R9": {
-    "status": "NOT-STARTED",
+    "status": "VERIFIED",
     "note": "",
-    "evidence_sha256": null
+    "evidence_sha256": "2f3e0387dea27ce5dd7ed4b773739f5f1ed69280e149abe68b3a2d467a4488b6"
   },
   "R10": {
     "status": "NOT-STARTED",
