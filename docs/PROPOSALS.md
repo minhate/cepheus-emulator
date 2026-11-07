@@ -145,3 +145,60 @@ In `milestones.json`:
 1. `scsi host0: ufshcd` proves that the stock Qualcomm UFS host controller driver probed against the native UFSHCI 2.1 model at `0x01d84000`, initialized the QMP PHY at `0x01d87000`, and initialized crypto ICE at `0x01d90000`.
 2. `[sd[a-z]] Attached SCSI disk` proves that all LUNs (0 through 5) were successfully queried via Query UPIU and SCSI INQUIRY / REPORT LUNS / READ CAPACITY 16, creating live SCSI block devices.
 3. The upstream pattern cannot match because the printk was removed in the vendor stock kernel.
+
+## 2026-11-08 R10 Proposed patterns for stock partitions mounted by real init with AVB dm-verity and ROM fstab
+
+**Observed (raw guest lines)**:
+- In real guest boot output on `cepheus` (`evidence/R10/positive.log`):
+  ```text
+  device-mapper: init: dm-0 is ready
+  EXT4-fs (dm-0): mounted filesystem without journal. Opts: (null)
+  VFS: Mounted root (ext4 filesystem) readonly on device 252:0.
+  init: [libfs_avb]Returning avb_handle with status: Success
+  EXT4-fs (dm-1): mounted filesystem without journal. Opts: barrier=1,discard
+  init: [libfs_mgr]__mount(source=/dev/block/dm-1,target=/vendor,type=ext4)=0: Success
+  selinux: SELinux: Loaded policy from /vendor/etc/selinux/precompiled_sepolicy
+  init: [libfs_mgr]__mount(source=/dev/block/bootdevice/by-name/cache,target=/cache,type=ext4)=0: Success
+  init: [libfs_mgr]__mount(source=/dev/block/bootdevice/by-name/modem,target=/vendor/firmware_mnt,type=vfat)=0: Success
+  init: [libfs_mgr]__mount(source=/dev/block/bootdevice/by-name/dsp,target=/vendor/dsp,type=ext4)=0: Success
+  init: [libfs_mgr]__mount(source=/dev/block/bootdevice/by-name/persist,target=/mnt/vendor/persist,type=ext4)=0: Success
+  init: [libfs_mgr]__mount(source=/dev/block/bootdevice/by-name/bluetooth,target=/vendor/bt_firmware,type=vfat)=0: Success
+  init: Command 'mount_all /vendor/etc/fstab.qcom --early' action=fs (/vendor/etc/init/hw/init.target.rc:73) took 7280ms and succeeded
+  init: Command 'mount ext4 /dev/block/bootdevice/by-name/cust /cust ro noatime nosuid nodev barrier=1' action=fs (/init.miui.cust.rc:9) took 180ms and succeeded
+  ```
+- In negative run (`evidence/R10/negative.log`) where `-machine cepheus,lun-dir=build/luns-corrupt` provides corrupted GPT LUNs:
+  ```text
+  device-mapper: table: 252:0: verity: Data device lookup failed
+  device-mapper: init: starting dm-0 (vroot) failed
+  ```
+  All mount lines are completely absent.
+
+**Proposal**:
+In `milestones.json`:
+1. Remove `"patterns_status": "DRAFT"` from `R10`.
+2. Set `patterns`, `negative_absent`, and `argv_must_contain` in `R10` to:
+   ```json
+   "patterns": [
+     "VFS: Mounted root \\(ext4 filesystem\\) readonly on device 252:0\\.",
+     "init: \\[libfs_mgr\\]__mount\\(source=/dev/block/dm-1,target=/vendor,type=ext4\\)=0: Success",
+     "init: \\[libfs_mgr\\]__mount\\(source=/dev/block/bootdevice/by-name/persist,target=/mnt/vendor/persist,type=ext4\\)=0: Success",
+     "init: Command 'mount_all /vendor/etc/fstab\\.qcom --early' action=fs .* and succeeded"
+   ],
+   "negative_absent": [
+     "VFS: Mounted root \\(ext4 filesystem\\) readonly on device 252:0\\.",
+     "init: \\[libfs_mgr\\]__mount\\(source=/dev/block/dm-1,target=/vendor,type=ext4\\)=0: Success",
+     "init: Command 'mount_all /vendor/etc/fstab\\.qcom --early' action=fs .* and succeeded"
+   ],
+   "argv_must_contain": [
+     "qemu-system-aarch64",
+     "cepheus",
+     "-kernel",
+     "-dtb"
+   ]
+   ```
+
+**Why**:
+1. Xiaomi Mi 9 (`cepheus`, launched with Android 9 and upgraded to Android 11 `V12.5.6.0.RFACNXM`) uses System-as-Root physical GPT partitions in UFS LUN 4 (`sde54` = `system` containing `/system`, `/system/product`, and `/system/system_ext`; `sde53` = `vendor`; `sde10` = `vbmeta`) rather than a `super` partition.
+2. `VFS: Mounted root (ext4 filesystem) readonly on device 252:0.` proves the stock `system` partition (`sde54`) passed kernel `dm-verity` (`dm-0`) SHA1 Merkle tree verification and was mounted as `/` (giving access to `/system`, `/product`, `/system_ext`).
+3. `init: [libfs_mgr]__mount(source=/dev/block/dm-1,target=/vendor,type=ext4)=0: Success` proves first-stage `init` verified `vbmeta` (`sde10`), set up `dm-verity` (`dm-1`) over `vendor` (`sde53`), and mounted `/vendor` via DT fstab (`/proc/device-tree/firmware/android/fstab/vendor`).
+4. `init: Command 'mount_all /vendor/etc/fstab.qcom --early' action=fs ... and succeeded` proves second-stage `init` parsed `/vendor/etc/fstab.qcom` from the mounted `/vendor` partition and mounted `/cache`, `/vendor/firmware_mnt`, `/vendor/dsp`, `/mnt/vendor/persist`, and `/vendor/bt_firmware` from the UFS LUNs.

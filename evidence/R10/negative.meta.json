@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "name": "negative",
+  "argv": [
+    "./build/qemu-build/qemu-system-aarch64",
+    "-machine",
+    "cepheus,lun-dir=build/luns-corrupt",
+    "-m",
+    "4G",
+    "-kernel",
+    "build/stock/Image",
+    "-dtb",
+    "build/dtb/cepheus.dtb",
+    "-append",
+    "earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8 printk.devkmsg=on androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.bootdevice=1d84000.ufshc androidboot.boot_devices=soc/1d84000.ufshc androidboot.fstab_suffix=qcom skip_initramfs rootwait ro init=/init dm=\"1 vroot none ro 1,0 7224056 verity 1 PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d 4096 4096 903007 903007 sha1 75107d66498ef46f343e6d02c250a4b6b9ce4e98 1a5052eca46e5c4f95fbf3e4c4c553112fa553a0663853951384cc808edbd72e 10 restart_on_corruption ignore_zero_blocks use_fec_from_device PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d fec_roots 2 fec_blocks 910119 fec_start 910119\" root=/dev/dm-0 androidboot.vbmeta.device=PARTUUID=9a3d4c97-9735-f5f1-2fdf-ed378346bec3 androidboot.vbmeta.avb_version=1.0 androidboot.vbmeta.device_state=locked androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size=5568 androidboot.vbmeta.digest=43801e34b14f3608d04640ee7f733759141c9b980fd1d322435da1f636632df4 androidboot.vbmeta.invalidate_on_error=yes androidboot.veritymode=enforcing androidboot.verifiedbootstate=green",
+    "-display",
+    "none",
+    "-serial",
+    "stdio",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-11-07T21:33:41.730988+00:00",
+  "duration_s": 14.883,
+  "exit_code": 0,
+  "stopped_by": "until",
+  "bytes": 120158,
+  "truncated": false,
+  "log_sha256": "e0ce9e5ecb0968f5aab4990cbbd990b2a610f79c7691816495df497e04b5cc96",
+  "binary_sha256": "1f87259ba6c31b5d3392cb2ae062efc00a07340209ea080067fd0a351b079843"
+}

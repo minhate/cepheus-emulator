@@ -180,7 +180,7 @@ def verify_gpt(fd: int, num_disk_sectors: int) -> int:
     return active
 
 
-def build_lun(lun_idx: int, fw_dir: Path, out_dir: Path, full_sparse: bool = False) -> Path:
+def build_lun(lun_idx: int, fw_dir: Path, out_dir: Path, full_sparse: bool = True) -> Path:
     num_sectors = LUN_DISK_SECTORS[lun_idx]
     lun_path = out_dir / f"lun{lun_idx}.raw"
     rawprog_path = fw_dir / f"rawprogram{lun_idx}.xml"
@@ -192,6 +192,8 @@ def build_lun(lun_idx: int, fw_dir: Path, out_dir: Path, full_sparse: bool = Fal
         tree = ET.parse(rawprog_path)
         for prog in tree.getroot().findall("program"):
             fn = prog.attrib.get("filename", "")
+            if not fn and prog.attrib.get("label") == "persist":
+                fn = "persist.img"
             if not fn:
                 continue
             src = fw_dir / fn
@@ -202,9 +204,7 @@ def build_lun(lun_idx: int, fw_dir: Path, out_dir: Path, full_sparse: bool = Fal
             is_sparse = prog.attrib.get("sparse", "false").lower() == "true"
 
             if is_sparse:
-                # Unsparse metadata & cache completely via simg2img; for multi-GB images,
-                # unpack initial chunks (superblock + root metadata) unless --full is passed.
-                max_chunks = 0 if (full_sparse or fn in ("metadata.img", "cache.img")) else 64
+                max_chunks = 0 if full_sparse else 64
                 write_sparse_file_to_lun(fd, src, dest_off, max_chunks=max_chunks)
             else:
                 with open(src, "rb") as rf:
@@ -319,7 +319,7 @@ def main() -> int:
     ap.add_argument("--out-dir", type=Path, default=DEFAULT_OUT)
     ap.add_argument("--stock-dir", type=Path, default=DEFAULT_STOCK)
     ap.add_argument("--corrupt-dir", type=Path, default=ROOT / "build" / "luns-corrupt")
-    ap.add_argument("--full", action="store_true", help="Unsparse full multi-GB system/vendor/userdata images")
+    ap.add_argument("--full", action="store_true", default=True, help="Unsparse full multi-GB system/vendor/userdata images")
     ap.add_argument("--probe-only", action="store_true", help="Only rebuild stock ramdisk and probe_r8.cpio.gz")
     args = ap.parse_args()
 
