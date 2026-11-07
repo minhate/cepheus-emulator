@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "name": "negative",
+  "argv": [
+    "./build/qemu-build/qemu-system-aarch64",
+    "-machine",
+    "cepheus,lun-dir=build/luns-corrupt",
+    "-m",
+    "2G",
+    "-kernel",
+    "build/stock/Image",
+    "-dtb",
+    "build/dtb/cepheus.dtb",
+    "-initrd",
+    "build/luns/probe_r8.cpio.gz",
+    "-append",
+    "earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8 printk.devkmsg=on rdinit=/probe.sh",
+    "-display",
+    "none",
+    "-serial",
+    "stdio",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-11-07T20:47:35.143082+00:00",
+  "duration_s": 21.196,
+  "exit_code": 0,
+  "stopped_by": "until",
+  "bytes": 196584,
+  "truncated": false,
+  "log_sha256": "a7e3541633da5d0b01e929822237366922786f29e8a5d49cb78946886e639142",
+  "binary_sha256": "120084bbadce8a639c14c5f1909cfed15f0b2571638c29f8383bb7138ce1b1ac"
+}

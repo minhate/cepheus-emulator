@@ -225,7 +225,9 @@ static void qcom_ufs_process_transfer(QComSm8150UfsState *s)
                     desc_buf[4] = 0;    /* bBootLunID */
                     desc_buf[5] = 0;    /* bLUWriteProtect */
                     desc_buf[7] = 12;   /* 4096 bytes block size (2^12) */
-                    uint64_t blks = cpu_to_be64(UFS_LUN_BLOCKS);
+                    uint64_t u_blks = (req.qr.index < UFS_NUM_LUNS && s->lun_blocks[req.qr.index] > 0)
+                                      ? s->lun_blocks[req.qr.index] : UFS_LUN_BLOCKS;
+                    uint64_t blks = cpu_to_be64(u_blks);
                     memcpy(&desc_buf[11], &blks, 8);
                     break;
                 }
@@ -355,7 +357,10 @@ static void qcom_ufs_process_transfer(QComSm8150UfsState *s)
                 break;
 
             case 0x25: { /* READ_CAPACITY_10 */
-                uint32_t last_lba = cpu_to_be32((uint32_t)(UFS_LUN_BLOCKS - 1));
+                uint64_t u_blks = (lun < UFS_NUM_LUNS && s->lun_blocks[lun] > 0)
+                                  ? s->lun_blocks[lun] : UFS_LUN_BLOCKS;
+                uint32_t last_lba = cpu_to_be32((u_blks - 1 > 0xffffffffULL)
+                                                ? 0xffffffffU : (uint32_t)(u_blks - 1));
                 uint32_t block_sz = cpu_to_be32(UFS_BLOCK_SIZE);
                 memcpy(&scsi_data[0], &last_lba, 4);
                 memcpy(&scsi_data[4], &block_sz, 4);
@@ -364,7 +369,9 @@ static void qcom_ufs_process_transfer(QComSm8150UfsState *s)
             }
 
             case 0x9E: { /* SERVICE_ACTION_IN_16 / READ_CAPACITY_16 */
-                uint64_t last_lba = cpu_to_be64(UFS_LUN_BLOCKS - 1);
+                uint64_t u_blks = (lun < UFS_NUM_LUNS && s->lun_blocks[lun] > 0)
+                                  ? s->lun_blocks[lun] : UFS_LUN_BLOCKS;
+                uint64_t last_lba = cpu_to_be64(u_blks - 1);
                 uint32_t block_sz = cpu_to_be32(UFS_BLOCK_SIZE);
                 memcpy(&scsi_data[0], &last_lba, 8);
                 memcpy(&scsi_data[8], &block_sz, 4);
@@ -415,22 +422,81 @@ static void qcom_ufs_process_transfer(QComSm8150UfsState *s)
             case 0x08: /* READ_6 */
             case 0x28: /* READ_10 */
             case 0x88: /* READ_16 */ {
-                /* Zero-fill guest read buffer */
-                uint8_t zero_page[4096];
-                memset(zero_page, 0, sizeof(zero_page));
+                uint64_t lba = 0;
+                if (cdb_op == 0x08) {
+                    lba = (((uint64_t)(req.sc.cdb[1] & 0x1f)) << 16) |
+                          (((uint64_t)req.sc.cdb[2]) << 8) |
+                          ((uint64_t)req.sc.cdb[3]);
+                } else if (cdb_op == 0x28) {
+                    lba = ldl_be_p(&req.sc.cdb[2]);
+                } else {
+                    lba = ldq_be_p(&req.sc.cdb[2]);
+                }
+                uint64_t disk_off = lba * UFS_BLOCK_SIZE;
+                int fd = (lun < UFS_NUM_LUNS) ? s->lun_fd[lun] : -1;
+
+                uint8_t page_buf[4096];
                 hwaddr prd_entry_addr = prdt_addr;
                 for (int pi = 0; pi < prdt_len; pi++) {
                     UfshcdSgEntry entry;
                     dma_memory_read(&address_space_memory, prd_entry_addr, &entry,
                                     sizeof(entry), MEMTXATTRS_UNSPECIFIED);
                     uint64_t b_addr = le64_to_cpu(entry.addr);
-                    uint32_t b_size = le32_to_cpu(entry.size) + 1;
+                    uint32_t b_size = (le32_to_cpu(entry.size) & 0x3ffff) + 1;
                     while (b_size > 0) {
-                        uint32_t chunk = MIN(b_size, (uint32_t)sizeof(zero_page));
-                        dma_memory_write(&address_space_memory, b_addr, zero_page, chunk,
+                        uint32_t chunk = MIN(b_size, (uint32_t)sizeof(page_buf));
+                        memset(page_buf, 0, chunk);
+                        if (fd >= 0) {
+                            ssize_t r = pread(fd, page_buf, chunk, (off_t)disk_off);
+                            (void)r;
+                        }
+                        dma_memory_write(&address_space_memory, b_addr, page_buf, chunk,
                                          MEMTXATTRS_UNSPECIFIED);
                         b_addr += chunk;
                         b_size -= chunk;
+                        disk_off += chunk;
+                    }
+                    prd_entry_addr += sizeof(UfshcdSgEntry);
+                }
+                scsi_data_len = 0;
+                break;
+            }
+
+            case 0x0A: /* WRITE_6 */
+            case 0x2A: /* WRITE_10 */
+            case 0x8A: /* WRITE_16 */ {
+                uint64_t lba = 0;
+                if (cdb_op == 0x0A) {
+                    lba = (((uint64_t)(req.sc.cdb[1] & 0x1f)) << 16) |
+                          (((uint64_t)req.sc.cdb[2]) << 8) |
+                          ((uint64_t)req.sc.cdb[3]);
+                } else if (cdb_op == 0x2A) {
+                    lba = ldl_be_p(&req.sc.cdb[2]);
+                } else {
+                    lba = ldq_be_p(&req.sc.cdb[2]);
+                }
+                uint64_t disk_off = lba * UFS_BLOCK_SIZE;
+                int fd = (lun < UFS_NUM_LUNS) ? s->lun_fd[lun] : -1;
+
+                uint8_t page_buf[4096];
+                hwaddr prd_entry_addr = prdt_addr;
+                for (int pi = 0; pi < prdt_len; pi++) {
+                    UfshcdSgEntry entry;
+                    dma_memory_read(&address_space_memory, prd_entry_addr, &entry,
+                                    sizeof(entry), MEMTXATTRS_UNSPECIFIED);
+                    uint64_t b_addr = le64_to_cpu(entry.addr);
+                    uint32_t b_size = (le32_to_cpu(entry.size) & 0x3ffff) + 1;
+                    while (b_size > 0) {
+                        uint32_t chunk = MIN(b_size, (uint32_t)sizeof(page_buf));
+                        dma_memory_read(&address_space_memory, b_addr, page_buf, chunk,
+                                        MEMTXATTRS_UNSPECIFIED);
+                        if (fd >= 0) {
+                            ssize_t w = pwrite(fd, page_buf, chunk, (off_t)disk_off);
+                            (void)w;
+                        }
+                        b_addr += chunk;
+                        b_size -= chunk;
+                        disk_off += chunk;
                     }
                     prd_entry_addr += sizeof(UfshcdSgEntry);
                 }
@@ -821,14 +887,38 @@ static void qcom_sm8150_ufs_init(Object *obj)
 
     sysbus_init_irq(sbd, &s->irq);
 
+    for (int i = 0; i < UFS_NUM_LUNS; i++) {
+        s->lun_fd[i] = -1;
+        s->lun_blocks[i] = UFS_LUN_BLOCKS;
+    }
+
     qcom_sm8150_ufs_reset(s);
     qemu_register_reset(qcom_sm8150_ufs_reset, s);
 }
 
-DeviceState *qcom_sm8150_ufs_create(hwaddr base, hwaddr ice_base, hwaddr phy_base, qemu_irq irq)
+DeviceState *qcom_sm8150_ufs_create(hwaddr base, hwaddr ice_base, hwaddr phy_base,
+                                    qemu_irq irq, const char *lun_dir)
 {
     DeviceState *dev = qdev_new(TYPE_QCOM_SM8150_UFS);
     SysBusDevice *sbd = SYS_BUS_DEVICE(dev);
+    QComSm8150UfsState *s = QCOM_SM8150_UFS(dev);
+
+    const char *dir = (lun_dir && lun_dir[0]) ? lun_dir : "build/luns";
+    s->lun_dir = g_strdup(dir);
+    for (int i = 0; i < UFS_NUM_LUNS; i++) {
+        g_autofree char *path = g_strdup_printf("%s/lun%d.raw", dir, i);
+        int fd = open(path, O_RDWR);
+        if (fd < 0) {
+            fd = open(path, O_RDONLY);
+        }
+        if (fd >= 0) {
+            struct stat st;
+            if (fstat(fd, &st) == 0 && st.st_size >= UFS_BLOCK_SIZE) {
+                s->lun_blocks[i] = (uint64_t)st.st_size / UFS_BLOCK_SIZE;
+            }
+            s->lun_fd[i] = fd;
+        }
+    }
 
     sysbus_realize_and_unref(sbd, &error_fatal);
     sysbus_mmio_map(sbd, 0, base);

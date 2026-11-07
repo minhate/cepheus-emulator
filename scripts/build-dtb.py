@@ -28,19 +28,78 @@ NODES_TO_DISABLE = [
     "qcom,venus@aae0000",
     "qcom,npu@0x9800000",
     "qcom,spss@1880000",
+    "qcom,spss_utils",
+    "qcom,spcom",
     "qcom,ipa_fws",
     "qcom,kgsl-hyp",
+    "usb_audio_qmi_dev",
     # camera_isp allowlisted stub (§3)
     "qcom,cam-req-mgr",
+    "qcom,cam-res-mgr",
+    "qcom,cam_smmu",
     "qcom,csiphy@ac65000",
+    "qcom,csiphy@ac66000",
+    "qcom,csiphy@ac67000",
+    "qcom,csiphy@ac68000",
+    "qcom,cci@ac4a000",
+    "qcom,cci@ac4b000",
     "qcom,cam-cpas@ac40000",
     "qcom,cam-cdm-intf",
+    "qcom,cpas-cdm0@ac48000",
     "qcom,cam-isp",
+    "qcom,csid0@acb3000",
+    "qcom,vfe0@acaf000",
+    "qcom,csid1@acba000",
+    "qcom,vfe1@acb6000",
+    "qcom,csid-lite0@acc8000",
+    "qcom,vfe-lite0@acc4000",
+    "qcom,csid-lite1@accf000",
+    "qcom,vfe-lite1@accb000",
     "qcom,cam-icp",
+    "qcom,a5@ac00000",
+    "qcom,ipe0",
+    "qcom,ipe1",
+    "qcom,bps",
     "qcom,cam-jpeg",
+    "qcom,jpegenc@ac4e000",
     "qcom,cam-fd",
+    "qcom,fd@ac5a000",
     "qcom,cam-lrme",
+    "qcom,lrme@ac6b000",
 ]
+
+
+def disable_node_in_dts(dts: str, node_name: str) -> str:
+    pattern = re.compile(r"(^[ \t]*" + re.escape(node_name) + r"[ \t]*\{\n)", re.M)
+    m = pattern.search(dts)
+    if not m:
+        return dts
+    start_brace = m.end() - 2  # position of '{'
+    depth = 0
+    i = start_brace
+    n = len(dts)
+    while i < n:
+        ch = dts[i]
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                break
+        i += 1
+    if depth != 0:
+        return dts
+    block = dts[m.end():i]
+    first_child = block.find("{")
+    props_part = block[:first_child] if first_child >= 0 else block
+    rest_part = block[first_child:] if first_child >= 0 else ""
+    if re.search(r'^\s*status\s*=\s*"[^"]+"\s*;', props_part, re.M):
+        props_part = re.sub(r'status\s*=\s*"[^"]+"\s*;', 'status = "disabled";', props_part)
+    else:
+        props_part = '\t\t\tstatus = "disabled";\n' + props_part
+    rest_part = re.sub(r'status\s*=\s*"[^"]+"\s*;', 'status = "disabled";', rest_part)
+    block = props_part + rest_part
+    return dts[:m.end()] + block + dts[i:]
 
 
 def extract_dtbo5(dtbo_path: Path) -> bytes:
@@ -77,15 +136,7 @@ def main() -> int:
     dts = res.stdout.decode("utf-8", "replace")
 
     for node_name in NODES_TO_DISABLE:
-        pos = dts.find(node_name + " {")
-        if pos >= 0:
-            end = dts.find("};", pos)
-            block = dts[pos:end]
-            if "status =" in block:
-                block = re.sub(r'status\s*=\s*"[^"]+"', 'status = "disabled"', block)
-            else:
-                block = block + '\n\t\t\tstatus = "disabled";\n'
-            dts = dts[:pos] + block + dts[end:]
+        dts = disable_node_in_dts(dts, node_name)
 
     tmp_dts.write_text(dts)
 
