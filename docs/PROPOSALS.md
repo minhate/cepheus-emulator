@@ -202,3 +202,53 @@ In `milestones.json`:
 2. `VFS: Mounted root (ext4 filesystem) readonly on device 252:0.` proves the stock `system` partition (`sde54`) passed kernel `dm-verity` (`dm-0`) SHA1 Merkle tree verification and was mounted as `/` (giving access to `/system`, `/product`, `/system_ext`).
 3. `init: [libfs_mgr]__mount(source=/dev/block/dm-1,target=/vendor,type=ext4)=0: Success` proves first-stage `init` verified `vbmeta` (`sde10`), set up `dm-verity` (`dm-1`) over `vendor` (`sde53`), and mounted `/vendor` via DT fstab (`/proc/device-tree/firmware/android/fstab/vendor`).
 4. `init: Command 'mount_all /vendor/etc/fstab.qcom --early' action=fs ... and succeeded` proves second-stage `init` parsed `/vendor/etc/fstab.qcom` from the mounted `/vendor` partition and mounted `/cache`, `/vendor/firmware_mnt`, `/vendor/dsp`, `/mnt/vendor/persist`, and `/vendor/bt_firmware` from the UFS LUNs.
+
+## 2026-11-08 R11 Proposed patterns for SELinux enforcing with ROM policy
+
+**Observed (raw guest lines)**:
+- In real guest boot output on `cepheus` (`scratch/test_positive/positive.log`):
+  ```text
+  selinux: SELinux: Loaded policy from /vendor/etc/selinux/precompiled_sepolicy
+  audit: type=1404 audit(21.910:3): enforcing=1 old_enforcing=0 auid=4294967295 ses=4294967295
+  init: Do not have permissions to set 'ro.adb.secure' to '1' in property file '/vendor/default.prop': SELinux permission check failed
+  audit: type=1107 audit(25.810:4): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=u:r:init:s0 msg='avc:  denied  { read } for property=persist.debug.trace pid=0 uid=0 gid=0 scontext=u:r:vendor_init:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=0'
+  audit: type=1400 audit(34.540:13): avc:  denied  { mounton } for  pid=1 comm="init" path="/sys/kernel/tracing" dev="tracefs" ino=1 scontext=u:r:init:s0 tcontext=u:object_r:debugfs_tracing_debug:s0 tclass=dir permissive=0
+  ```
+- In negative run (`scratch/test_permissive/negative.log`) where `androidboot.selinux=permissive` is passed on cmdline:
+  ```text
+  selinux: SELinux: Loaded policy from /vendor/etc/selinux/precompiled_sepolicy
+  audit: type=1107 audit(25.310:3): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=u:r:init:s0 msg='avc:  denied  { read } for property=persist.debug.trace pid=0 uid=0 gid=0 scontext=u:r:vendor_init:s0 tcontext=u:object_r:persist_debug_prop:s0 tclass=file permissive=1'
+  audit: type=1400 audit(34.410:7): avc:  denied  { mounton } for  pid=1 comm="init" path="/sys/kernel/tracing" dev="tracefs" ino=1 scontext=u:r:init:s0 tcontext=u:object_r:debugfs_tracing_debug:s0 tclass=dir permissive=1
+  ```
+  `enforcing=1 old_enforcing=0`, `SELinux permission check failed`, and `permissive=0` are completely absent.
+
+**Proposal**:
+In `milestones.json`:
+1. Remove `"patterns_status": "DRAFT"` from `R11`.
+2. Set `patterns`, `negative_absent`, and `argv_must_contain` in `R11` to:
+   ```json
+   "patterns": [
+     "selinux: SELinux: Loaded policy from /vendor/etc/selinux/precompiled_sepolicy",
+     "audit: type=1404 audit\\(.*\\): enforcing=1 old_enforcing=0",
+     "init: Do not have permissions to set 'ro\\.adb\\.secure' to '1' in property file '/vendor/default\\.prop': SELinux permission check failed",
+     "avc:  denied  .* permissive=0"
+   ],
+   "negative_absent": [
+     "enforcing=1 old_enforcing=0",
+     "permissive=0",
+     "SELinux permission check failed"
+   ],
+   "argv_must_contain": [
+     "qemu-system-aarch64",
+     "cepheus",
+     "-kernel",
+     "-dtb"
+   ]
+   ```
+
+**Why**:
+1. `selinux: SELinux: Loaded policy from /vendor/etc/selinux/precompiled_sepolicy` proves init successfully loaded the real binary SELinux policy from the mounted `/vendor` partition of the ROM.
+2. `audit: type=1404 audit(...): enforcing=1 old_enforcing=0` proves init transitioned the kernel SELinux subsystem into enforcing mode (`enforce=1`).
+3. `init: Do not have permissions to set 'ro.adb.secure' ... SELinux permission check failed` proves second-stage init actively enforced SELinux property access controls against `/vendor/default.prop`.
+4. `avc:  denied  .* permissive=0` confirms kernel audit logs AVC denial decisions with `permissive=0` (enforcing mode).
+5. Passing `androidboot.selinux=permissive` on cmdline cleanly disables enforcing mode, causing `enforcing=1 old_enforcing=0`, property set rejection, and `permissive=0` to completely disappear, while audit logs switch to `permissive=1`.

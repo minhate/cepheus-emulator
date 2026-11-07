@@ -225,8 +225,23 @@
         "R10"
       ],
       "acceptance": "ROM policy loaded by real init, enforcing, no global permissive, denials visible.",
-      "patterns_status": "DRAFT",
-      "patterns": []
+      "patterns": [
+        "selinux: SELinux: Loaded policy from /vendor/etc/selinux/precompiled_sepolicy",
+        "audit: type=1404 audit\\(.*\\): enforcing=1 old_enforcing=0",
+        "init: Do not have permissions to set 'ro\\.adb\\.secure' to '1' in property file '/vendor/default\\.prop': SELinux permission check failed",
+        "avc:  denied  .* permissive=0"
+      ],
+      "negative_absent": [
+        "enforcing=1 old_enforcing=0",
+        "permissive=0",
+        "SELinux permission check failed"
+      ],
+      "argv_must_contain": [
+        "qemu-system-aarch64",
+        "cepheus",
+        "-kernel",
+        "-dtb"
+      ]
     },
     {
       "id": "R12",

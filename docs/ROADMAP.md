@@ -13,7 +13,7 @@
 | R8 | VERIFIED | Real GPT/LUNs from real images | R7 | LUN images built from the real stock images; the stock kernel parses the real GPT and exposes real partitions (/proc/partitions printed raw by a command-only probe). Negative: corrupted GPT -> no partitions. |
 | R9 | VERIFIED | Real Android init (first and second stage) | R8 | Stock ramdisk -> real Android init prints its own first/second stage logs on the kernel log. Negative: ramdisk removed. |
 | R10 | VERIFIED | Dynamic partitions mounted by real init | R9 | Real init mounts system/vendor/product from the real super (dm-linear) with the ROM's fstab. |
-| R11 | NOT-STARTED | SELinux enforcing with the ROM policy (DRAFT) | R10 | ROM policy loaded by real init, enforcing, no global permissive, denials visible. |
+| R11 | VERIFIED | SELinux enforcing with the ROM policy | R10 | ROM policy loaded by real init, enforcing, no global permissive, denials visible. |
 | R12 | NOT-STARTED | Real property service, binder and service managers (DRAFT) | R11 | Real servicemanager/hwservicemanager/vndservicemanager running over real binder; service list printed raw by the real tool. |
 | R13 | NOT-STARTED | Allowlisted stubs registered; system_server starts (DRAFT) | R12 | TZ/modem/DSP/GPU/camera/sensors handled only by registered stubs; framework (zygote, system_server) starts. |
 | R14 | NOT-STARTED | sys.boot_completed from the real init (DRAFT) | R13 | Property set by the real boot flow, read by real getprop; never set by hand. |
