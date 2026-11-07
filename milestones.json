@@ -199,8 +199,23 @@
         "R9"
       ],
       "acceptance": "Real init mounts system/vendor/product from the real super (dm-linear) with the ROM's fstab.",
-      "patterns_status": "DRAFT",
-      "patterns": []
+      "patterns": [
+        "VFS: Mounted root \\(ext4 filesystem\\) readonly on device 252:0\\.",
+        "init: \\[libfs_mgr\\]__mount\\(source=/dev/block/dm-1,target=/vendor,type=ext4\\)=0: Success",
+        "init: \\[libfs_mgr\\]__mount\\(source=/dev/block/bootdevice/by-name/persist,target=/mnt/vendor/persist,type=ext4\\)=0: Success",
+        "init: Command 'mount_all /vendor/etc/fstab\\.qcom --early' action=fs .* and succeeded"
+      ],
+      "negative_absent": [
+        "VFS: Mounted root \\(ext4 filesystem\\) readonly on device 252:0\\.",
+        "init: \\[libfs_mgr\\]__mount\\(source=/dev/block/dm-1,target=/vendor,type=ext4\\)=0: Success",
+        "init: Command 'mount_all /vendor/etc/fstab\\.qcom --early' action=fs .* and succeeded"
+      ],
+      "argv_must_contain": [
+        "qemu-system-aarch64",
+        "cepheus",
+        "-kernel",
+        "-dtb"
+      ]
     },
     {
       "id": "R11",
