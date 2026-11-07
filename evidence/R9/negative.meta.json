@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "name": "negative",
+  "argv": [
+    "./build/qemu-build/qemu-system-aarch64",
+    "-machine",
+    "cepheus",
+    "-m",
+    "2G",
+    "-kernel",
+    "build/stock/Image",
+    "-dtb",
+    "build/dtb/cepheus.dtb",
+    "-append",
+    "earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8 printk.devkmsg=on androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.boot_devices=soc/1d84000.ufshc rdinit=/init",
+    "-display",
+    "none",
+    "-serial",
+    "stdio",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-11-07T21:01:54.026874+00:00",
+  "duration_s": 2.939,
+  "exit_code": 0,
+  "stopped_by": "until",
+  "bytes": 19701,
+  "truncated": false,
+  "log_sha256": "679e3b96c40c09315528c8514a25642e48cff00401f78d6bd53dcdf34259b1a1",
+  "binary_sha256": "120084bbadce8a639c14c5f1909cfed15f0b2571638c29f8383bb7138ce1b1ac"
+}
