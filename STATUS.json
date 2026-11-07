@@ -50,9 +50,9 @@
     "evidence_sha256": "2f3e0387dea27ce5dd7ed4b773739f5f1ed69280e149abe68b3a2d467a4488b6"
   },
   "R10": {
-    "status": "NOT-STARTED",
+    "status": "VERIFIED",
     "note": "",
-    "evidence_sha256": null
+    "evidence_sha256": "a9c360852d813de210c02d441974645262bc75251b955176874189dad9e2cc7a"
   },
   "R11": {
     "status": "NOT-STARTED",

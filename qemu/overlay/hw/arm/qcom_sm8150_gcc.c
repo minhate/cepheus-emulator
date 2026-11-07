@@ -87,9 +87,28 @@ static uint64_t qcom_sm8150_gcc_read(void *opaque, hwaddr offset, unsigned size)
 
     /*
      * For Qualcomm branch clock control registers (CBCR):
-     * Bit 31 is CLK_OFF. Return 0 so branch clocks and voted branch
-     * clocks are reported running (not stuck at 'off').
+     * Bit 31 is CLK_OFF (0 = clock running, 1 = clock halted/off).
+     * When software polls the same CBCR consecutively (e.g. regmap read +
+     * clk_branch2_check_halt during enable or disable), alternate CLK_OFF on
+     * consecutive reads of the same register so both clk_branch2_enable
+     * (waits for CLK_OFF == 0) and clk_branch2_disable (waits for CLK_OFF == 1)
+     * complete within 1-2 polls without timing out.
      */
+    static void *last_opaque;
+    static hwaddr last_offset = ~(hwaddr)0;
+    static uint32_t poll_streak;
+
+    if (opaque == last_opaque && offset == last_offset) {
+        poll_streak++;
+    } else {
+        last_opaque = opaque;
+        last_offset = offset;
+        poll_streak = 0;
+    }
+
+    if (poll_streak & 1) {
+        return val | GCC_BRANCH_CLK_OFF_BIT;
+    }
     return val & ~GCC_BRANCH_CLK_OFF_BIT;
 }
 

@@ -445,12 +445,14 @@ static const ARMCPRegInfo cepheus_kryo485_ras_reginfo[] = {
 
 static void cepheus_modify_dtb(const struct arm_boot_info *binfo, void *fdt)
 {
+    /*
+     * STUB(boot_rom_chain): Reproduce the DTB handoff state that Qualcomm ABL
+     * (abl.elf: UpdateDeviceTree) leaves in memory before jumping to the kernel:
+     * 1. Place initrd at 0xa0000000 (outside 0x85700000..0x9f800000 no-map regions).
+     * 2. Update /firmware/android/fstab/vendor 'dev' property from the default
+     *    8804000.sdhci placeholder to the active boot device 1d84000.ufshc.
+     */
     if (binfo->initrd_size > 0 && binfo->initrd_filename) {
-        /*
-         * In the stock SM8150 DTB, 0x85700000..0x9f800000 contains reserved-memory
-         * regions marked 'no-map' (including 0x88000000 where generic ARM boot places
-         * initrd). Place initrd at 0xa0000000 (mapped normal RAM) as ABL does.
-         */
         hwaddr safe_initrd_base = 0xa0000000ULL;
         AddressSpace *as = &address_space_memory;
         load_image_targphys_as(binfo->initrd_filename, safe_initrd_base,
@@ -461,6 +463,16 @@ static void cepheus_modify_dtb(const struct arm_boot_info *binfo, void *fdt)
                                      acells, safe_initrd_base);
         qemu_fdt_setprop_sized_cells(fdt, "/chosen", "linux,initrd-end",
                                      acells, safe_initrd_base + binfo->initrd_size);
+    }
+
+    Error *local_err = NULL;
+    const void *vendor_dev = qemu_fdt_getprop(fdt, "/firmware/android/fstab/vendor",
+                                              "dev", NULL, &local_err);
+    if (!local_err && vendor_dev) {
+        qemu_fdt_setprop_string(fdt, "/firmware/android/fstab/vendor", "dev",
+                                "/dev/block/platform/soc/1d84000.ufshc/by-name/vendor");
+    } else if (local_err) {
+        error_free(local_err);
     }
 }
 

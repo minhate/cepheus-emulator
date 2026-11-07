@@ -2,6 +2,11 @@
   "schema": 1,
   "stubs": [
     {
+      "path": "qemu/overlay/hw/arm/cepheus.c",
+      "category": "boot_rom_chain",
+      "reason": "Reproduces ABL UpdateDeviceTree FDT handoff (initrd placement and fstab vendor bootdevice fixup) and SMEM header initialization"
+    },
+    {
       "path": "qemu/overlay/hw/arm/qcom_sm8150_ufs.c",
       "category": "boot_rom_chain",
       "reason": "Reproduces ABL/TrustZone handoff state on UFS ICE MMIO resource to allow kernel driver probe"
