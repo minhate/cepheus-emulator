@@ -1,0 +1,1900 @@
+Booting Linux on physical CPU 0x0
+Linux version 4.14.180-perf-gb24d113 (builder@c5-miui-ota-bd153.bj) (clang version 10.0.6 for Android NDK, GNU ld (binutils-2.27-bd24d23f) 2.27.0.20170315) #2 SMP PREEMPT Thu Nov 25 13:06:04 CST 2021
+Boot CPU: AArch64 Processor [411fd070]
+memblock_reserve: 0x1616bd setup_arch+0xb0/0x5ac
+Machine: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC
+ramoops: msm_reserve_ramoops_memory addr=b0000000,size=400000
+ramoops: msm_reserve_ramoops_memory record_size=0,ftrace_size=0
+Reserved memory: created CMA memory pool at 0x00000000fec00000, size 16 MiB
+OF: reserved mem: initialized node adsp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fc400000, size 40 MiB
+OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000fb400000, size 16 MiB
+OF: reserved mem: initialized node user_contig_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f1400000, size 160 MiB
+OF: reserved mem: initialized node secure_display_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000f1000000, size 4 MiB
+OF: reserved mem: initialized node cdsp_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000eec00000, size 36 MiB
+OF: reserved mem: initialized node mem_dump_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000edc00000, size 16 MiB
+OF: reserved mem: initialized node qseecom_ta_region, compatible id shared-dma-pool
+Reserved memory: created CMA memory pool at 0x00000000ed400000, size 8 MiB
+OF: reserved mem: initialized node sp_region, compatible id shared-dma-pool
+Removed memory: created DMA memory pool at 0x000000008b700000, size 5 MiB
+OF: reserved mem: initialized node camera_region@8b700000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008bc00000, size 1 MiB
+OF: reserved mem: initialized node pil_wlan_fw_region@8bc00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008bd80000, size 0 MiB
+OF: reserved mem: initialized node pil_npu_region@8bd80000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008be00000, size 34 MiB
+OF: reserved mem: initialized node pil_adsp_region@8be00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x000000008e000000, size 150 MiB
+OF: reserved mem: initialized node modem_region@8e000000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000097600000, size 5 MiB
+OF: reserved mem: initialized node pil_video_region@97600000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000097b00000, size 20 MiB
+OF: reserved mem: initialized node pil_slpi_region@97b00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f00000, size 0 MiB
+OF: reserved mem: initialized node pil_ipa_fw_region@98f00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f10000, size 0 MiB
+OF: reserved mem: initialized node pil_ipa_gsi_region@98f10000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000098f15000, size 0 MiB
+OF: reserved mem: initialized node pil_gpu_region@98f15000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000099000000, size 1 MiB
+OF: reserved mem: initialized node pil_spss_region@99000000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x0000000099100000, size 20 MiB
+OF: reserved mem: initialized node cdsp_regions@99100000, compatible id removed-dma-pool
+Reserved memory: created DMA memory pool at 0x000000009e400000, size 20 MiB
+OF: reserved mem: initialized node qseecom_region@0x9e400000, compatible id shared-dma-pool
+Removed memory: created DMA memory pool at 0x00000000a4c00000, size 60 MiB
+OF: reserved mem: initialized node cdsp_sec_regions@0xa4c00000, compatible id removed-dma-pool
+Removed memory: created DMA memory pool at 0x00000000af000000, size 16 MiB
+OF: reserved mem: initialized node ramdump_fb_region@af000000, compatible id removed-dma-pool
+On node 0 totalpages: 938921
+  DMA zone: 6479 pages used for memmap
+  DMA zone: 0 pages reserved
+  DMA zone: 414633 pages, LIFO batch:31
+  Normal zone: 8192 pages used for memmap
+  Normal zone: 524288 pages, LIFO batch:31
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: Trusted OS migration not required
+psci: SMC Calling Convention v1.0
+random: get_random_bytes called from start_kernel+0x94/0x50c with crng_init=0
+percpu: Embedded 86 pages/cpu s312216 r8192 d31848 u352256
+pcpu-alloc: s312216 r8192 d31848 u352256 alloc=86*4096
+pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+CPU features: enabling workaround for ARM erratum 832075
+ARM_SMCCC_ARCH_WORKAROUND_1 missing from firmware
+Built 1 zonelists, mobility grouping on.  Total pages: 924250
+Kernel command line: ramoops_memreserve=4M earlycon=msm_geni_serial,0xa90000 console=ttyMSM0,115200n8 printk.devkmsg=on androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.bootdevice=1d84000.ufshc androidboot.boot_devices=soc/1d84000.ufshc androidboot.fstab_suffix=qcom skip_initramfs rootwait ro init=/init dm="1 system none ro 1,0 7224056 verity 1 PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d 4096 4096 903007 903007 sha1 75107d66498ef46f343e6d02c250a4b6b9ce4e98 1a5052eca46e5c4f95fbf3e4c4c553112fa553a0663853951384cc808edbd72e 10 restart_on_corruption ignore_zero_blocks use_fec_from_device PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d fec_roots 2 fec_blocks 910119 fec_start 910119" root=/dev/dm-0 androidboot.vbmeta.device=PARTUUID=9a3d4c97-9735-f5f1-2fdf-ed378346bec3 androidboot.vbmeta.avb_version=1.0 androidboot.vbmeta.device_state=locked androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size=5568 androidboot.vbm
+device-mapper: init: will configure 1 devices
+PID hash table entries: 4096 (order: 3, 32768 bytes)
+Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes)
+Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes)
+mem auto-init: stack:off, heap alloc:off, heap free:off
+software IO TLB: mapped [mem 0xe9400000-0xed400000] (64MB)
+Memory: 3219612K/3755684K available (17918K kernel code, 2604K rwdata, 13796K rodata, 6144K init, 6404K bss, 232968K reserved, 303104K cma-reserved)
+SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
+**********************************************************
+**   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+**                                                      **
+** trace_printk() being used. Allocating extra memory.  **
+**                                                      **
+** This means that this is a DEBUG kernel and it is     **
+** unsafe for production use.                           **
+**                                                      **
+** If you see this message and you are not debugging    **
+** the kernel, report this immediately to your vendor!  **
+**                                                      **
+**   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+**********************************************************
+Preemptible hierarchical RCU implementation.
+	RCU dyntick-idle grace-period acceleration is enabled.
+	Tasks RCU enabled.
+NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+GICv3: GIC: Using split EOI/Deactivate mode
+GICv3: no VLPI support, no direct LPI support
+GICv3: CPU0: found redistributor 0 region 0:0x0000000017a60000
+PDC SM8150 initialized
+	Offload RCU callbacks from CPUs: .
+arch_timer: Unable to find a suitable frame in timer @ 0x0000000017c20000
+Failed to initialize '/soc/timer@0x17c20000': -22
+sched_clock: 64 bits at 100 Hz, resolution 10000000ns, wraps every 36028797015000000ns
+Calibrating delay loop (skipped), value calculated using timer frequency.. 38.40 BogoMIPS (lpj=192000)
+pid_max: default: 32768 minimum: 301
+Security Framework initialized
+SELinux:  Initializing.
+SELinux:  Starting in permissive mode
+Mount-cache hash table entries: 8192 (order: 4, 65536 bytes)
+Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes)
+ASID allocator initialised with 32768 entries
+Hierarchical SRCU implementation.
+MSM Memory Dump base table set up
+MSM Memory Dump apps data table set up
+smp: Bringing up secondary CPUs ...
+GICv3: CPU1: found redistributor 100 region 0:0x0000000017a80000
+CPU1: Booted secondary processor [411fd070]
+GICv3: CPU2: found redistributor 200 region 0:0x0000000017aa0000
+CPU2: Booted secondary processor [411fd070]
+GICv3: CPU3: found redistributor 300 region 0:0x0000000017ac0000
+CPU3: Booted secondary processor [411fd070]
+GICv3: CPU4: found redistributor 400 region 0:0x0000000017ae0000
+CPU4: Booted secondary processor [411fd070]
+GICv3: CPU5: found redistributor 500 region 0:0x0000000017b00000
+CPU5: Booted secondary processor [411fd070]
+GICv3: CPU6: found redistributor 600 region 0:0x0000000017b20000
+CPU6: Booted secondary processor [411fd070]
+GICv3: CPU7: found redistributor 700 region 0:0x0000000017b40000
+CPU7: Booted secondary processor [411fd070]
+smp: Brought up 1 node, 8 CPUs
+SMP: Total of 8 processors activated.
+CPU features: detected: GIC system register CPU interface
+CPU features: detected: 32-bit EL0 Support
+CPU: All CPU(s) started at EL2
+alternatives: patching kernel code
+scm_call failed with error code -1
+scm_enable_mem_protection: SCM call failed
+Registered cp15_barrier emulation handler
+Registered setend emulation handler
+Attribute wake_times: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 4 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 4 PID: 1 Comm: swapper/0 Not tainted 4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 0000000000000007 x22: 0000000000000000 
+x21: ffffffc0f9132b00 x20: ffffff800920cb30 
+x19: ffffffc0f9138aa0 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000001324 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 0682b3281c236200 x8 : 0682b3281c236200 
+x7 : 6e49203a73656d69 x6 : ffffff800aaa048a 
+x5 : 0000000000000000 x4 : 0000000000000000 
+x3 : 0000000000003636 x2 : 000000000000002e 
+x1 : 00000000000000c0 x0 : 000000000000002e 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 1c236200 0682b328
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35af9b ]---
+Attribute last_wake_time: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 4 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 4 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 0000000000000008 x22: 0000000000000000 
+x21: ffffffc0f9132b00 x20: ffffff800920cb30 
+x19: ffffffc0f9138aa0 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000001324 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 0682b3281c236200 x8 : 0682b3281c236200 
+x7 : 696c61766e49203a x6 : ffffff800aaa048e 
+x5 : 0000000000000000 x4 : 0000000000000008 
+x3 : 0000000000003636 x2 : 000000000000002a 
+x1 : 00000000000000c0 x0 : 0000000000000032 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 1c236200 0682b328
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35af9c ]---
+Attribute sum_wakeup_time: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 4 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 4 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 0000000000000009 x22: 0000000000000000 
+x21: ffffffc0f9132b00 x20: ffffff800920cb30 
+x19: ffffffc0f9138aa0 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000001388 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 0682b3281c236200 x8 : 0682b3281c236200 
+x7 : 702064696c61766e x6 : ffffff800aaa048f 
+x5 : 0000000000000000 x4 : 000000000000000c 
+x3 : 0000000000000036 x2 : 0000000000000027 
+x1 : 00000000000000c0 x0 : 0000000000000033 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 1c236200 0682b328
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35af9d ]---
+Attribute screen_off_flag: Invalid permissions 0666
+------------[ cut here ]------------
+WARNING: CPU: 4 PID: 1 at fs/sysfs/group.c:61 internal_create_group+0x14c/0x294
+Modules linked in:
+CPU: 4 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : internal_create_group+0x14c/0x294
+lr : internal_create_group+0x14c/0x294
+sp : ffffff800805bc50 pstate : 60400045
+x29: ffffff800805bc50 x28: 000000000000ee4b 
+x27: ffffff800a637938 x26: 00000000000001b6 
+x25: 00000000000001b6 x24: 00000000000011b4 
+x23: 000000000000000a x22: 0000000000000000 
+x21: ffffffc0f9132b00 x20: ffffff800920cb30 
+x19: ffffffc0f9138aa0 x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000000001388 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffffffffffffff 
+x9 : 0682b3281c236200 x8 : 0682b3281c236200 
+x7 : 696d726570206469 x6 : ffffff800aaa048f 
+x5 : 0000000000000000 x4 : 0000000000000000 
+x3 : 0000000000000036 x2 : 0000000000000033 
+x1 : 00000000000000c0 x0 : 0000000000000033 
+
+PC: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+LR: 0xffffff80082e3278:
+3278  aa1303e0 2a1f03e2 aa1f03e4 97fffc01 350007a0 8b170f68 910006f7 f9400508
+3298  b5fffc88 14000009 f8777b68 9000cca0 91054000 2a1a03e2 f9400101 97f94f92
+32b8  d4210000 17ffffed f940129b b400059b f9400368 b4000548 aa1f03f7 529dc97c
+32d8  52823698 79401119 340000b6 f9400101 aa1303e0 aa1f03e2 97fff514 f9400a88
+
+SP: 0xffffff800805bc10:
+bc10  082e32b8 ffffff80 60400045 00000000 ffffffc8 ffffff80 1c236200 0682b328
+bc30  ffffffff ffffffff 082e32b8 ffffff80 0805bc50 ffffff80 082e32b8 ffffff80
+bc50  0805bcb0 ffffff80 082e3438 ffffff80 0a0ca348 ffffff80 0a0bd040 ffffff80
+bc70  0a88e000 ffffff80 0a88e000 ffffff80 0a0bd088 ffffff80 00000000 00000000
+Call trace:
+ internal_create_group+0x14c/0x294
+ sysfs_create_groups+0x38/0x94
+ pm_init+0x5c/0x6c
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35af9e ]---
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+futex hash table entries: 2048 (order: 6, 262144 bytes)
+ramoops: msm_register_ramoops_device
+pinctrl core: initialized pinctrl subsystem
+xlogchar_init
+xlogchar_init done
+NET: Registered protocol family 16
+schedtune: configured to support 6 boost groups
+console [pstore-1] enabled
+pstore: Registered ramoops as persistent store backend
+ramoops: attached 0x400000@0xb0000000, ecc: 0/0
+cpuidle: using governor menu
+cpuidle: using governor qcom
+NET: Registered protocol family 42
+vdso: 2 pages (1 code @         (ptrval), 1 data @         (ptrval))
+hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+DMA: preallocated 256 KiB pool for atomic allocations
+exit: IPA_USB init success!
+scm_call failed with error code -1
+unable to find DT imem DLOAD mode node
+unable to find DT imem EDLOAD mode node
+scm_call failed with error code -1
+scm_call failed with error code -1
+Failed to set secure DLOAD mode: -1
+spmi spmi-0: PMIC arbiter version v5 (0x50000000)
+msm_watchdog 17c10000.qcom,wdt: wdog absent resource not present
+msm_watchdog 17c10000.qcom,wdt: MSM Watchdog Initialized
+spmi spmi-0: failed to xlate sid = 0x5, periph = 0xd8, irq = 1 rc = -19
+spmi spmi-0: failed to xlate sid = 0x5, periph = 0xd3, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x5, periph = 0xec, irq = 1 rc = -19
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x35, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x3d, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x31, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0xc0, irq = 0 rc = -19
+sps:sps is ready.
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x24, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x3, periph = 0xc0, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x1d, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x35, irq = 0 rc = -19
+platform soc:qcom,msm-adsprpc-mem: assigned reserved memory node adsp_region
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x31, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0xc0, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0xb0, irq = 1 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x24, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0x35, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0x31, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0xc0, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0x8, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0x24, irq = 0 rc = -19
+Command DB is initialized in standalone mode.
+platform 87900000.qseecom: assigned reserved memory node qseecom_region@0x9e400000
+platform soc:mem_dump: assigned reserved memory node mem_dump_region
+msm-dcc 10a2000.dcc_v2: DCC list passed 3
+msm-dcc 10a2000.dcc_v2: All values written to enable
+platform 88a7000.msm_tspp: assigned reserved memory node qseecom_region@0x9e400000
+sm8150-pinctrl 3000000.pinctrl: invalid resource
+pm8150l_s4_mmcx_sup_level: regulator get failed, ret=-517
+pm8150l_s5_level: regulator get failed, ret=-517
+regulator_proxy_consumer_register: regulator_get() failed for soc:rpmh-regulator-mmcxlvl, rc=-517
+pm8150l_s6_level: supplied by pm8150l_s4_level
+pm8150l_s6_level_ao: supplied by pm8150l_s4_level_ao
+pm8150l_s4_mmcx_sup_level: supplied by pm8150l_s6_mmcx_sup_level
+pm8150l_s5_level: supplied by pm8150l_s4_mmcx_sup_level
+vServices Framework 1.0
+gdsc 2c9106c.qcom,gdsc: Unable to startup the chan (-11)
+gdsc 2c9106c.qcom,gdsc: mailbox channel request failed, ret=-11
+gdsc: probe of 2c9106c.qcom,gdsc failed with error -11
+gpu_gx_gdsc: supplied by pm8150l_s2_level
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu0
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu1
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu2
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu3
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu4
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu5
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu6
+clk: add_opp: No voltage for 300000000.
+clk: populate_opp_table: Failed to add OPP levels for cpu7
+clk: add_opp: No voltage for 300000000.
+clk: populate_l3_opp_table: Failed to add OPP levels for l3-devs
+sched-energy: Sched-energy-costs installed from DT
+cpufreq: driver osm-cpufreq up and running
+clk: clk_cpu_osm_driver_probe: OSM CPUFreq driver inited
+qmp-aop-clk soc:qcom,aopclk: Unable to startup the chan (-11)
+qmp-aop-clk soc:qcom,aopclk: Failed to get mailbox channel, ret -11
+qmp-aop-clk: probe of soc:qcom,aopclk failed with error -11
+clk-rpmh soc:qcom,rpmhclk: Registered RPMh clocks
+gcc-sm8150 100000.qcom,gcc: Registered GCC clocks
+gpu_cc_gmu_clk_src: set OPP pair(19200000 Hz: 49 uV) on 2c6a000.qcom,gmu
+gpu_cc_gmu_clk_src: set OPP pair(500000000 Hz: 129 uV) on 2c6a000.qcom,gmu
+gpu_cc-sm8150 2c90000.qcom,gpucc: Registered GPU CC clocks
+AXI: msm_bus_scale_register_client(): msm_bus_scale_register_client: Bus driver not ready.
+video_cc-sm8150 ab00000.qcom,videocc: Unable to register for bw voting
+socinfo_init: Can't find SMEM_HW_SW_BUILD_ID; falling back on dummy values.
+KPI: Bootloader start count = 0
+KPI: Bootloader end count = 0
+KPI: Bootloader load kernel count = 0
+KPI: Kernel MPM timestamp = 167011
+KPI: Kernel MPM Clock frequency = 32768
+socinfo_print: v0.1, id=361, ver=0.1
+------------[ cut here ]------------
+WARNING: CPU: 4 PID: 1 at drivers/soc/qcom/smem.c:655 qcom_smem_get+0x168/0x180
+Modules linked in:
+CPU: 4 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : qcom_smem_get+0x168/0x180
+lr : msm_minidump_init+0x3c/0x484
+sp : ffffff800805bc50 pstate : 80400045
+x29: ffffff800805bc60 x28: ffffff800a0ca848 
+x27: ffffff800a0bd058 x26: ffffff800a88e000 
+x25: ffffff800a88e000 x24: ffffff800a0bd0a0 
+x23: 0000000000000000 x22: ffffff800ab3a000 
+x21: 0000000000000215 x20: 000000000000025a 
+x19: ffffffffffffffea x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000003030 
+x13: 0000000098968000 x12: 0000000000000000 
+x11: 0000000000000000 x10: ffffff8008577c34 
+x9 : 0000000000000200 x8 : ffffffc0f91cf880 
+x7 : 0000000000000000 x6 : ffffff800aaa0480 
+x5 : 0000000000000000 x4 : 0000000000000008 
+x3 : 0000000000000034 x2 : ffffff800805bc90 
+x1 : 000000000000025a x0 : 00000000ffffffff 
+
+PC: 0xffffff8008574064:
+4064  54ffff21 92800033 17ffffdb 928000b3 17ffffd9 295aad49 f940010a 8b0b012c
+4084  eb0a019f 54000128 b4000053 f900026b f85f8108 8b090113 17ffffcf 928002b3
+40a4  d4210000 17ffffd1 928002b3 d4210000 17ffffc9 97ed1746 a9bf7bfd 910003fd
+40c4  d0012e28 2940242a f945f508 f9404908 8b0a0108 8b09010a b9400d0b 8b0b010d
+
+LR: 0xffffff800a03b258:
+b258  d65f03c0 d101c3ff a9017bfd 910043fd a9026ffc a90367fa a9045ff8 a90557f6
+b278  a9064ff4 d0002e88 12800000 52804b41 910003e2 f9478508 f90007e8 9794e32a
+b298  b4000460 aa0003f3 b13ffc1f 54000402 b9400268 34000428 d289c8a8 b0005818
+b2b8  f2a9c9e8 91010318 f2c8aa68 52901816 f2e00b28 72a02816 f9000b13 9100426a
+
+SP: 0xffffff800805bc10:
+bc10  085740a4 ffffff80 80400045 00000000 0ae42890 ffffff80 00000000 00000000
+bc30  ffffffff ffffffff f8d55000 ffffffc0 0805bc60 ffffff80 085740a4 ffffff80
+bc50  0805bcb0 ffffff80 1c236200 0682b328 0805bca0 ffffff80 0a03b298 ffffff80
+bc70  fae6b180 ffffffc0 00000215 00000000 0a61ca28 ffffff80 0a03b25c ffffff80
+Call trace:
+ qcom_smem_get+0x168/0x180
+ msm_minidump_init+0x3c/0x484
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35af9f ]---
+Minidump: SMEM is not initialized.
+------------[ cut here ]------------
+WARNING: CPU: 4 PID: 1 at drivers/soc/qcom/smem.c:655 qcom_smem_get+0x168/0x180
+Modules linked in:
+CPU: 4 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task:         (ptrval) task.stack:         (ptrval)
+pc : qcom_smem_get+0x168/0x180
+lr : msm_pil_init+0x164/0x290
+sp : ffffff800805bc50 pstate : 80400045
+x29: ffffff800805bc60 x28: ffffff800a0ca850 
+x27: ffffff800a0bd058 x26: ffffff800a88e000 
+x25: ffffff800a88e000 x24: ffffff800a0bd0a0 
+x23: 0000000000000000 x22: ffffff800ab3a000 
+x21: 0000000000000215 x20: 000000000000025a 
+x19: ffffffffffffffea x18: 0000000000000000 
+x17: 0000000000000037 x16: ffffff8009185680 
+x15: 0000000000000006 x14: 0000000000000002 
+x13: 0000000000000000 x12: ffffff800b167000 
+x11: ffffff800b16594c x10: 00000000000000c8 
+x9 : 0000000000000200 x8 : ffffffc0f91cf880 
+x7 : 0000000000000000 x6 : 000000000000003f 
+x5 : 0000000000000040 x4 : 00000000014000c0 
+x3 : 0068000000000707 x2 : ffffff800805bc90 
+x1 : 000000000000025a x0 : 00000000ffffffff 
+
+PC: 0xffffff8008574064:
+4064  54ffff21 92800033 17ffffdb 928000b3 17ffffd9 295aad49 f940010a 8b0b012c
+4084  eb0a019f 54000128 b4000053 f900026b f85f8108 8b090113 17ffffcf 928002b3
+40a4  d4210000 17ffffd1 928002b3 d4210000 17ffffc9 97ed1746 a9bf7bfd 910003fd
+40c4  d0012e28 2940242a f945f508 f9404908 8b0a0108 8b09010a b9400d0b 8b0b010d
+
+LR: 0xffffff800a03bf08:
+bf08  52800028 f943c66b 2a1f03ea 8b090969 b900012a a940a7ea cb0a0129 9100052a
+bf28  93407d09 11000508 eb4a093f 54fffec3 12800000 52804b41 910003e2 9794dffe
+bf48  b0003dc8 f0005809 911c2108 f903c920 39408908 37100768 b108141f 54000121
+bf68  b0ffe4a0 91150c00 9783ec63 12804080 17ffffb5 b0ffe4a0 91133000 17ffffae
+
+SP: 0xffffff800805bc10:
+bc10  085740a4 ffffff80 80400045 00000000 0b165000 ffffff80 00000707 00680000
+bc30  ffffffff ffffffff 146bf000 00000000 0805bc60 ffffff80 085740a4 ffffff80
+bc50  00000000 00000000 1c236200 0682b328 0805bce0 ffffff80 0a03bf48 ffffff80
+bc70  fae6b180 ffffffc0 00000215 00000000 0a61ca28 ffffff80 0ab3e000 ffffff80
+Call trace:
+ qcom_smem_get+0x168/0x180
+ msm_pil_init+0x164/0x290
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35afa0 ]---
+Unable to find DT property: qcom,msm-imem-minidump-debug
+msm_bus_fabric_rpmh_init_driver
+msm_bus: Probe started
+msm_bus_device 16e0000.ad-hoc-bus: Bus type is missing
+msm_bus_device 16e0000.ad-hoc-bus: Bus type is missing
+msm_bus_device 16e0000.ad-hoc-bus: Bus type is missing
+msm_bus_device 16e0000.ad-hoc-bus: Bus type is missing
+msm_bus: DT Parsing complete
+msm_bus_fab_init_noc_ops: Invalid Bus type
+msm_bus_fab_init_noc_ops: Invalid Bus type
+msm_bus_fab_init_noc_ops: Invalid Bus type
+msm_bus_fab_init_noc_ops: Invalid Bus type
+mem_offline mem-offline: Unable to startup the chan (-11)
+mem-offline: failed to get mailbox channel         (ptrval) -11
+actuator_ultra_ldo: supplied by pm8150l_bob
+actuator_rear_aux_ldo: supplied by pm8150l_bob
+actuator_rear_regulator: supplied by pm8150l_bob
+camera_viodd_ldo: supplied by pm8150_s4
+reg-fixed-voltage soc:ext_5v_boost: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/otg_vbus_boost/otg_vbus_boost_default, deferring probe
+arm-smmu 2ca0000.kgsl-smmu: Failed to get supply 'vdd': -517
+register_client_adhoc:find path.src 161 dest 627
+register_client_adhoc:Client handle 1 apps_smmu
+arm-smmu 15000000.apps-smmu: 	stream matching with 128 register groups
+arm-smmu 15000000.apps-smmu: SMMU address space size (0x4000) differs from mapped region size (0x100000)!
+register_client_adhoc:find path.src 161 dest 627
+register_client_adhoc:Client handle 2 apps_smmu
+register_client_adhoc:find path.src 161 dest 627
+register_client_adhoc:Client handle 3 apps_smmu
+register_client_adhoc:find path.src 22 dest 773
+register_client_adhoc:Client handle 4 mnoc_hf_0_tbu
+register_client_adhoc:find path.src 22 dest 773
+register_client_adhoc:Client handle 5 mnoc_hf_1_tbu
+register_client_adhoc:find path.src 137 dest 772
+register_client_adhoc:Client handle 6 mnoc_sf_0_tbu
+register_client_adhoc:find path.src 154 dest 10070
+register_client_adhoc:Client handle 7 apps_smmu
+register_client_adhoc:find path.src 161 dest 627
+register_client_adhoc:Client handle 8 apps_smmu
+register_client_adhoc:find path.src 161 dest 627
+register_client_adhoc:Client handle 9 apps_smmu
+register_client_adhoc:find path.src 154 dest 10070
+register_client_adhoc:Client handle 10 apps_smmu
+vgaarb: loaded
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+usb_phy_generic soc:usb_nop_phy: soc:usb_nop_phy supply vcc not found, using dummy regulator
+xiaomi_touch_probe enter
+xiaomi_touch_parse_dt touch,name:xiaomi-touch
+xiaomi_touch_probe over
+qcom,qpnp-power-on c440000.qcom,spmi:qcom,pm8150l@4:qcom,power-on@800: Register read failed, addr=0x0805, rc=-19
+qcom,qpnp-power-on c440000.qcom,spmi:qcom,pm8150b@2:qcom,power-on@800: Register read failed, addr=0x0805, rc=-19
+qcom,qpnp-power-on c440000.qcom,spmi:qcom,pm8150@0:qcom,power-on@800: Register read failed, addr=0x0805, rc=-19
+media: Linux media interface: v0.10
+Linux video capture interface: v2.00
+thermal_sys: quiet_therm board sensor: 
+TSENS device is not enabled
+Error initializing TSENS controller
+TSENS device is not enabled
+Error initializing TSENS controller
+EDAC MC: Ver: 3.0.0
+platform soc:qcom,ion:qcom,ion-heap@22: assigned reserved memory node adsp_region
+platform soc:qcom,ion:qcom,ion-heap@26: assigned reserved memory node user_contig_region
+platform soc:qcom,ion:qcom,ion-heap@27: assigned reserved memory node qseecom_region@0x9e400000
+platform soc:qcom,ion:qcom,ion-heap@19: assigned reserved memory node qseecom_ta_region
+platform soc:qcom,ion:qcom,ion-heap@13: assigned reserved memory node sp_region
+platform soc:qcom,ion:qcom,ion-heap@10: assigned reserved memory node secure_display_region
+ION heap system created
+ION heap adsp created at 0x00000000fec00000 with size 1000000
+ION heap user_contig created at 0x00000000fb400000 with size 1000000
+ION heap qsecom created at 0x000000009e400000 with size 1400000
+ION heap qsecom_ta created at 0x00000000edc00000 with size 1000000
+ION heap spss created at 0x00000000ed400000 with size 800000
+ION heap secure_display created at 0x00000000f1400000 with size a000000
+batched_hyp_assign: Failed to assign memory protection, ret = -19
+ion_hyp_assign_from_flags: Assign call failed, flags 0x20000000
+secure_carveout_heap: Assign token 0x20000000 failed
+platform soc:qcom,ion:qcom,ion-heap@14: Creating child pool cdsp failed
+ion_heap_create: error creating heap secure_carveout type 9 base 0x0000000000000000 size 0
+ION heap secure_heap created
+rtmm : rtmm mem pool init OK
+rtmm : rtmm reclaim init OK
+rtmm : rtmm compact init OK
+rtmm : rtmm init OK
+ktrace : ktrace events init OK
+ktrace : sched ktrace init OK
+ktrace : ktrace init OK
+qupv3_geni_se 8c0000.qcom,qupv3_0_geni_se:qcom,iommu_qupv3_0_geni_se_cb: stream ID 0xc3 out of range for SMMU (0x0)
+qupv3_geni_se ac0000.qcom,qupv3_1_geni_se:qcom,iommu_qupv3_1_geni_se_cb: stream ID 0x603 out of range for SMMU (0x0)
+qupv3_geni_se cc0000.qcom,qupv3_2_geni_se:qcom,iommu_qupv3_2_geni_se_cb: stream ID 0x7a3 out of range for SMMU (0x0)
+read failed rc=-19
+Invalid REVID peripheral type: 00
+qcom,qpnp-revid: probe of c440000.qcom,spmi:qcom,pm8150l@4:qcom,revid@100 failed with error -22
+read failed rc=-19
+Invalid REVID peripheral type: 00
+qcom,qpnp-revid: probe of c440000.qcom,spmi:qcom,pm8150b@2:qcom,revid@100 failed with error -22
+ipa ipa_is_mem_dump_allowed:6899 SCM DUMP_STATE call failed
+register_client_adhoc:find path.src 90 dest 512
+register_client_adhoc:find path.src 90 dest 585
+register_client_adhoc:find path.src 1 dest 676
+register_client_adhoc:find path.src 143 dest 777
+register_client_adhoc:Client handle 11 ipa
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+ipa soc:ipa_smmu_ap: stream ID 0x520 out of range for SMMU (0x0)
+ipa soc:ipa_smmu_wlan: stream ID 0x521 out of range for SMMU (0x0)
+ipa soc:ipa_smmu_uc: stream ID 0x522 out of range for SMMU (0x0)
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+Failed to read SDAM_SIZE rc=-19
+qcom,spmi-sdam: probe of c440000.qcom,spmi:qcom,pm8150@0:sdam@b100 failed with error -22
+trusty soc:trusty: trusty_probe_early: done
+trusty soc:trusty: using default smc ...
+trusty soc:trusty: failed to get version: -1
+trusty soc:trusty: selected api version: 0 (requested 3)
+trusty soc:trusty: shm not available, fallback to default alloc/free
+trusty soc:trusty: late_init_work_func: done
+Advanced Linux Sound Architecture Driver Initialized.
+Bluetooth: Core ver 2.22
+NET: Registered protocol family 31
+Bluetooth: HCI device and connection manager initialized
+Bluetooth: HCI socket layer initialized
+Bluetooth: L2CAP socket layer initialized
+Bluetooth: SCO socket layer initialized
+NetLabel: Initializing
+NetLabel:  domain hash size = 128
+NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+NetLabel:  unlabeled traffic allowed by default
+pcie:pcie_init.
+pci-msm 1c00000.qcom,pcie: 1c00000.qcom,pcie supply vreg-3.3 not found, using dummy regulator
+pci-msm 1c00000.qcom,pcie: 1c00000.qcom,pcie supply gdsc-smmu not found, using dummy regulator
+msm_pcie_get_resources: Could not get required GPIO perst-gpio
+msm_pcie_probe: PCIe: Driver probe failed for RC0:-2
+pci-msm: probe of 1c00000.qcom,pcie failed with error -2
+pci-msm 1c08000.qcom,pcie: prop pinctrl-0 index 2 invalid phandle
+pci-msm: probe of 1c08000.qcom,pcie failed with error -22
+register_client_adhoc:find path.src 1 dest 590
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:find path.src 1 dest 596
+register_client_adhoc:find path.src 22 dest 512
+register_client_adhoc:find path.src 23 dest 512
+register_client_adhoc:Client handle 12 bus-proxy-client
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:Client handle 13 bps_gdsc_ahb
+bps_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:Client handle 14 ipe_0_gdsc_ahb
+ipe_0_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:Client handle 15 ipe_1_gdsc_ahb
+ipe_1_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:Client handle 16 ife_0_gdsc_ahb
+ife_0_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:Client handle 17 ife_1_gdsc_ahb
+ife_1_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:Client handle 18 titan_top_gdsc_ahb
+titan_top_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 590
+register_client_adhoc:Client handle 19 mdss_core_gdsc_ahb
+mdss_core_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 596
+register_client_adhoc:Client handle 20 mvsc_gdsc_ahb
+mvsc_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 596
+register_client_adhoc:Client handle 21 mvs0_gdsc_ahb
+mvs0_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 596
+register_client_adhoc:Client handle 22 mvs1_gdsc_ahb
+mvs1_gdsc: supplied by pm8150l_s5_level
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:Client handle 23 clk_camcc_debugfs
+Unable to find platform_device node for cam_cc_bps_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_bps_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_cci_0_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_cci_0_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_cci_1_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_cci_1_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_csi0phytimer_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_csi0phytimer_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_csi1phytimer_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_csi1phytimer_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_csi2phytimer_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_csi2phytimer_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_csi3phytimer_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_csi3phytimer_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_icp_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_icp_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_0_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_0_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_0_csid_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_0_csid_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_1_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_1_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_1_csid_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_1_csid_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_lite_0_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_lite_0_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_lite_0_csid_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_lite_0_csid_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_lite_1_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_lite_1_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ife_lite_1_csid_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ife_lite_1_csid_clk_src-opp-handle
+Unable to find platform_device node for cam_cc_ipe_0_clk_src opp-handle
+Failed to fill device_list for qcom,cam_cc_ipe_0_clk_src-opp-handle
+cam_cc-sm8150 ad00000.qcom,camcc: Registered CAM CC clocks
+register_client_adhoc:find path.src 1 dest 590
+register_client_adhoc:Client handle 24 clk_dispcc_debugfs
+disp_cc-sm8150 af00000.qcom,dispcc: Registered Display CC clocks
+npu_cc-sm8150 9910000.qcom,npucc: Registered NPU CC clocks
+register_client_adhoc:find path.src 1 dest 596
+register_client_adhoc:Client handle 25 clk_videocc_debugfs
+video_cc-sm8150 ab00000.qcom,videocc: Registered Video CC clocks
+reg-fixed-voltage soc:ext_5v_boost: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/otg_vbus_boost/otg_vbus_boost_default, deferring probe
+arm-smmu 2ca0000.kgsl-smmu: Failed to get supply 'vdd': -517
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+VFS: Disk quotas dquot_6.6.0
+VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+register_client_adhoc:find path.src 1 dest 589
+register_client_adhoc:find path.src 1 dest 596
+register_client_adhoc:find path.src 1 dest 590
+register_client_adhoc:Client handle 26 clk_measure
+mdss_pll_probe: MDSS pll label = MDSS DSI 0 PLL
+mdss_pll_probe: mdss_pll_probe: label=MDSS DSI 0 PLL PLL SSC enabled
+mdss_pll ae94900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae94900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae94900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae94900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae94900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae94900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+dsi_pll_clock_register_7nm: Registered DSI PLL ndx=0, clocks successfully
+mdss_pll_probe: MDSS pll label = MDSS DSI 1 PLL
+mdss_pll_probe: mdss_pll_probe: label=MDSS DSI 1 PLL PLL SSC enabled
+mdss_pll ae96900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae96900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae96900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae96900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae96900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+mdss_pll ae96900.qcom,mdss_dsi_pll: Failed to create debugfs directory
+dsi_pll_clock_register_7nm: Registered DSI PLL ndx=1, clocks successfully
+mdss_pll_probe: MDSS pll label = MDSS DP PLL
+mdss_pll_util_parse_dt_supply: no supply entry present
+NET: Registered protocol family 2
+TCP established hash table entries: 32768 (order: 6, 262144 bytes)
+TCP bind hash table entries: 32768 (order: 7, 524288 bytes)
+TCP: Hash tables configured (established 32768 bind 32768)
+UDP hash table entries: 2048 (order: 4, 65536 bytes)
+UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes)
+NET: Registered protocol family 1
+PCI: CLS 0 bytes, default 128
+reg-fixed-voltage soc:ext_5v_boost: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/otg_vbus_boost/otg_vbus_boost_default, deferring probe
+arm-smmu 2ca0000.kgsl-smmu: Failed to get supply 'vdd': -517
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 counters available
+in pkg_init
+migt-sched: migt_sched migt_sched_init: inited!
+audit: initializing netlink subsys (disabled)
+audit: type=2000 audit(5.400:1): state=initialized audit_enabled=0 res=1
+Initialise system trusted keyrings
+workingset: timestamp_bits=45 max_order=20 bucket_order=0
+Registering sdcardfs 0.1
+fuse init (API version 7.26)
+SELinux:  Registering netfilter hooks
+Key type asymmetric registered
+Asymmetric key parser 'x509' registered
+Block layer SCSI generic (bsg) driver version 0.4 loaded (major 238)
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+io scheduler mq-deadline registered
+io scheduler kyber registered
+Virtual Services transport driver for OKL4 Axons
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0xc0, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0xc0, irq = 0 rc = -19
+qcom-spmi-gpio c440000.qcom,spmi:qcom,pm8150l@4:pinctrl@c000: 0 IRQs defined but 11 expected
+qcom-spmi-gpio: probe of c440000.qcom,spmi:qcom,pm8150l@4:pinctrl@c000 failed with error -22
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0xc0, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0xc0, irq = 0 rc = -19
+qcom-spmi-gpio c440000.qcom,spmi:qcom,pm8150b@2:pinctrl@c000: 0 IRQs defined but 10 expected
+qcom-spmi-gpio: probe of c440000.qcom,spmi:qcom,pm8150b@2:pinctrl@c000 failed with error -22
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0xc0, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0xc0, irq = 0 rc = -19
+qcom-spmi-gpio c440000.qcom,spmi:qcom,pm8150@0:pinctrl@c000: 0 IRQs defined but 6 expected
+qcom-spmi-gpio: probe of c440000.qcom,spmi:qcom,pm8150@0:pinctrl@c000 failed with error -22
+qcom,pwm-lpg c440000.qcom,spmi:qcom,pm8150l@5:qcom,pwms@b100: Read addr 0xb105 failed, rc=-19
+qcom,pwm-lpg c440000.qcom,spmi:qcom,pm8150l@5:qcom,pwms@b100: Read subtype failed, rc=-19
+qcom,pwm-lpg c440000.qcom,spmi:qcom,pm8150l@5:qcom,pwms@b100: Devicetree properties parsing failed, rc=-19
+qcom,pwm-lpg c440000.qcom,spmi:qcom,pm8150b@3:qcom,pwms@b100: Read addr 0xb105 failed, rc=-19
+qcom,pwm-lpg c440000.qcom,spmi:qcom,pm8150b@3:qcom,pwms@b100: Read subtype failed, rc=-19
+qcom,pwm-lpg c440000.qcom,spmi:qcom,pm8150b@3:qcom,pwms@b100: Devicetree properties parsing failed, rc=-19
+WLED: wled_configure: Unable to get pmic_revid rc=-22
+qcom-spmi-wled c440000.qcom,spmi:qcom,pm8150l@5:qcom,wled@d800: wled configure failed rc:-517
+gpi_dma 800000.qcom,gpi-dma: stream ID 0xd6 out of range for SMMU (0x0)
+gpi_dma 800000.qcom,gpi-dma: No iommu associated with device
+gpi_dma: probe of 800000.qcom,gpi-dma failed with error -22
+gpi_dma a00000.qcom,gpi-dma: stream ID 0x616 out of range for SMMU (0x0)
+gpi_dma a00000.qcom,gpi-dma: No iommu associated with device
+gpi_dma: probe of a00000.qcom,gpi-dma failed with error -22
+gpi_dma c00000.qcom,gpi-dma: stream ID 0x7b6 out of range for SMMU (0x0)
+gpi_dma c00000.qcom,gpi-dma: No iommu associated with device
+gpi_dma: probe of c00000.qcom,gpi-dma failed with error -22
+qcom_smp2p soc:qcom,smp2p-modem@1799000c: unable to allocate local smp2p item
+qcom_smp2p soc:qcom,smp2p-modem@1799000c: failed to alloc outbound items
+qcom_smp2p: probe of soc:qcom,smp2p-modem@1799000c failed with error -110
+qcom_smp2p soc:qcom,smp2p-adsp@1799000c: unable to allocate local smp2p item
+qcom_smp2p soc:qcom,smp2p-adsp@1799000c: failed to alloc outbound items
+qcom_smp2p: probe of soc:qcom,smp2p-adsp@1799000c failed with error -110
+qcom_smp2p soc:qcom,smp2p-dsps@1799000c: unable to allocate local smp2p item
+qcom_smp2p soc:qcom,smp2p-dsps@1799000c: failed to alloc outbound items
+qcom_smp2p: probe of soc:qcom,smp2p-dsps@1799000c failed with error -110
+qcom_smp2p soc:qcom,smp2p-cdsp@1799000c: unable to allocate local smp2p item
+qcom_smp2p soc:qcom,smp2p-cdsp@1799000c: failed to alloc outbound items
+qcom_smp2p: probe of soc:qcom,smp2p-cdsp@1799000c failed with error -110
+icnss 18800000.qcom,icnss: stream ID 0x640 out of range for SMMU (0x0)
+icnss: Recursive recovery allowed for WLAN
+icnss 18800000.qcom,icnss: No iommu associated with device
+icnss: Attach device failed, err = -22
+icnss: SMMU init failed, err = -22, start: 0x00000000a0000000, len: 10000000
+icnss: probe of 18800000.qcom,icnss failed with error -22
+memshare_child soc:qcom,memshare:qcom,client_1: for memshare_GPS segments only will be dumped.
+memshare_child soc:qcom,memshare:qcom,client_2: for memshare_FTM segments only will be dumped.
+batched_hyp_assign: Failed to assign memory protection, ret = -19
+memshare_child soc:qcom,memshare:qcom,client_3: memshare: hyp_assign_phys failed size=5242880 err=-99
+memshare_child soc:qcom,memshare:qcom,client_3: for memshare_DIAG segments only will be dumped.
+spcom: spcom_init: spcom driver version 2.1 23-April-2018.
+debugfs-qmp-client soc:aop-msg-client: Unable to startup the chan (-11)
+debugfs-qmp-client soc:aop-msg-client: Failed to mbox channel
+debugfs-qmp-client: probe of soc:aop-msg-client failed with error -11
+aop-ddr-msgs soc:qcom,aop-ddr-msgs: Unable to startup the chan (-11)
+Failed to get mailbox channel rc: -11
+aop-ddr-msgs: probe of soc:qcom,aop-ddr-msgs failed with error -11
+aop-ddrss-cmds soc:qcom,aop-ddrss-cmds: Unable to startup the chan (-11)
+Failed to get mailbox channel rc: -11
+aop-ddrss-cmds: probe of soc:qcom,aop-ddrss-cmds failed with error -11
+qupv3_geni_se cc0000.qcom,qupv3_2_geni_se:qcom,iommu_qupv3_2_geni_se_cb: No iommu associated with device
+msm_geni_serial: probe of c8c000.qcom,qup_uart failed with error -5
+msm_geni_serial_init: Driver initialized
+register_client_adhoc:find path.src 1 dest 618
+register_client_adhoc:Client handle 27 msm-rng-noc
+random: fast init done
+random: crng init done
+diag: MUX: unable to register pcie operations for proc: 0, err: -22
+diag: MUX: unable to register PCIe operations, continuing with USB registrations for proc: 0, err: -22
+diag: Unable to register with PCIE, id: 1
+diag: MUX: unable to register pcie operations for proc: 1, err: -5
+diag: MUX: unable to register PCIe operations, continuing with USB registrations for proc: 1, err: -5
+iommu-debug soc:apps_iommu_test_device: stream ID 0x21 out of range for SMMU (0x0)
+iommu-debug soc:apps_iommu_coherent_test_device: stream ID 0x23 out of range for SMMU (0x0)
+register_client_adhoc:find path.src 20003 dest 20515
+register_client_adhoc:find path.src 20004 dest 20515
+register_client_adhoc:Client handle 28 disp_rsc_mnoc
+register_client_adhoc:find path.src 20001 dest 20513
+register_client_adhoc:Client handle 29 disp_rsc_llcc
+register_client_adhoc:find path.src 20000 dest 20512
+register_client_adhoc:Client handle 30 disp_rsc_ebi
+[sde_rsc_hw:rsc_hw_init:714]: sde rsc init successfully done
+[sde_rsc:sde_rsc_probe:1888]: sde rsc index:0 probed successfully
+dsi_phy ae94400.qcom,mdss_dsi_phy0: ae94400.qcom,mdss_dsi_phy0 supply gdsc not found, using dummy regulator
+msm-dsi-phy:[dsi_phy_driver_probe] Probe successful for dsi-phy-0
+dsi_phy ae96400.qcom,mdss_dsi_phy0: ae96400.qcom,mdss_dsi_phy0 supply gdsc not found, using dummy regulator
+msm-dsi-phy:[dsi_phy_driver_probe] Probe successful for dsi-phy-1
+AXI: get_pdata(): Error: Client name not found
+AXI: msm_bus_cl_get_pdata(): client has to provide missing entry for successful registration
+dsi-ctrl:[dsi_ctrl_dev_probe] Probe successful for dsi-ctrl-0
+AXI: get_pdata(): Error: Client name not found
+AXI: msm_bus_cl_get_pdata(): client has to provide missing entry for successful registration
+dsi-ctrl:[dsi_ctrl_dev_probe] Probe successful for dsi-ctrl-1
+msm-dsi-display:[dsi_display_dev_probe] label not found
+msm-dsi-display:[dsi_display_dev_probe] panel name is dsi_sim_sec_hd_cmd_display
+msm-dsi-display:[dsi_display_dev_probe] label not found
+msm-dsi-display:[dsi_display_dev_probe] panel name is dsi_sim_vid_display
+OF: graph: no port node found in /soc/qcom,dsi-display-primary
+msm-dsi-panel:[dsi_panel_get:4029] [LCD]dsi_panel_get:4029 Dispparam disabled.
+msm-dsi-panel:[dsi_panel_parse_panel_mode:1961] dsi_panel_parse_panel_mode: panel operating mode switch feature enabled
+msm-dsi-panel:[dsi_panel_parse_qsync_caps:1644] [Simulator video mode dsi panel] qsync min fps not defined rc:-22
+msm-dsi-panel:[dsi_panel_parse_reset_sequence:2427] RESET SEQ LENGTH = 24
+msm-dsi-panel:[dsi_panel_parse_misc_features:2477] dsi_panel_parse_misc_features: ulps feature disabled
+msm-dsi-panel:[dsi_panel_parse_misc_features:2483] dsi_panel_parse_misc_features: ulps during suspend feature disabled
+msm-dsi-panel:[dsi_panel_parse_mi_config:3886] [LCD]dsi_panel_parse_mi_config:3886 Dispparam disabled.
+msm-dsi-panel:[dsi_panel_parse_mi_config:3895] Panel on dimming delay disabled
+msm-dsi-panel:[dsi_panel_parse_mi_config:3907] default doze backlight threshold is 5
+msm-dsi-panel:[dsi_panel_parse_mi_config:3916] default fod_off_dimming_delay 170
+msm-dsi-panel:[dsi_panel_parse_mi_config:3925] default dc backlight threshold is 610
+msm-dsi-panel:[dsi_panel_parse_mi_config:3935] fod dimlayer disabled.
+msm-dsi-panel:[dsi_panel_parse_mi_config:3943] panel is not tddi.
+msm-dsi-panel:[dsi_panel_get:4118] failed to parse mi config, rc=-22
+msm_drm ae00000.qcom,mdss_mdp: stream ID 0x800 out of range for SMMU (0x0)
+platform 2c6a000.qcom,gmu: dt: GMU couldn't get CX gdsc
+brd: module loaded
+loop: module loaded
+ExtM: Added device: zram0
+QSEECOM: qseecom_probe: qseecom.qsee_version = 0x0
+QSEECOM: qseecom_probe: Failed to get QSEE version info -19
+qce 1de0000.qcedev: stream ID 0x506 out of range for SMMU (0x0)
+register_client_adhoc:find path.src 125 dest 512
+register_client_adhoc:Client handle 31 qcedev-noc
+QCE50: __qce_get_device_tree_data: CE operating frequency is not defined, setting to default 100MHZ
+qce 1de0000.qcedev: No iommu associated with device
+QCE50: qce_smmu_init: Attach device failed, err = -22
+qcrypto 1de0000.qcrypto: stream ID 0x504 out of range for SMMU (0x0)
+register_client_adhoc:find path.src 125 dest 512
+register_client_adhoc:Client handle 31 qcrypto-noc
+QCE50: __qce_get_device_tree_data: CE operating frequency is not defined, setting to default 100MHZ
+qcrypto 1de0000.qcrypto: No iommu associated with device
+QCE50: qce_smmu_init: Attach device failed, err = -22
+SCSI Media Changer driver v0.25 
+ufshcd-qcom 1d84000.ufshc: ufshcd_populate_vreg: Unable to find vccq-supply regulator, assuming enabled
+ufshcd-qcom 1d84000.ufshc: no vccq2-voltage-level property.
+register_client_adhoc:find path.src 123 dest 512
+register_client_adhoc:find path.src 1 dest 757
+register_client_adhoc:Client handle 32 ufshc_mem
+ufshcd-qcom 1d84000.ufshc: ufs_qcom_parse_reg_info: Unable to find qcom,vccq-parent-supply regulator, assuming enabled
+scsi host0: ufshcd
+ufshcd-qcom 1d84000.ufshc: ufshcd_print_pwr_info:[RX, TX]: gear=[1, 1], lane[1, 1], pwr[SLOWAUTO_MODE, SLOWAUTO_MODE], rate = 0
+qupv3_geni_se 8c0000.qcom,qupv3_0_geni_se:qcom,iommu_qupv3_0_geni_se_cb: No iommu associated with device
+spi_geni 884000.spi: Error geni_se_resources_init
+spi_geni: probe of 884000.spi failed with error -5
+qupv3_geni_se 8c0000.qcom,qupv3_0_geni_se:qcom,iommu_qupv3_0_geni_se_cb: No iommu associated with device
+spi_geni 88c000.spi: Error geni_se_resources_init
+spi_geni: probe of 88c000.spi failed with error -5
+Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+libphy: Fixed MDIO Bus: probed
+tun: Universal TUN/TAP device driver, 1.6
+sky2: driver version 1.30
+PPP generic driver version 2.4.2
+PPP BSD Compression module registered
+PPP Deflate Compression module registered
+PPP MPPE Compression module registered
+NET: Registered protocol family 24
+PPTP driver version 0.8.5
+CLD80211: Initializing
+usbcore: registered new interface driver r8152
+usbcore: registered new interface driver asix
+usbcore: registered new interface driver ax88179_178a
+usbcore: registered new interface driver cdc_ether
+usbcore: registered new interface driver net1080
+usbcore: registered new interface driver cdc_subset
+usbcore: registered new interface driver zaurus
+usbcore: registered new interface driver cdc_ncm
+ufshcd-qcom 1d84000.ufshc: ufshcd_print_pwr_info:[RX, TX]: gear=[1, 1], lane[1, 1], pwr[SLOWAUTO_MODE, SLOWAUTO_MODE], rate = 0
+SerialNumber:003000300030003000300030003000300030003000300031
+MMinfo:USN:003000300030003000300030003000300030003000300031
+MMinfo:MDT:0
+MMinfo:A:0x00,B:0x00
+ufshcd-qcom 1d84000.ufshc: undefined ref clk gating wait time, use default 100us
+ufshcd-qcom 1d84000.ufshc: ufshcd_print_pwr_info:[RX, TX]: gear=[1, 1], lane[1, 2], pwr[FAST MODE, FAST MODE], rate = 1
+batched_hyp_assign: Failed to assign memory protection, ret = -19
+msm_sharedmem: setup_shared_ram_perms: hyp_assign_phys failed IPA=0x0160x00000000fd101000 size=3145728 err=-99
+msm_sharedmem: msm_sharedmem_probe: Device created for client 'rmtfs'
+scsi 0:0:0:49488: Well-known LUN    SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+msm-dwc3 a600000.ssusb: stream ID 0x140 out of range for SMMU (0x0)
+msm-dwc3 a600000.ssusb: USB core frequency = 200000000
+Rate 400000000 for gcc_ufs_phy_unipro_core_clk_src is greater than highest Fmax
+Rate 400000000 for gcc_ufs_phy_axi_clk_src is greater than highest Fmax
+Rate 400000000 for gcc_ufs_phy_ice_core_clk_src is greater than highest Fmax
+msm-dwc3 a600000.ssusb: setting lpm_to_suspend_delay to zero.
+scsi 0:0:0:49456: Well-known LUN    SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+msm-dwc3 a600000.ssusb: IOMMU mapping created: 000000004559be31
+msm-dwc3 a600000.ssusb: No iommu associated with device
+msm-dwc3 a600000.ssusb: IOMMU attach failed (-22)
+scsi 0:0:0:49476: Well-known LUN    SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+msm-dwc3: probe of a600000.ssusb failed with error -22
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+ehci-pci: EHCI PCI platform driver
+ehci-platform: EHCI generic platform driver
+scsi 0:0:0:0: Direct-Access     SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+ohci-pci: OHCI PCI platform driver
+ohci-platform: OHCI generic platform driver
+scsi 0:0:0:1: Direct-Access     SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+scsi 0:0:0:2: Direct-Access     SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+usbcore: registered new interface driver usb-storage
+usbcore: registered new interface driver usb_ehset_test
+usbcore: registered new interface driver lvs
+scsi 0:0:0:3: Direct-Access     SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+scsi 0:0:0:4: Direct-Access     SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 0 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 1 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 2 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 3 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 4 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-failed irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 5 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-discarded irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 6 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx-discarded irq: -22n
+the delete ws is usbpd0
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: usbpd_create failed: -517
+scsi 0:0:0:5: Direct-Access     SAMSUNG  KLUEG8U1EA-B0C1  0100 PQ: 0 ANSI: 6
+usbcore: registered new interface driver xpad
+spmi spmi-0: failed to xlate sid = 0x3, periph = 0xc0, irq = 0 rc = -19
+qcom,haptics c440000.qcom,spmi:qcom,pm8150b@3:qcom,haptics@c000: Failed to get hap-sc-irq
+qcom,haptics c440000.qcom,spmi:qcom,pm8150b@3:qcom,haptics@c000: parse device-tree failed, rc=-6
+gf_platform: gf::irq_gpio:120
+input: uinput-goodix as /devices/virtual/input/input1
+gf_spi: version V1.2.01
+sd 0:0:0:0: [sda] Write Protect is off
+sd 0:0:0:0: [sda] Mode Sense: 00 06 00 00
+gf_spi: status = 0x0
+qcom,qpnp-rtc c440000.qcom,spmi:qcom,pm8150@0:qcom,pm8150_rtc: SPMI read failed
+qcom,qpnp-rtc c440000.qcom,spmi:qcom,pm8150@0:qcom,pm8150_rtc: Peripheral subtype read failed
+sd 0:0:0:2: [sdc] Write Protect is off
+sd 0:0:0:2: [sdc] Mode Sense: 00 06 00 00
+i2c /dev entries driver
+sd 0:0:0:1: [sdb] Write Protect is off
+sd 0:0:0:1: [sdb] Mode Sense: 00 06 00 00
+sd 0:0:0:2: [sdc] No Caching mode page found
+sd 0:0:0:2: [sdc] Assuming drive cache: write through
+qupv3_geni_se 8c0000.qcom,qupv3_0_geni_se:qcom,iommu_qupv3_0_geni_se_cb: No iommu associated with device
+i2c_geni 890000.i2c: geni_se_resources_init
+i2c_geni: probe of 890000.i2c failed with error -5
+sd 0:0:0:1: [sdb] No Caching mode page found
+sd 0:0:0:1: [sdb] Assuming drive cache: write through
+sd 0:0:0:0: [sda] No Caching mode page found
+sd 0:0:0:0: [sda] Assuming drive cache: write through
+qupv3_geni_se ac0000.qcom,qupv3_1_geni_se:qcom,iommu_qupv3_1_geni_se_cb: No iommu associated with device
+i2c_geni a84000.i2c: geni_se_resources_init
+i2c_geni: probe of a84000.i2c failed with error -5
+sd 0:0:0:3: [sdd] Write Protect is off
+sd 0:0:0:3: [sdd] Mode Sense: 00 06 00 00
+sd 0:0:0:3: [sdd] No Caching mode page found
+sd 0:0:0:3: [sdd] Assuming drive cache: write through
+qupv3_geni_se cc0000.qcom,qupv3_2_geni_se:qcom,iommu_qupv3_2_geni_se_cb: No iommu associated with device
+i2c_geni c80000.i2c: geni_se_resources_init
+i2c_geni: probe of c80000.i2c failed with error -5
+lirc_dev: IR Remote Control driver registered, major 496
+IR NEC protocol handler initialized
+IR RC5(x/sz) protocol handler initialized
+IR RC6 protocol handler initialized
+IR JVC protocol handler initialized
+IR Sony protocol handler initialized
+IR SANYO protocol handler initialized
+IR Sharp protocol handler initialized
+IR MCE Keyboard/mouse protocol handler initialized
+IR LIRC bridge handler initialized
+IR XMP protocol handler initialized
+sd 0:0:0:4: [sde] Write Protect is off
+sd 0:0:0:4: [sde] Mode Sense: 00 06 00 00
+msm_npu 9800000.qcom,msm_npu: stream ID 0x1461 out of range for SMMU (0x0)
+msm_npu: unable to get qfprom_physical resource
+msm_npu: unable to get clk: qdss_clk
+msm_npu: probe of 9800000.qcom,msm_npu failed with error -22
+sd 0:0:0:4: [sde] No Caching mode page found
+sd 0:0:0:4: [sde] Assuming drive cache: write through
+sd 0:0:0:5: [sdf] Write Protect is off
+sd 0:0:0:5: [sdf] Mode Sense: 00 06 00 00
+sd 0:0:0:5: [sdf] No Caching mode page found
+sd 0:0:0:5: [sdf] Assuming drive cache: write through
+msm_vidc_v4l2 aa00000.qcom,vidc:non_secure_cb: stream ID 0x1300 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:non_secure_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:non_secure_cb failed with error -22
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_non_pixel_cb: stream ID 0x1304 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_non_pixel_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:secure_non_pixel_cb failed with error -22
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_bitstream_cb: stream ID 0x1301 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_bitstream_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:secure_bitstream_cb failed with error -22
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_pixel_cb: stream ID 0x1303 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_pixel_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:secure_pixel_cb failed with error -22
+platform aa00000.qcom,vidc:qcom,msm-vidc,mem_cdsp: assigned reserved memory node cdsp_region
+msm_vidc_v4l2 aa00000.qcom,vidc:non_secure_cb: stream ID 0x1300 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:non_secure_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:non_secure_cb failed with error -22
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_non_pixel_cb: stream ID 0x1304 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_non_pixel_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:secure_non_pixel_cb failed with error -22
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_bitstream_cb: stream ID 0x1301 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_bitstream_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:secure_bitstream_cb failed with error -22
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_pixel_cb: stream ID 0x1303 out of range for SMMU (0x0)
+msm_vidc_v4l2 aa00000.qcom,vidc:secure_pixel_cb: No iommu associated with device
+msm_vidc:  err: msm_vidc_setup_context_bank - Couldn't arm_iommu_attach_device
+msm_vidc:  err: Cannot setup context bank -22
+msm_vidc:  err: Failed to probe context bank
+msm_vidc_v4l2: probe of aa00000.qcom,vidc:secure_pixel_cb failed with error -22
+sd 0:0:0:1: [sdb] Attached SCSI disk
+start to FFU 0x1
+[ufs_ffu] check ffu_arry, vendor:SAMSUNG , product:KLUEG8U1EA-B0C1 , fw_rev:0100
+fail flag was set in last boot. skip FFU.
+sd 0:0:0:0: [sda] Attached SCSI disk
+CAM_ERR: CAM-CRM: cam_register_subdev: 570 camera root device not ready yet
+CAM_ERR: CAM-FLASH: cam_flash_init_subdev: 401 Fail to create subdev with -19
+WLED: wled_flash_led_prepare: Invalid led_cdev in trigger wled_flash
+CAM_ERR: CAM-FLASH: cam_get_source_node_info: 95 WLED FLASH max_current read fail: -22
+WLED: wled_flash_led_prepare: Invalid led_cdev in trigger wled_torch
+CAM_ERR: CAM-FLASH: cam_get_source_node_info: 182 WLED TORCH max_current read fail: -22
+CAM_ERR: CAM-FLASH: cam_flash_get_dt_data: 247 cam_flash_get_pmic_source_info failed rc -22
+CAM_ERR: CAM-FLASH: cam_flash_platform_probe: 430 cam_flash_get_dt_data failed with -22
+CAM-FLASH-DRIVER: probe of 2.qcom,camera-flash failed with error -22
+LED trigger switch2_trigger failed to register (-17)
+LED trigger flash0_trigger failed to register (-17)
+LED trigger flash1_trigger failed to register (-17)
+LED trigger torch0_trigger failed to register (-17)
+LED trigger torch1_trigger failed to register (-17)
+CAM_ERR: CAM-CRM: cam_register_subdev: 570 camera root device not ready yet
+CAM_ERR: CAM-FLASH: cam_flash_init_subdev: 401 Fail to create subdev with -19
+LED trigger switch2_trigger failed to register (-17)
+LED trigger flash0_trigger failed to register (-17)
+LED trigger flash1_trigger failed to register (-17)
+LED trigger torch0_trigger failed to register (-17)
+LED trigger torch1_trigger failed to register (-17)
+CAM_ERR: CAM-CRM: cam_register_subdev: 570 camera root device not ready yet
+CAM_ERR: CAM-FLASH: cam_flash_init_subdev: 401 Fail to create subdev with -19
+sd 0:0:0:2: [sdc] Attached SCSI disk
+CAM_ERR: CAM-CPAS: cam_cpas_register_client: 336 cpas intf not initialized
+CAM_ERR: CAM-JPEG: cam_jpeg_dma_register_cpas: 50 cpas_register failed: -19
+CAM_ERR: CAM-JPEG: cam_jpeg_dma_probe: 182  failed to reg cpas -19
+usbcore: registered new interface driver uvcvideo
+USB Video Class driver (1.1.1)
+FG: fg_gen4_parse_dt: Unable to get pmic_revid rc=-22
+qcom,fg-gen4 c440000.qcom,spmi:qcom,pm8150b@2:qpnp,fg: Error in reading DT parameters, rc:-517
+qcom,qnovo5-driver c440000.qcom,spmi:qcom,pm8150b@2:qcom,sdam-qnovo@b000: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/qnovo_fet_ctrl/qnovo_fet_ctrl_state1, deferring probe
+sd 0:0:0:3: [sdd] Attached SCSI disk
+sd 0:0:0:4: [sde] Attached SCSI disk
+sd 0:0:0:5: [sdf] Attached SCSI disk
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x24, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x24, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0x24, irq = 0 rc = -19
+thermal thermal_zone63: Failed to set trips: -19
+scm_call failed with error code -1
+scm_call failed with error code -1
+scm_call failed with error code -1
+scm_call failed with error code -1
+thermal thermal_zone62: Failed to set trips: -19
+thermal thermal_zone54: binding zone cpu-1-7-lowf with cdev thermal-cpufreq-4 failed:-22
+reg-aop-cooling-device soc:rpmh-regulator-ebilvl:regulator-cdev: Unable to startup the chan (-11)
+thermal thermal_zone55: binding zone gpuss-0-lowf with cdev thermal-cpufreq-4 failed:-22
+reg-aop-cooling-device soc:rpmh-regulator-ebilvl:regulator-cdev: Mbox request failed. err:-11
+thermal thermal_zone56: binding zone camera-lowf with cdev thermal-cpufreq-4 failed:-22
+thermal thermal_zone57: binding zone mdm-scl-lowf with cdev thermal-cpufreq-4 failed:-22
+reg-aop-cooling-device: probe of soc:rpmh-regulator-ebilvl:regulator-cdev failed with error -11
+reg-aop-cooling-device soc:rpmh-regulator-cxlvl:regulator-cdev: Unable to startup the chan (-11)
+reg-aop-cooling-device soc:rpmh-regulator-cxlvl:regulator-cdev: Mbox request failed. err:-11
+reg-aop-cooling-device: probe of soc:rpmh-regulator-cxlvl:regulator-cdev failed with error -11
+bcl_pmic5:bcl_read_register Error reading register 0x3d76 err:-19
+thermal thermal_zone12: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x3d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d76 err:-19
+thermal thermal_zone12: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x3d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d76 err:-19
+thermal thermal_zone11: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x3d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d76 err:-19
+thermal thermal_zone11: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x3d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d76 err:-19
+thermal thermal_zone10: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x3d4a err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d4a err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d76 err:-19
+thermal thermal_zone10: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x3d4a err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x3d4a err:-19
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x3d, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x3d, irq = 1 rc = -19
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x3d, irq = 2 rc = -19
+bcl_pmic5:bcl_write_register Error reading register:0x3d46 val:0x80 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d76 err:-19
+thermal thermal_zone20: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x1d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d76 err:-19
+thermal thermal_zone20: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x1d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d48 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d76 err:-19
+thermal thermal_zone19: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x1d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d76 err:-19
+thermal thermal_zone19: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x1d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d49 err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d76 err:-19
+thermal thermal_zone18: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x1d4a err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d4a err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d76 err:-19
+thermal thermal_zone18: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_read_register Error reading register 0x1d4a err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d4a err:-19
+bcl_pmic5:bcl_read_register Error reading register 0x1d86 err:-19
+thermal thermal_zone22: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_write_register Error reading register:0x1d4b val:0x73 err:-19
+thermal thermal_zone22: Failed to set trips: -19
+bcl_pmic5:bcl_read_register Error reading register 0x1d86 err:-19
+thermal thermal_zone22: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_write_register Error reading register:0x1d4b val:0x73 err:-19
+thermal thermal_zone22: Failed to set trips: -19
+bcl_pmic5:bcl_read_register Error reading register 0x1d86 err:-19
+thermal thermal_zone21: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_write_register Error reading register:0x1d4c val:0x7f err:-19
+thermal thermal_zone21: Failed to set trips: -19
+bcl_pmic5:bcl_read_register Error reading register 0x1d86 err:-19
+thermal thermal_zone21: failed to read out thermal zone (-19)
+bcl_pmic5:bcl_write_register Error reading register:0x1d4c val:0x7f err:-19
+thermal thermal_zone21: Failed to set trips: -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x1d, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x1d, irq = 1 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x1d, irq = 2 rc = -19
+bcl_pmic5:bcl_write_register Error reading register:0x1d46 val:0x80 err:-19
+device-mapper: uevent: version 1.0.3
+device-mapper: ioctl: 4.37.0-ioctl (2017-09-20) initialised: dm-devel@redhat.com
+bt_dt_parse_vreg_info: qca,bt-vdd-vl: is not provided in device tree
+bt_dt_parse_vreg_info: qca,bt-vdd-vm: is not provided in device tree
+bt_dt_parse_vreg_info: qca,bt-vdd-5c: is not provided in device tree
+bt_dt_parse_vreg_info: qca,bt-vdd-5a: is not provided in device tree
+bt_dt_parse_vreg_info: qca,bt-vdd-vh: is not provided in device tree
+bt_dt_parse_vreg_info: qca,bt-vdd-io: is not provided in device tree
+bt_dt_parse_vreg_info: qca,bt-vdd-xtal: is not provided in device tree
+bt_dt_parse_vreg_info: qca,bt-chip-pwd: is not provided in device tree
+bt_power_populate_dt_pinfo: bt-reset-gpio not provided in device tree
+bt_power_populate_dt_pinfo: bt-3P3-gpio not provided in devicetree
+bt_power_populate_dt_pinfo: bt-1P3-gpio not provided in devicetree
+bt_dt_parse_clk_info: clocks is not provided in device tree
+bt_power_populate_dt_pinfo: clock not provided in device tree
+EDAC DEVICE0: Giving out device to module soc:kryo-erp controller cache: DEV soc:kryo-erp (INTERRUPT)
+sdhci: Secure Digital Host Controller Interface driver
+sdhci: Copyright(c) Pierre Ossman
+sdhci-pltfm: SDHCI platform and OF driver helper
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150l@5:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150b@3:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+tz_log 146bf720.tz-log: ERROR could not ioremap: start=[io  0x0000-0xffffff800a772940 flags 0xffffff800a772940], len=0
+tz_log 146bf720.tz-log: tz_log_probe() failed to get device tree data ret = -6
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+tz_log: probe of 146bf720.tz-log failed with error -22
+ashmem: initialized
+mi_reclaim init ok
+ipa_ut ipa_ut_module_init:1045 Loading IPA test module...
+seemp: seemp_logk_init: SCM call failed with ret val = -19 0 0
+bimc-bwmon 90b6400.qcom,cpu-cpu-llcc-bwmon: BW HWmon governor registered.
+bimc-bwmon 90cd000.qcom,cpu-llcc-ddr-bwmon: BW HWmon governor registered.
+bimc-bwmon 9960300.qcom,npu-npu-ddr-bwmon: BW HWmon governor registered.
+arm-memlat-mon soc:qcom,cpu0-cpu-l3-latmon: Memory Latency governor registered.
+arm-memlat-mon soc:qcom,cpu4-cpu-l3-latmon: Memory Latency governor registered.
+arm-memlat-mon soc:qcom,cpu7-cpu-l3-latmon: Memory Latency governor registered.
+arm-memlat-mon soc:qcom,cpu0-cpu-llcc-latmon: Memory Latency governor registered.
+arm-memlat-mon soc:qcom,cpu4-cpu-llcc-latmon: Memory Latency governor registered.
+arm-memlat-mon soc:qcom,cpu0-llcc-ddr-latmon: Memory Latency governor registered.
+arm-memlat-mon soc:qcom,cpu4-llcc-ddr-latmon: Memory Latency governor registered.
+arm-memlat-mon soc:qcom,cpu4-computemon: Compute governor registered.
+register_client_adhoc:find path.src 1 dest 770
+register_client_adhoc:Client handle 33 soc:qcom,cpu-cpu-llcc-bw
+register_client_adhoc:find path.src 129 dest 512
+register_client_adhoc:Client handle 34 soc:qcom,cpu-llcc-ddr-bw
+register_client_adhoc:find path.src 154 dest 512
+register_client_adhoc:Client handle 35 soc:qcom,npu-npu-ddr-bw
+register_client_adhoc:find path.src 1 dest 770
+register_client_adhoc:Client handle 36 soc:qcom,cpu0-cpu-llcc-lat
+register_client_adhoc:find path.src 1 dest 770
+register_client_adhoc:Client handle 37 soc:qcom,cpu4-cpu-llcc-lat
+register_client_adhoc:find path.src 129 dest 512
+register_client_adhoc:Client handle 38 soc:qcom,cpu0-llcc-ddr-lat
+register_client_adhoc:find path.src 129 dest 512
+register_client_adhoc:Client handle 39 soc:qcom,cpu4-llcc-ddr-lat
+register_client_adhoc:find path.src 129 dest 512
+register_client_adhoc:Client handle 40 soc:qcom,cpu4-cpu-ddr-latfloor
+register_client_adhoc:find path.src 1 dest 627
+register_client_adhoc:Client handle 41 soc:qcom,snoc_cnoc_keepalive
+register_client_adhoc:find path.src 154 dest 10070
+register_client_adhoc:Client handle 42 soc:qcom,cdsp_keepalive
+register_client_adhoc:find path.src 26 dest 512
+register_client_adhoc:Client handle 43 soc:qcom,gpubw
+extcon-usb-gpio vendor:extcon_usb1: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150@0/pinctrl@c000/usb2_vbus_det/usb2_vbus_det_default, deferring probe
+spmi spmi-0: failed to xlate sid = 0x4, periph = 0x31, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x31, irq = 0 rc = -19
+spmi spmi-0: failed to xlate sid = 0x0, periph = 0x31, irq = 0 rc = -19
+us_prox_probe: start
+us_prox_probe: end
+qcom-llcc-pmu 90cc000.llcc-pmu: Registered llcc_pmu, type: 7
+coresight-tmc 6048000.tmc: stream ID 0x5e0 out of range for SMMU (0x0)
+coresight-csr 6001000.csr: CSR initialized: coresight-csr
+coresight-csr 6b0e000.csr: CSR initialized: coresight-swao-csr
+coresight-dummy soc:tpdm@699c000: Dummy device initialized
+coresight-dummy soc:spss_etm0: Dummy device initialized
+coresight-dummy soc:dummy_sink: Dummy device initialized
+coresight-remote-etm soc:turing_etm0: Remote ETM initialized
+coresight-remote-etm soc:modem_etm0: Remote ETM initialized
+coresight-remote-etm soc:audio_etm0: Remote ETM initialized
+coresight-remote-etm soc:ssc_etm0: Remote ETM initialized
+trusty-log not supported on secure side.
+trusty-virtio soc:trusty:virtio: initializing
+trusty-virtio soc:trusty:virtio: trusty_load_device_descr: virtio get descr returned (-1)
+trusty-virtio soc:trusty:virtio: failed (-19) to load device descr
+trusty-virtio soc:trusty:virtio: Failed to add virtio devices
+nf_register_hooks(millet hooks) success
+hs_register_hooks(millet hooks) success
+usbcore: registered new interface driver snd-usb-audio
+GACT probability NOT on
+Mirror/redirect action on
+u32 classifier
+    Actions configured
+Netfilter messages via NETLINK v0.30.
+nf_conntrack version 0.5.0 (16384 buckets, 65536 max)
+ctnetlink v0.93: registering with nfnetlink.
+xt_time: kernel timezone is -0000
+gre: GRE over IPv4 demultiplexor driver
+IPv4 over IPsec tunneling driver
+ip_tables: (C) 2000-2006 Netfilter Core Team
+arp_tables: arp_tables: (C) 2002 David S. Miller
+Initializing XFRM netlink socket
+IPsec XFRM device driver
+NET: Registered protocol family 10
+Segment Routing with IPv6
+mip6: Mobile IPv6
+ip6_tables: (C) 2000-2006 Netfilter Core Team
+sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+NET: Registered protocol family 17
+NET: Registered protocol family 15
+bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+Ebtables v2.0 registered
+l2tp_core: L2TP core driver, V2.0
+l2tp_ppp: PPPoL2TP kernel driver, V2.0
+l2tp_ip: L2TP IP encapsulation support (L2TPv3)
+l2tp_netlink: L2TP netlink interface
+l2tp_eth: L2TP ethernet pseudowire support (L2TPv3)
+l2tp_ip6: L2TP IP encapsulation support for IPv6 (L2TPv3)
+sctp: Hash tables configured (bind 256/256)
+reg-fixed-voltage soc:ext_5v_boost: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/otg_vbus_boost/otg_vbus_boost_default, deferring probe
+arm-smmu 2ca0000.kgsl-smmu: Failed to get supply 'vdd': -517
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+WLED: wled_configure: Unable to get pmic_revid rc=-22
+qcom-spmi-wled c440000.qcom,spmi:qcom,pm8150l@5:qcom,wled@d800: wled configure failed rc:-517
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 600000000, volt: 385, enabled: 1. New: freq: 600000000, volt: 385, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 553850000, volt: 321, enabled: 1. New: freq: 553850000, volt: 321, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 486460000, volt: 257, enabled: 1. New: freq: 486460000, volt: 257, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 379650000, volt: 193, enabled: 1. New: freq: 379650000, volt: 193, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 309110000, volt: 129, enabled: 1. New: freq: 309110000, volt: 129, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 215000000, volt: 65, enabled: 1. New: freq: 215000000, volt: 65, enabled: 1
+platform 2c6a000.qcom,gmu: dt: GMU couldn't get CX gdsc
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 0 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 1 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 2 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 3 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 4 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-failed irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 5 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-discarded irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 6 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx-discarded irq: -22n
+the delete ws is usbpd0
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: usbpd_create failed: -517
+FG: fg_gen4_parse_dt: Unable to get pmic_revid rc=-22
+qcom,fg-gen4 c440000.qcom,spmi:qcom,pm8150b@2:qpnp,fg: Error in reading DT parameters, rc:-517
+qcom,qnovo5-driver c440000.qcom,spmi:qcom,pm8150b@2:qcom,sdam-qnovo@b000: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/qnovo_fet_ctrl/qnovo_fet_ctrl_state1, deferring probe
+adc-tm read reg 15 failed with -19
+read failed for BTM channels
+qcom,adc-tm c440000.qcom,spmi:qcom,pm8150l@4:adc_tm@3500: adc-tm init failed
+adc-tm read reg 15 failed with -19
+read failed for BTM channels
+qcom,adc-tm c440000.qcom,spmi:qcom,pm8150@0:adc_tm@3500: adc-tm init failed
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150l@5:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150b@3:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+extcon-usb-gpio vendor:extcon_usb1: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150@0/pinctrl@c000/usb2_vbus_det/usb2_vbus_det_default, deferring probe
+coresight-tmc 6048000.tmc: stream ID 0x5e0 out of range for SMMU (0x0)
+core_ctl: Creating CPU group 0
+core_ctl: Init CPU0 state
+core_ctl: Init CPU1 state
+core_ctl: Init CPU2 state
+core_ctl: Init CPU3 state
+core_ctl: Creating CPU group 7
+core_ctl: Init CPU7 state
+core_ctl: Creating CPU group 4
+core_ctl: Init CPU4 state
+core_ctl: Init CPU5 state
+core_ctl: Init CPU6 state
+glk: game load init success
+registered taskstats version 1
+Loading compiled-in X.509 certificates
+Key type ._fscrypt registered
+Key type .fscrypt registered
+Key type fscrypt-provisioning registered
+Error fetching DDR manufacturer id from SMEM!
+spss_utils [spss_init]: spss-utils driver Ver 3.0 18-Feb-2018.
+batched_hyp_assign: Failed to assign memory protection, ret = -19
+fastrpc: probe of soc:qcom,msm-adsprpc-mem failed with error -1
+servloc: init_service_locator: Service Locator not enabled
+servloc: pd_locator_work: Unable to connect to service locator!, rc = -19
+ADSPRPC: Audio PD restart notifier locator down
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1: stream ID 0x1401 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4: stream ID 0x4 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5: stream ID 0x5 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6: stream ID 0x6 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7: stream ID 0x7 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8: stream ID 0x8 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2: stream ID 0x2 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3: stream ID 0x3 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9: stream ID 0x9 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10: stream ID 0x1b23 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11: stream ID 0x1b24 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12: stream ID 0x1b25 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13: stream ID 0x5a1 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14: stream ID 0x5a2 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15: stream ID 0x5a3 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1: stream ID 0x1401 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb1 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4: stream ID 0x4 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb4 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5: stream ID 0x5 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb5 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6: stream ID 0x6 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb6 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7: stream ID 0x7 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb7 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8: stream ID 0x8 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb8 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2: stream ID 0x2 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb2 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3: stream ID 0x3 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb3 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9: stream ID 0x9 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb9 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10: stream ID 0x1b23 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb10 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11: stream ID 0x1b24 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb11 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12: stream ID 0x1b25 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb12 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13: stream ID 0x5a1 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb13 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14: stream ID 0x5a2 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb14 failed with error -22
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15: stream ID 0x5a3 out of range for SMMU (0x0)
+fastrpc soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15: No iommu associated with device
+adsprpc: fastrpc_cb_probe: attaching iommu device failed for soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15 with err -22
+fastrpc: probe of soc:qcom,msm_fastrpc:qcom,msm_fastrpc_compute_cb15 failed with error -22
+[drm-dp] dp_display_usbpd_get: usbpd phandle failed (-517)
+reg-fixed-voltage soc:ext_5v_boost: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/otg_vbus_boost/otg_vbus_boost_default, deferring probe
+arm-smmu 2ca0000.kgsl-smmu: Failed to get supply 'vdd': -517
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+WLED: wled_configure: Unable to get pmic_revid rc=-22
+qcom-spmi-wled c440000.qcom,spmi:qcom,pm8150l@5:qcom,wled@d800: wled configure failed rc:-517
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 600000000, volt: 385, enabled: 1. New: freq: 600000000, volt: 385, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 553850000, volt: 321, enabled: 1. New: freq: 553850000, volt: 321, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 486460000, volt: 257, enabled: 1. New: freq: 486460000, volt: 257, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 379650000, volt: 193, enabled: 1. New: freq: 379650000, volt: 193, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 309110000, volt: 129, enabled: 1. New: freq: 309110000, volt: 129, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 215000000, volt: 65, enabled: 1. New: freq: 215000000, volt: 65, enabled: 1
+platform 2c6a000.qcom,gmu: dt: GMU couldn't get CX gdsc
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 0 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 1 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 2 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 3 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 4 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-failed irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 5 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-discarded irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 6 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx-discarded irq: -22n
+the delete ws is usbpd0
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: usbpd_create failed: -517
+FG: fg_gen4_parse_dt: Unable to get pmic_revid rc=-22
+qcom,fg-gen4 c440000.qcom,spmi:qcom,pm8150b@2:qpnp,fg: Error in reading DT parameters, rc:-517
+qcom,qnovo5-driver c440000.qcom,spmi:qcom,pm8150b@2:qcom,sdam-qnovo@b000: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/qnovo_fet_ctrl/qnovo_fet_ctrl_state1, deferring probe
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150l@5:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150b@3:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+extcon-usb-gpio vendor:extcon_usb1: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150@0/pinctrl@c000/usb2_vbus_det/usb2_vbus_det_default, deferring probe
+coresight-tmc 6048000.tmc: stream ID 0x5e0 out of range for SMMU (0x0)
+[drm-dp] dp_display_usbpd_get: usbpd phandle failed (-517)
+ngd_msm_ctrl 171c0000.slim:qcom,iommu_slim_ctrl_cb: stream ID 0x1b46 out of range for SMMU (0x0)
+reg-fixed-voltage soc:ext_5v_boost: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/otg_vbus_boost/otg_vbus_boost_default, deferring probe
+arm-smmu 2ca0000.kgsl-smmu: Failed to get supply 'vdd': -517
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+WLED: wled_configure: Unable to get pmic_revid rc=-22
+qcom-spmi-wled c440000.qcom,spmi:qcom,pm8150l@5:qcom,wled@d800: wled configure failed rc:-517
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 600000000, volt: 385, enabled: 1. New: freq: 600000000, volt: 385, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 553850000, volt: 321, enabled: 1. New: freq: 553850000, volt: 321, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 486460000, volt: 257, enabled: 1. New: freq: 486460000, volt: 257, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 379650000, volt: 193, enabled: 1. New: freq: 379650000, volt: 193, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 309110000, volt: 129, enabled: 1. New: freq: 309110000, volt: 129, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 215000000, volt: 65, enabled: 1. New: freq: 215000000, volt: 65, enabled: 1
+ngd_msm_ctrl 17240000.slim:qcom,iommu_slim_ctrl_cb: stream ID 0x1b53 out of range for SMMU (0x0)
+platform 2c6a000.qcom,gmu: dt: GMU couldn't get CX gdsc
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 0 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 1 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 2 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 3 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 4 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-failed irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 5 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-discarded irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 6 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx-discarded irq: -22n
+the delete ws is usbpd0
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: usbpd_create failed: -517
+------------[ cut here ]------------
+WARNING: CPU: 5 PID: 1 at drivers/pinctrl/qcom/pinctrl-msm.c:1592 msm_dirconn_irq_set_type+0x578/0x58c
+Modules linked in:
+CPU: 5 PID: 1 Comm: swapper/0 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+task: 0000000030ab5d59 task.stack: 00000000e1fba866
+pc : msm_dirconn_irq_set_type+0x578/0x58c
+lr : msm_dirconn_irq_set_type+0x3b8/0x58c
+sp : ffffff800805b8e0 pstate : 604000c5
+x29: ffffff800805b8f0 x28: ffffffc0f8d7e270 
+x27: 0000000000000001 x26: ffffffc0f8d7e270 
+x25: 0000000000000000 x24: 0000000000000000 
+x23: 0000000017c00134 x22: 0000000000000008 
+x21: 00000000000000c0 x20: ffffffc0f8cf6994 
+x19: ffffffc0f8d7f428 x18: 0000000000000004 
+x17: 0000000000000029 x16: ffffff8009185648 
+x15: 000000000000024a x14: ffffffffffffffff 
+x13: 0000000000000050 x12: 0000000000000018 
+x11: 0000000000000000 x10: 0682b3281c236200 
+x9 : 0682b3281c236200 x8 : 0682b3281c236200 
+x7 : 0000000000000000 x6 : 000000000000003f 
+x5 : 0000000000000040 x4 : 0000000000000000 
+x3 : 00000000ffffffff x2 : 0000000017c00134 
+x1 : 000000000805b838 x0 : ffffffffffffffff 
+
+PC: 0xffffff80084e2cf0:
+2cf0  97f15103 f94022c8 b4ffefc8 f9403509 9100a2d7 b40000c9 aa1703e0 52800021
+FG: fg_gen4_parse_dt: Unable to get pmic_revid rc=-22
+qcom,fg-gen4 c440000.qcom,spmi:qcom,pm8150b@2:qpnp,fg: Error in reading DT parameters, rc:-517
+2d10  d63f0120 f94022c8 b4ffeec8 f9402508 b4ffee88 aa1703e0 d63f0100 17ffff71
+2d30  d4210000 17ffff90 d4210000 17ffff64 97ef5c24 a9be7bfd f9000bf3 910003fd
+2d50  f9400808 2a0103f3 b9417900 97f16f1f b40000e0 f9400c08 f9403908 b40000c8
+
+LR: 0xffffff80084e2b30:
+2b30  54000422 91045294 aa1403e0 9432bc05 aa0003f5 aa1703e0 94025165 b9400a68
+2b50  52800029 7100037f 1ac82128 0a280009 2a000108 aa1703e0 1a880121 94025183
+2b70  35000e00 aa1403e0 aa1503e1 9432bc3d 14000013 b0011868 91348108 39408908
+2b90  361001e8 b0011860 f000bde1 f000bde2 91348000 913a3821 9139d442 97fedbfd
+
+SP: 0xffffff800805b8a0:
+b8a0  084e2d30 ffffff80 604000c5 00000000 0805b8f0 ffffff80 1c236200 0682b328
+b8c0  ffffffff ffffffff 084e2b70 ffffff80 0805b8f0 ffffff80 084e2d30 ffffff80
+b8e0  00000000 00000000 1c236200 0682b328 0805b950 ffffff80 0813c47c ffffff80
+b900  00000000 00000000 00000061 00000000 f8d7e270 ffffffc0 00000000 00000000
+Call trace:
+ msm_dirconn_irq_set_type+0x578/0x58c
+ __irq_set_trigger+0x90/0x19c
+ __setup_irq+0x47c/0x624
+ request_threaded_irq+0x10c/0x170
+ request_any_context_irq+0x68/0xac
+ devm_request_any_context_irq+0x7c/0xc8
+ gpio_keys_probe+0x428/0x7e8
+ platform_drv_probe+0x5c/0xb0
+ driver_probe_device+0x300/0x42c
+ __driver_attach+0x90/0x114
+ bus_for_each_dev+0x80/0xc8
+ driver_attach+0x20/0x28
+ bus_add_driver+0x138/0x240
+ driver_register+0x8c/0xd8
+ __platform_driver_register+0x40/0x48
+ gpio_keys_init+0x18/0x20
+ do_one_initcall+0xdc/0x1b0
+ kernel_init_freeable+0x1a0/0x234
+ kernel_init+0x10/0xf8
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35afa2 ]---
+genirq: irq_chip msmgpio-dc did not update eff. affinity mask of irq 188
+qcom,qnovo5-driver c440000.qcom,spmi:qcom,pm8150b@2:qcom,sdam-qnovo@b000: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/qnovo_fet_ctrl/qnovo_fet_ctrl_state1, deferring probe
+hctosys: unable to open rtc device (rtc0)
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150l@5:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150b@3:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+lpm_levels: register_cluster_lpm_stats()
+lpm_levels: register_cluster_lpm_stats()
+extcon-usb-gpio vendor:extcon_usb1: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150@0/pinctrl@c000/usb2_vbus_det/usb2_vbus_det_default, deferring probe
+coresight-tmc 6048000.tmc: stream ID 0x5e0 out of range for SMMU (0x0)
+flashv2: qpnp_flash_led_parse_common_dt: Unable to get pmic_revid rc=-22
+flashv2: qpnp_flash_led_probe: Failed to parse common flash LED device tree
+rmnet_ipa3 started initialization
+[drm-dp] dp_display_usbpd_get: usbpd phandle failed (-517)
+RNDIS_IPA module is loaded.
+reg-fixed-voltage soc:ext_5v_boost: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/otg_vbus_boost/otg_vbus_boost_default, deferring probe
+migt: migt init success
+msm_bus_late_init: Remove handoff bw requests
+arm-smmu 2ca0000.kgsl-smmu: Failed to get supply 'vdd': -517
+ipa ipa3_smp2p_probe:8651 fail to get smp2p clk resp bit -517
+pm8150_s1_level: disabling
+pm8150_s3_level: disabling
+pm8150_l4_level: disabling
+pm8150_l8_level: disabling
+pm8150l_s2_level: disabling
+pm8150l_s4_level: disabling
+pm8150l_s5_level_ao: disabling
+pm8150l_s5_level_so: disabling
+pm8150l_s6_level: disabling
+emac_gdsc: disabling
+LCDB: qpnp_lcdb_regulator_probe: Failed to parse dt rc=-517
+pcie_0_gdsc: disabling
+pcie_1_gdsc: disabling
+usb30_prim_gdsc: disabling
+usb30_sec_gdsc: disabling
+hlos1_vote_aggre_noc_mmu_audio_tbu_gdsc: disabling
+hlos1_vote_aggre_noc_mmu_tbu1_gdsc: disabling
+hlos1_vote_aggre_noc_mmu_tbu2_gdsc: disabling
+hlos1_vote_aggre_noc_mmu_pcie_tbu_gdsc: disabling
+hlos1_vote_mmnoc_mmu_tbu_hf0_gdsc: disabling
+hlos1_vote_mmnoc_mmu_tbu_sf_gdsc: disabling
+hlos1_vote_mmnoc_mmu_tbu_hf1_gdsc: disabling
+hlos1_vote_turing_mmu_tbu0_gdsc: disabling
+hlos1_vote_turing_mmu_tbu1_gdsc: disabling
+disp_vci_vreg: disabling
+disp_vddio_vreg: disabling
+actuator_ultra_ldo: disabling
+actuator_rear_aux_ldo: disabling
+actuator_rear_regulator: disabling
+camera_viodd_ldo: disabling
+bps_gdsc: disabling
+ipe_0_gdsc: disabling
+ipe_1_gdsc: disabling
+ife_0_gdsc: disabling
+ife_1_gdsc: disabling
+titan_top_gdsc: disabling
+WLED: wled_configure: Unable to get pmic_revid rc=-22
+qcom-spmi-wled c440000.qcom,spmi:qcom,pm8150l@5:qcom,wled@d800: wled configure failed rc:-517
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 600000000, volt: 385, enabled: 1. New: freq: 600000000, volt: 385, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 553850000, volt: 321, enabled: 1. New: freq: 553850000, volt: 321, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 486460000, volt: 257, enabled: 1. New: freq: 486460000, volt: 257, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 379650000, volt: 193, enabled: 1. New: freq: 379650000, volt: 193, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 309110000, volt: 129, enabled: 1. New: freq: 309110000, volt: 129, enabled: 1
+kgsl-3d 2c00000.qcom,kgsl-3d0: _opp_add: duplicate OPPs detected. Existing: freq: 215000000, volt: 65, enabled: 1. New: freq: 215000000, volt: 65, enabled: 1
+platform 2c6a000.qcom,gmu: dt: GMU couldn't get CX gdsc
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 0 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 1 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request sig-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 2 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 3 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 4 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-failed irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 5 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-tx-discarded irq: -22n
+spmi spmi-0: failed to xlate sid = 0x2, periph = 0x17, irq = 6 rc = -19
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: Unable to request msg-rx-discarded irq: -22n
+AXI: NOC: msm_bus_noc_sbm_config(): msm_bus_noc_sbm_config: SBM disable timeout.
+mvsc_gdsc: disabling
+mvs0_gdsc: disabling
+the delete ws is usbpd0
+mvs1_gdsc: disabling
+qpnp-pdphy c440000.qcom,spmi:qcom,pm8150b@2:qcom,usb-pdphy@1700: usbpd_create failed: -517
+FG: fg_gen4_parse_dt: Unable to get pmic_revid rc=-22
+qcom,fg-gen4 c440000.qcom,spmi:qcom,pm8150b@2:qpnp,fg: Error in reading DT parameters, rc:-517
+------------[ cut here ]------------
+WARNING: CPU: 6 PID: 230 at drivers/pinctrl/qcom/pinctrl-msm.c:1592 msm_dirconn_irq_set_type+0x578/0x58c
+Modules linked in:
+CPU: 6 PID: 230 Comm: kworker/6:2 Tainted: G        W       4.14.180-perf-gb24d113 #2
+Hardware name: Qualcomm Technologies, Inc. SM8150P v1 PM8150 Qualcomm Technologies, Inc. SM8150P v1 SoC (DT)
+Workqueue: events deferred_probe_work_func
+task: 0000000046e92165 task.stack: 000000006be2015b
+pc : msm_dirconn_irq_set_type+0x578/0x58c
+lr : msm_dirconn_irq_set_type+0x3b8/0x58c
+sp : ffffff80175ab900 pstate : 604000c5
+x29: ffffff80175ab910 x28: ffffffc0f8d7e270 
+x27: 0000000000000001 x26: ffffffc0f8d7e270 
+x25: 0000000000000000 x24: 0000000000000000 
+x23: 0000000017c00134 x22: 0000000000000008 
+x21: 00000000000000c0 x20: ffffffc0f8cf6994 
+x19: ffffffc0f8d7f428 x18: 0000000000000006 
+x17: 0000000000000029 x16: ffffff8009185648 
+x15: 000000000000024a x14: ffffffffffffffff 
+x13: 0000000000000050 x12: 0000000000000018 
+x11: 0000000000000000 x10: 0682b3281c236200 
+x9 : 0682b3281c236200 x8 : 0682b3281c236200 
+x7 : 0000000000000000 x6 : 000000000000003f 
+x5 : 0000000000000040 x4 : 0000000000000000 
+x3 : 00000000ffffffff x2 : 0000000017c00134 
+x1 : 00000000175ab858 x0 : ffffffffffffffff 
+
+PC: 0xffffff80084e2cf0:
+2cf0  97f15103 f94022c8 b4ffefc8 f9403509 9100a2d7 b40000c9 aa1703e0 52800021
+2d10  d63f0120 f94022c8 b4ffeec8 f9402508 b4ffee88 aa1703e0 d63f0100 17ffff71
+2d30  d4210000 17ffff90 d4210000 17ffff64 97ef5c24 a9be7bfd f9000bf3 910003fd
+2d50  f9400808 2a0103f3 b9417900 97f16f1f b40000e0 f9400c08 f9403908 b40000c8
+
+LR: 0xffffff80084e2b30:
+2b30  54000422 91045294 aa1403e0 9432bc05 aa0003f5 aa1703e0 94025165 b9400a68
+2b50  52800029 7100037f 1ac82128 0a280009 2a000108 aa1703e0 1a880121 94025183
+2b70  35000e00 aa1403e0 aa1503e1 9432bc3d 14000013 b0011868 91348108 39408908
+2b90  361001e8 b0011860 f000bde1 f000bde2 91348000 913a3821 9139d442 97fedbfd
+
+SP: 0xffffff80175ab8c0:
+b8c0  084e2d30 ffffff80 604000c5 00000000 175ab910 ffffff80 1c236200 0682b328
+b8e0  ffffffff ffffffff 084e2b70 ffffff80 175ab910 ffffff80 084e2d30 ffffff80
+b900  00000000 00000000 1c236200 0682b328 175ab970 ffffff80 0813c47c ffffff80
+b920  00000000 00000000 00000061 00000000 f8d7e270 ffffffc0 00000000 00000000
+Call trace:
+ msm_dirconn_irq_set_type+0x578/0x58c
+ __irq_set_trigger+0x90/0x19c
+ __setup_irq+0x47c/0x624
+ request_threaded_irq+0x10c/0x170
+ request_any_context_irq+0x68/0xac
+ devm_request_any_context_irq+0x7c/0xc8
+ gpio_keys_probe+0x428/0x7e8
+ platform_drv_probe+0x5c/0xb0
+ driver_probe_device+0x300/0x42c
+ __device_attach_driver+0xac/0x124
+ bus_for_each_drv+0x7c/0xc4
+ __device_attach+0xa8/0x158
+ device_initial_probe+0x10/0x18
+ bus_probe_device+0x30/0x8c
+ deferred_probe_work_func+0xcc/0x178
+ process_one_work+0x1c0/0x3cc
+ worker_thread+0x21c/0x37c
+ kthread+0x118/0x128
+ ret_from_fork+0x10/0x18
+---[ end trace 892218bb0c35afa3 ]---
+qcom,qnovo5-driver c440000.qcom,spmi:qcom,pm8150b@2:qcom,sdam-qnovo@b000: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150b@2/pinctrl@c000/qnovo_fet_ctrl/qnovo_fet_ctrl_state1, deferring probe
+AXI: NOC: msm_bus_noc_sbm_config(): msm_bus_noc_sbm_config: SBM disable timeout.
+regulator_proxy_consumer_remove_all: removing regulator proxy consumer requests
+ALSA device list:
+  No soundcards found.
+Warning: unable to open an initial console.
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150l@5:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+qcom,tri-led c440000.qcom,spmi:qcom,pm8150b@3:qcom,leds@d000: Devicetree properties parsing failed, rc=-517
+extcon-usb-gpio vendor:extcon_usb1: could not find pctldev for node /soc/qcom,spmi@c440000/qcom,pm8150@0/pinctrl@c000/usb2_vbus_det/usb2_vbus_det_default, deferring probe
+coresight-tmc 6048000.tmc: stream ID 0x5e0 out of range for SMMU (0x0)
+flashv2: qpnp_flash_led_parse_common_dt: Unable to get pmic_revid rc=-22
+flashv2: qpnp_flash_led_probe: Failed to parse common flash LED device tree
+device-mapper: init: attempting early device configuration.
+device-mapper: init: adding target '0 7224056 verity 1 PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d 4096 4096 903007 903007 sha1 75107d66498ef46f343e6d02c250a4b6b9ce4e98 1a5052eca46e5c4f95fbf3e4c4c553112fa553a0663853951384cc808edbd72e 10 restart_on_corruption ignore_zero_blocks use_fec_from_device PARTUUID=95e42b67-7ad7-2766-aa56-6dd860a27f9d fec_roots 2 fec_blocks 910119 fec_start 910119'
+device-mapper: table: 252:0: verity: Data device lookup failed
+device-mapper: init: starting dm-0 (system) failed

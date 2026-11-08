@@ -252,3 +252,62 @@ In `milestones.json`:
 3. `init: Do not have permissions to set 'ro.adb.secure' ... SELinux permission check failed` proves second-stage init actively enforced SELinux property access controls against `/vendor/default.prop`.
 4. `avc:  denied  .* permissive=0` confirms kernel audit logs AVC denial decisions with `permissive=0` (enforcing mode).
 5. Passing `androidboot.selinux=permissive` on cmdline cleanly disables enforcing mode, causing `enforcing=1 old_enforcing=0`, property set rejection, and `permissive=0` to completely disappear, while audit logs switch to `permissive=1`.
+
+## 2026-11-08 R12 Proposed patterns for property service, binder, and service managers
+
+**Observed (raw guest lines)**:
+- In real guest boot output on `cepheus`:
+  ```text
+  init: Created socket '/dev/socket/property_service', mode 666, user 0, group 0
+  init: Command 'mount binder binder /dev/binderfs stats=global' action=init (/system/etc/init/hw/init.rc:186) took 100ms and succeeded
+  init: starting service 'servicemanager'...
+  init: Command 'start servicemanager' action=init (/system/etc/init/hw/init.rc:426) took 290ms and succeeded
+  init: starting service 'hwservicemanager'...
+  init: Command 'start hwservicemanager' action=init (/system/etc/init/hw/init.rc:427) took 290ms and succeeded
+  init: starting service 'vndservicemanager'...
+  init: Command 'start vndservicemanager' action=init (/system/etc/init/hw/init.rc:428) took 430ms and succeeded
+  init: Control message: Could not find 'vendor.qti.hardware.perf@2.0::IPerf/default' for ctl.interface_start from pid: 329 (/system/bin/hwservicemanager)
+  type=1400 audit(67.600:15): avc: denied { read } for comm="vndservicemanag" name="u:object_r:system_prop:s0" dev="tmpfs" ino=15659 scontext=u:r:vndservicemanager:s0 tcontext=u:object_r:system_prop:s0 tclass=file permissive=0
+  type=1400 audit(73.840:20): avc: denied { write } for comm="Binder:368_2" name="uevent" dev="sysfs" ino=60194 scontext=u:r:vold:s0 tcontext=u:object_r:sysfs_memory:s0 tclass=file permissive=0
+  ```
+- In negative run where partitions are corrupted (`lun-dir=build/luns-corrupt`):
+  Kernel halts early before userspace init starts; all property service, binderfs, service managers, and Binder threads are completely absent.
+
+**Proposal**:
+In `milestones.json`:
+1. Remove `"patterns_status": "DRAFT"` from `R12`.
+2. Set `patterns`, `negative_absent`, and `argv_must_contain` in `R12` to:
+   ```json
+   "patterns": [
+     "init: Created socket '/dev/socket/property_service', mode 666, user 0, group 0",
+     "init: Command 'mount binder binder /dev/binderfs stats=global' action=init .* and succeeded",
+     "init: starting service 'servicemanager'\\.\\.\\.",
+     "init: starting service 'hwservicemanager'\\.\\.\\.",
+     "init: starting service 'vndservicemanager'\\.\\.\\.",
+     "from pid: [0-9]+ \\(/system/bin/hwservicemanager\\)",
+     "comm=\"vndservicemanag\" .* scontext=u:r:vndservicemanager:s0",
+     "comm=\"Binder:[0-9]+_[0-9]+\""
+   ],
+   "negative_absent": [
+     "init: Created socket '/dev/socket/property_service'",
+     "mount binder binder /dev/binderfs",
+     "starting service 'servicemanager'",
+     "starting service 'hwservicemanager'",
+     "starting service 'vndservicemanager'",
+     "comm=\"vndservicemanag\"",
+     "\\(/system/bin/hwservicemanager\\)",
+     "comm=\"Binder:"
+   ],
+   "argv_must_contain": [
+     "qemu-system-aarch64",
+     "cepheus",
+     "-kernel",
+     "-dtb"
+   ]
+   ```
+
+**Why**:
+1. `init: Created socket '/dev/socket/property_service'` proves init's property service is running and serving getprop/setprop IPC requests over unix domain socket.
+2. `init: Command 'mount binder binder /dev/binderfs stats=global' ... and succeeded` proves the native kernel binderfs filesystem is mounted and provides `/dev/binder`, `/dev/hwbinder`, and `/dev/vndbinder`.
+3. `init: starting service 'servicemanager'...'`, `'hwservicemanager'...'`, `'vndservicemanager'...'` prove all three core service managers from the real stock ROM images are spawned and executed by init.
+4. `from pid: ... (/system/bin/hwservicemanager)` and `comm="vndservicemanag"` and `comm="Binder:..._..."` prove real userspace processes (hwservicemanager, vndservicemanager, and vold) are actively communicating and transacting over `/dev/hwbinder`, `/dev/vndbinder`, and `/dev/binder`.
