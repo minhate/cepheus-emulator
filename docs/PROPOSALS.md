@@ -311,3 +311,32 @@ In `milestones.json`:
 2. `init: Command 'mount binder binder /dev/binderfs stats=global' ... and succeeded` proves the native kernel binderfs filesystem is mounted and provides `/dev/binder`, `/dev/hwbinder`, and `/dev/vndbinder`.
 3. `init: starting service 'servicemanager'...'`, `'hwservicemanager'...'`, `'vndservicemanager'...'` prove all three core service managers from the real stock ROM images are spawned and executed by init.
 4. `from pid: ... (/system/bin/hwservicemanager)` and `comm="vndservicemanag"` and `comm="Binder:..._..."` prove real userspace processes (hwservicemanager, vndservicemanager, and vold) are actively communicating and transacting over `/dev/hwbinder`, `/dev/vndbinder`, and `/dev/binder`.
+
+
+## 2026-11-08 FINALE Finale Milestone: Comprehensive regression audit and performance bottleneck profiling
+
+**Requested by User**:
+Add 1 finale milestone that checks all preceding milestones one by one, identifies performance bottlenecks, and collects errors/warnings in a single run.
+
+**Proposal**:
+In `milestones.json`:
+Add milestone `FINALE`:
+```json
+{
+  "id": "FINALE",
+  "title": "Full regression audit and performance bottleneck profiling",
+  "kind": "guest",
+  "depends": [
+    "A1",
+    "R17",
+    "M1",
+    "G1"
+  ],
+  "acceptance": "One-shot comprehensive audit script re-verifies all prior milestones (R0 through A1/R17) sequentially, collects kernel/init/HAL errors and warnings, profiles guest CPU/MMIO/IRQs to identify execution bottlenecks, and generates a structured regression and performance diagnosis report. Negative: injected regression/fault -> audit reports failure.",
+  "patterns_status": "DRAFT",
+  "patterns": []
+}
+```
+
+**Why**:
+Provides an automated final validation phase that ensures all previous hardware models, partition mounts, SELinux enforcement, IPC services, display, input, and apps function cohesively without regressions, while profiling emulation overhead (vCPU stalls, redundant MMIO traps, unhandled interrupts) to pinpoint system bottlenecks.

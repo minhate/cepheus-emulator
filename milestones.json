@@ -440,6 +440,20 @@
       "acceptance": "User-supplied APKs installed with real `adb install`; real `pm path` and `am start`; real dumpsys shows the resumed activity; screencheck frame-diff shows the app drawing. Negative: `pm uninstall` -> `pm path` empty.",
       "patterns_status": "DRAFT",
       "patterns": []
+    },
+    {
+      "id": "FINALE",
+      "title": "Full regression audit and performance bottleneck profiling",
+      "kind": "guest",
+      "depends": [
+        "A1",
+        "R17",
+        "M1",
+        "G1"
+      ],
+      "acceptance": "One-shot comprehensive audit script re-verifies all prior milestones (R0 through A1/R17) sequentially, collects kernel/init/HAL errors and warnings, profiles guest CPU/MMIO/IRQs to identify execution bottlenecks, and generates a structured regression and performance diagnosis report. Negative: injected regression/fault -> audit reports failure.",
+      "patterns_status": "DRAFT",
+      "patterns": []
     }
   ]
 }

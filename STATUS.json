@@ -128,5 +128,10 @@
     "status": "NOT-STARTED",
     "note": "",
     "evidence_sha256": null
+  },
+  "FINALE": {
+    "status": "NOT-STARTED",
+    "note": "",
+    "evidence_sha256": null
   }
 }
