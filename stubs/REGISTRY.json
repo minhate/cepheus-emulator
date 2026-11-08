@@ -20,6 +20,11 @@
       "path": "stubs/camera_isp/camera_isp_stubs.dts",
       "category": "camera_isp",
       "reason": "Disables unmodeled Qualcomm camera ISP, CSIPHY, and ICP DTB nodes to prevent unhandled error unwinds and kernel NULL dereferences"
+    },
+    {
+      "path": "qemu/overlay/hw/arm/qcom_sm8150_tz.c",
+      "category": "trustzone_qsee",
+      "reason": "Emulates Qualcomm TrustZone/QSEE secure monitor (SMC/SCM fast calls, QSEE version query, and legacy SCM calls) to allow kernel QSEECOM and Keymaster/Gatekeeper HALs to initialize"
     }
   ]
 }

@@ -65,8 +65,8 @@
     "evidence_sha256": "07365dfd91839e60cc66d390793949f02d9bcad61d01f33b1943bb8528103d6d"
   },
   "R13": {
-    "status": "NOT-STARTED",
-    "note": "",
+    "status": "IN-PROGRESS",
+    "note": "Implemented trustzone_qsee stub (qcom_sm8150_tz.c) answering SMCCC 64-bit and QSEE version; /dev/qseecom is active and late-fs mounted userdata /data. Next: pass ro.crypto.type=file and ro.crypto.state=encrypted to let vold fbeEnable succeed and trigger zygote-start.",
     "evidence_sha256": null
   },
   "R14": {

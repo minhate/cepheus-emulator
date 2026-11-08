@@ -1,0 +1,22 @@
+diff --git a/target/arm/tcg/psci.c b/target/arm/tcg/psci.c
+index 51d2ca3..87458c7 100644
+--- a/target/arm/tcg/psci.c
++++ b/target/arm/tcg/psci.c
+@@ -54,8 +54,17 @@ bool arm_is_psci_call(ARMCPU *cpu, int excp_type)
+     return true;
+ }
+ 
++bool qcom_sm8150_smc_handler(ARMCPU *cpu);
++bool __attribute__((weak)) qcom_sm8150_smc_handler(ARMCPU *cpu)
++{
++    return false;
++}
++
+ void arm_handle_psci_call(ARMCPU *cpu)
+ {
++    if (qcom_sm8150_smc_handler(cpu)) {
++        return;
++    }
+     /*
+      * This function partially implements the logic for dispatching Power State
+      * Coordination Interface (PSCI) calls (as described in ARM DEN 0022D.b),
