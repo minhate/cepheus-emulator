@@ -251,8 +251,32 @@
         "R11"
       ],
       "acceptance": "Real servicemanager/hwservicemanager/vndservicemanager running over real binder; service list printed raw by the real tool.",
-      "patterns_status": "DRAFT",
-      "patterns": []
+      "patterns": [
+        "init: Created socket '/dev/socket/property_service', mode 666, user 0, group 0",
+        "init: Command 'mount binder binder /dev/binderfs stats=global' action=init .* and succeeded",
+        "init: starting service 'servicemanager'\\.\\.\\.",
+        "init: starting service 'hwservicemanager'\\.\\.\\.",
+        "init: starting service 'vndservicemanager'\\.\\.\\.",
+        "from pid: [0-9]+ \\(/system/bin/hwservicemanager\\)",
+        "comm=\"vndservicemanag\" .* scontext=u:r:vndservicemanager:s0",
+        "comm=\"Binder:[0-9]+_[0-9]+\""
+      ],
+      "negative_absent": [
+        "init: Created socket '/dev/socket/property_service'",
+        "mount binder binder /dev/binderfs",
+        "starting service 'servicemanager'",
+        "starting service 'hwservicemanager'",
+        "starting service 'vndservicemanager'",
+        "comm=\"vndservicemanag\"",
+        "\\(/system/bin/hwservicemanager\\)",
+        "comm=\"Binder:"
+      ],
+      "argv_must_contain": [
+        "qemu-system-aarch64",
+        "cepheus",
+        "-kernel",
+        "-dtb"
+      ]
     },
     {
       "id": "R13",
